@@ -146,6 +146,25 @@ input.fi:focus,select.fi:focus,textarea.fi:focus{border-color:var(--acc)}
 footer{max-width:1240px;margin:0 auto;border-top:1px solid var(--line);padding:16px 18px;color:var(--mut2);font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#0b3a24;color:#a7f3d0;border:1px solid var(--ok);padding:10px 18px;border-radius:12px;font-size:12px;display:none;z-index:99}
 .spacer-x{flex:1}
+
+/* ============ ASISTENTE KILOCAL ============ */
+#aiFab{position:fixed;left:16px;bottom:16px;z-index:80;display:flex;align-items:center;gap:10px;background:linear-gradient(160deg,#1b2b46,#101c30);border:1px solid var(--line2);color:#fff;border-radius:999px;padding:12px 18px 12px 12px;cursor:pointer;box-shadow:var(--shadow);font:inherit;font-size:13px}
+#aiFab .orb{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#7dd3fc,#0ea5e9);display:grid;place-items:center;font-size:19px}
+#aiPanel{position:fixed;left:16px;bottom:78px;z-index:85;width:380px;max-width:92vw;max-height:70vh;background:var(--panel);border:1px solid var(--line2);border-radius:18px;display:none;flex-direction:column;box-shadow:var(--shadow);overflow:hidden}
+#aiPanel header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:#101f33}
+#aiPanel header .orb{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#7dd3fc,#0ea5e9);display:grid;place-items:center;font-size:17px}
+#aiMessages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:180px}
+.aiMsg{max-width:85%;padding:8px 11px;border-radius:12px;font-size:13px;white-space:pre-wrap;line-height:1.4}
+.aiUser{align-self:flex-end;background:var(--acc);color:#231a02;font-weight:700}
+.aiBot{align-self:flex-start;background:#131f2f;border:1px solid var(--line);color:#dbe7f3}
+.aiChips{display:flex;gap:6px;flex-wrap:wrap;padding:8px 12px;border-top:1px solid var(--line)}
+.aiChip{background:#0e1926;border:1px solid var(--line2);color:var(--gold);border-radius:999px;padding:6px 10px;font-size:11px;cursor:pointer;white-space:nowrap}
+.aiChip:hover{border-color:var(--acc)}
+#aiInputRow{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+#aiInput{flex:1;background:#0b1420;border:1px solid var(--line2);color:var(--ink);border-radius:10px;padding:11px;font:inherit;outline:none}
+#aiInput:focus{border-color:var(--acc)}
+#aiSend{background:var(--acc);color:#231a02;border:0;border-radius:10px;padding:0 16px;font-weight:800;cursor:pointer}
+
 </style>
 </head>
 <body>
@@ -305,6 +324,15 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
   <span>Datos de muestra para demostrar la plataforma · Los mayoristas reales se cargan con sus listas oficiales</span>
 </footer>
 
+
+<button id="aiFab" aria-label="Pregúntale a KILOCAL"><div class="orb">🤖</div><div><div style="font-size:11px;letter-spacing:1px;color:#7dd3fc;text-transform:uppercase;font-weight:800">Pregúntale a KILOCAL</div><div style="font-size:10px;color:var(--mut)">precios, mayoristas, pedidos</div></div></button>
+<div id="aiPanel" role="dialog" aria-label="Asistente KILOCAL">
+  <header><div class="orb">🤖</div><div><b style="color:#fff">Cerebro KILOCAL</b><div style="font-size:10px;color:var(--mut)">responde sobre el catálogo y los mayoristas</div></div><button id="aiClose" style="margin-left:auto;background:none;border:0;color:var(--mut);font-size:20px;cursor:pointer">✕</button></header>
+  <div id="aiMessages"></div>
+  <div class="aiChips" id="aiChips"></div>
+  <div id="aiInputRow"><input id="aiInput" placeholder="Ej: ¿precio de la yerba?" autocomplete="off"><button id="aiSend">Enviar</button></div>
+</div>
+
 <!-- Sticky cart button (mobile) -->
 <button id="cartFab" style="position:fixed;right:14px;bottom:14px;z-index:80;display:none;background:var(--acc);color:#231a02;border:0;border-radius:999px;width:60px;height:60px;font-size:23px;cursor:pointer;box-shadow:var(--shadow)">🛒<span id="cartCount" style="position:absolute;top:-4px;right:-4px;background:var(--bad);color:#fff;font-size:11px;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-weight:800">0</span></button>
 
@@ -458,11 +486,13 @@ function mayoristaNombre(id) { const m = MAYORISTAS.find(x => x.id === id); retu
 function mayoristaZona(id) { const m = MAYORISTAS.find(x => x.id === id); return m ? m.zona : ''; }
 
 function mergedCatalog() {
-  const upl = (DATA.products || []).filter(p => p.activo).map(p => ({
-    id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.unidades, offers: { [p.mayorista]: p.precioCaja }
-  }));
-  const seed = PRODUCTOS.map(p => ({ id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.u, offers: p.offer }));
-  return seed.concat(upl);
+  const map = new Map();
+  PRODUCTOS.forEach(p => map.set(p.id, { id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.u, offers: p.offer }));
+  (DATA.products || []).filter(p => p.activo).forEach(p => {
+    const offers = p.offers || p.offer || (p.mayorista ? (function(){ const o = {}; o[p.mayorista] = p.precioCaja; return o; })() : {});
+    map.set(p.id, { id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.unidades || p.u || 1, offers: offers });
+  });
+  return Array.from(map.values());
 }
 function filtered() {
   return mergedCatalog().filter(p => {
@@ -684,8 +714,103 @@ $('uploadBtn').addEventListener('click', () => {
   toast('Producto publicado');
 });
 
+
+/* ============ CEREBRO KILOCAL ============ */
+const aiState = { msgs: [] };
+function aiAdd(role, text) {
+  aiState.msgs.push({ role, text });
+  const div = document.createElement('div');
+  div.className = 'aiMsg ' + (role === 'user' ? 'aiUser' : 'aiBot');
+  div.textContent = text;
+  $('aiMessages').appendChild(div);
+  $('aiMessages').scrollTop = $('aiMessages').scrollHeight;
+}
+function aiFindProducts(q) {
+  const norm = (t) => String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const STOP = new Set(['compara','compará','comparacion','precio','precios','cuanto','cuánto','cuesta','sale','vale','el','la','los','las','un','una','de','del','al','por','en','y','o','quiero','dame','info','mejor','barato','barata','donde','cual','quién','mayor']);
+  const tokens = norm(q).split(/[^a-z0-9]+/).filter(t => t && t.length >= 4 && !STOP.has(t));
+  if (!tokens.length) return [];
+  const all = mergedCatalog();
+  // Prioridad: productos que contienen TODOS los tokens significativos
+  const full = all.filter(p => tokens.every(t => norm(p.nombre).includes(t)));
+  if (full.length) return full;
+  // Si no, cualquiera que contenga al menos uno fuerte (>4 letras)
+  return all.filter(p => tokens.some(t => t.length >= 4 && norm(p.nombre).includes(t)));
+}
+function aiBest(p) {
+  const cheap = cheapestSellerP(p);
+  return { cheap, price: p.offers[cheap] };
+}
+function aiAnswer(text) {
+  const q = String(text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  const prods = aiFindProducts(q);
+  const zones = Array.from(new Set(MAYORISTAS.map(m => m.zona)));
+
+  if (!q) return 'Pedime algo: "¿precio de la yerba?", "el más barato de la coca", "mayoristas con entrega" o "ayuda".';
+  if (/(ayuda|opciones|que podes|que sabes)/.test(q)) return 'Sé hacer:\n• ¿precio de <producto>? → mejor precio por caja de los 10 mayoristas\n• compará <producto> → todos los precios ordenados\n• ¿quién vende <producto>? → el que más barato lo tiene\n• mayoristas con entrega / retirá / zona <del> -> depinador\n• agrega lo más barato de <producto> → lo sumes tu pedido\n• abrí mi pedido / ir al carrito';
+  if (/(mejor mayorista|mayorista con (entrega|envio)|cuales? mayoristas|lista de mayoristas)/.test(q) && /(entrega|envio|retiran|retiro)/.test(q)) {
+    const entrega = MAYORISTAS.filter(m => m.entrega === 'entrega').map(m => '• ' + m.nombre + ' (' + m.zona + ')').join('\n');
+    return 'Mayoristas con entrega al negocio:\n' + entrega + '\n\nEl retiro en local: ' + MAYORISTAS.filter(m => m.entrega === 'retiro').map(m => m.nombre).join(', ') + '.';
+  }
+  if (/zona|provincia|ciudad/.test(q)) {
+    const z = zones.find(z => q.includes(z.toLowerCase()));
+    if (z) return 'Mayoristas en ' + z + ':\n' + MAYORISTAS.filter(m => m.zona === z).map(m => '• ' + m.nombre + ' — ' + (m.entrega === 'entrega' ? 'entrega' : 'retiro en local')).join('\n');
+    return 'Las zonas disponibles: ' + zones.join(', ') + '.';
+  }
+  const m = q.match(/(?:compar|precio|sale|cuanto|cuesta|vale)\s*(?:de|la|el|los|las)?\s*([a-z0-9 .]+)/);
+  if (prods.length) {
+    const sorted = prods.map(p => ({ p, ...aiBest(p) })).sort((a, b) => a.price - b.price);
+    const top = sorted[0];
+    if (m && /(compar)/.test(q)) {
+      return 'Precios de ' + top.p.nombre + ' (por ' + top.p.caja + '):\n' + sorted.map(x => '• ' + mayoristaNombre(x.cheap) + ': ' + fmt.format(x.price)).join('\n');
+    }
+    return 'Mejor precio para ' + top.p.nombre + ':\n' + fmt.format(top.price) + ' / ' + top.p.caja + ' en ' + mayoristaNombre(top.cheap) + ' (' + Math.round(top.price / top.p.unidades) + ' por unidad).\nDecime "compará ' + top.p.nombre.split(' ')[0] + '" para ver todos los precios.';
+  }
+  if (/(carrito|mi pedido|ver pedido|ir al pedido)/.test(q)) { $('cartDrawer').style.display = 'flex'; return 'Ahí lo tenés abierto. Si querés seguir agregando, buscá un producto y tocá "Agregar".'; }
+  if (/(agrega|sumar|agregar).*(barato|economico)/.test(q) && prods.length) {
+    const target = prods.map(p => ({ p, ...aiBest(p) })).sort((a, b) => a.price - b.price)[0];
+    const key = target.cheap + '|' + target.p.id;
+    state.cart[key] = (state.cart[key] || 0) + 1;
+    saveCart(); renderCart(); updateCartCount();
+    return 'Listo: agregué 1 caja de ' + target.p.nombre + ' al pedido (mejor precio: ' + fmt.format(target.price) + ' en ' + mayoristaNombre(target.cheap) + ').';
+  }
+  if (/(hola|buenas|hey)/.test(q)) return '¡Hola! Soy el cerebro KILOCAL. Preguntame por precio de cualquier producto, mayoristas por zona o entrega.';
+  if (/(envio|flete|delivery|entrega|mando)/.test(q)) return 'El pedido va por WhatsApp y el mayorista lo entrega a tu negocio según su zona: Capital hoy; Cuyo pronto; todo el país en espera. El flete es el que declara cada mayorista al publicar (habitualmente sin cargo en Capital). La pestaña "Logística y cobertura" tiene el detalle.';
+  return 'No estoy seguro de eso todavía. Probá: "¿precio de la yerba?", "compará el aceite", "mayoristas con entrega" o "agrega lo más barato de la coca".';
+}
+function aiSend(text) {
+  const input = $('aiInput');
+  const value = (text || input.value).trim();
+  if (!value) return;
+  aiAdd('user', value);
+  input.value = '';
+  // pequeña pausa "pensando" para que se sienta vivo
+  const typing = document.createElement('div');
+  typing.className = 'aiMsg aiBot';
+  typing.textContent = '…';
+  $('aiMessages').appendChild(typing);
+  setTimeout(() => {
+    $('aiMessages').removeChild(typing);
+    aiAdd('bot', aiAnswer(value));
+  }, 350);
+}
+function aiChipsRender() {
+  const chips = ['¿precio de la yerba?', 'compará el aceite', 'mayoristas con entrega', 'agrega lo más barato de la coca', '¿cómo funciona la entrega?'];
+  $('aiChips').innerHTML = chips.map(c => '<button class="aiChip">' + c + '</button>').join('');
+  $('aiChips').querySelectorAll('.aiChip').forEach(b => b.addEventListener('click', () => aiSend(b.textContent)));
+}
+$('aiFab').addEventListener('click', () => { const p = $('aiPanel'); p.style.display = p.style.display === 'flex' ? 'none' : 'flex'; });
+$('aiClose').addEventListener('click', () => { $('aiPanel').style.display = 'none'; });
+$('aiSend').addEventListener('click', () => aiSend());
+$('aiInput').addEventListener('keydown', e => { if (e.key === 'Enter') aiSend(); });
+
 /* ============================ INIT ============================ */
 function setRole(r) { DATA.role = r; save(DATA); }
+if (!localStorage.getItem('kilocal_ai_seen')) {
+  localStorage.setItem('kilocal_ai_seen', '1');
+  aiAdd('bot', '¡Hola! Soy el cerebro KILOCAL. Preguntame por precios, mayoristas por zona o entrega, y te armo el pedido.');
+  aiChipsRender();
+}
 renderFilters();
 if (DATA.role === 'mayorista') {
   $('tab-kiosco').style.display = 'none';
