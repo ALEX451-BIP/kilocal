@@ -747,7 +747,7 @@ function aiAnswer(text) {
   const zones = Array.from(new Set(MAYORISTAS.map(m => m.zona)));
 
   if (!q) return 'Pedime algo: "¿precio de la yerba?", "el más barato de la coca", "mayoristas con entrega" o "ayuda".';
-  if (/(ayuda|opciones|que podes|que sabes)/.test(q)) return 'Sé hacer:\n• ¿precio de <producto>? → mejor precio por caja de los 10 mayoristas\n• compará <producto> → todos los precios ordenados\n• ¿quién vende <producto>? → el que más barato lo tiene\n• mayoristas con entrega / retirá / zona <del> -> depinador\n• agrega lo más barato de <producto> → lo sumes tu pedido\n• abrí mi pedido / ir al carrito';
+  if (/(ayuda|opciones|que podes|que sabes)/.test(q)) return 'Sé hacer:\n• ¿precio de <producto>? → mejor precio por caja de los 10 mayoristas\n• compará <producto> → todos los precios ordenados\n• ¿quién vende <producto>? → el que más barato lo tiene\n• mayoristas con entrega / retirá / zona → filtrá por zona o entrega\n• agrega lo más barato de <producto> → lo sumes tu pedido\n• abrí mi pedido / ir al carrito';
   if (/(mejor mayorista|mayorista con (entrega|envio)|cuales? mayoristas|lista de mayoristas)/.test(q) && /(entrega|envio|retiran|retiro)/.test(q)) {
     const entrega = MAYORISTAS.filter(m => m.entrega === 'entrega').map(m => '• ' + m.nombre + ' (' + m.zona + ')').join('\n');
     return 'Mayoristas con entrega al negocio:\n' + entrega + '\n\nEl retiro en local: ' + MAYORISTAS.filter(m => m.entrega === 'retiro').map(m => m.nombre).join(', ') + '.';
