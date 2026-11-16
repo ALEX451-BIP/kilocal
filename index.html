@@ -190,8 +190,8 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
     <h1>Los mayoristas de <span class="hl">todo el país</span>.<br>Un buscador. Tu pedido, en el mostrador.</h1>
     <p>Compará precio por caja entre cientos de mayoristas del país, pedí por WhatsApp y que te lo traigan a tu kiosco o almacén. Sin visitas, sin vueltas, con el flete del mayorista de tu zona.</p>
     <div class="hero-stats">
-      <div class="hstat"><b>190+</b><span>Mayoristas en lista</span></div>
-      <div class="hstat"><b>24</b><span>Provincias en camino</span></div>
+      <div class="hstat"><b>10+</b><span>Mayoristas priorizados</span></div>
+      <div class="hstat"><b>24</b><span>Provincias en espera</span></div>
       <div class="hstat"><b>$0</b><span>Comisión el 1° mes</span></div>
       <div class="hstat"><b>2 min</b><span>Para pedir</span></div>
     </div>
@@ -216,6 +216,19 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
   </div>
 </section>
 
+<section style="max-width:1240px;margin:2px auto 0;padding:0 18px 2px">
+  <div style="display:flex;gap:10px;flex-wrap:wrap;border:1px solid var(--line);border-radius:14px;background:rgba(14,25,38,.7);padding:10px 14px;align-items:center;font-size:11px;color:var(--mut)">
+    <span>🔒 <b style="color:#fff">Mayoristas con identidad</b></span>
+    <span>·</span>
+    <span>⏱ <b style="color:#fff">Pedidos por WhatsApp</b></span>
+    <span>·</span>
+    <span>🚚 <b style="color:#fff">El mayorista entrega</b></span>
+    <span>·</span>
+    <span>💸 <b style="color:#fff">$0 comisión el 1° mes</b></span>
+    <span style="margin-left:auto"><a class="cta" style="padding:6px 10px;font-size:10px" href="https://wa.me/5492646204892?text=Quiero%20publicar%20mi%20mayorista%20en%20KILOCAL" target="_blank" rel="noopener">Sumate vos →</a></span>
+  </div>
+</section>
+
 <nav class="tabs" id="tabs">
   <button class="on" data-tab="kiosco">🛒 Catálogo y pedido</button>
   <button data-tab="mayoristas">🏭 Mayoristas</button>
@@ -226,6 +239,13 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
 <main>
   <!-- ============ TAB: KIOSCO ============ -->
   <div id="tab-kiosco">
+    
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:0 0 12px">
+  <div class="panel" style="padding:12px"><b style="color:var(--acc)">1 · Buscá</b><p style="font-size:12px;color:var(--mut);margin:6px 0">Escribí el producto. KILOCAL te muestra los precios por caja de todos los mayoristas.</p></div>
+  <div class="panel" style="padding:12px"><b style="color:var(--acc)">2 · Compará</b><p style="font-size:12px;color:var(--mut);margin:6px 0">Tocá un producto → compará lado a lado. Agregá al carrito lo que te conviene.</p></div>
+  <div class="panel" style="padding:12px"><b style="color:var(--acc)">3 · Te lo traen</b><p style="font-size:12px;color:var(--mut);margin:6px 0">Enviás el pedido por WhatsApp → el mayorista confirma y te lo entrega según su zona.</p></div>
+</div>
+
     <div class="catalog-layout">
       <aside class="panel sidepanel">
         <h2>Filtrar</h2>
@@ -331,8 +351,8 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
 </main>
 
 <footer>
-  <span>KILOCAL · Hecho en San Juan, Argentina · Kiosco ↔ Mayorista sin intermediarios</span>
-  <span>Datos de muestra para demostrar la plataforma · Los mayoristas reales se cargan con sus listas oficiales</span>
+  <span>KILOCAL · Hecho en San Juan, Argentina · Kiosco ↔ Mayorista sin intermediarios · <a href="https://alex451-bip.github.io/kilocal/terminos.html" style="color:var(--acc)">Términos</a> · <a href="https://alex451-bip.github.io/kilocal/privacidad.html" style="color:var(--acc)">Privacidad</a></span>
+  <span>Piloto en San Juan y Cuyo · Datos de muestra para demo · No somos factura ni servicio de entrega propio</span>
 </footer>
 
 
