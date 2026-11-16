@@ -329,7 +329,69 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
 
 <toast id="toast"></toast>
 
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-database-compat.js"></script>
 <script>
+
+// ====== KILOCAL — Base de datos compartida (RTDB del proyecto kiosco-8ae45, namespace /kilocal) ======
+// Demo piloto: las reglas de la base hoy son abiertas. NO se borra ni se publica información sensible.
+// Para producción nacional: reglas cerradas + proyecto propio (pedir aumento de límite o pasar a plan Blaze).
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBqWMGTraqPEvUEgejRJ20Ey4FaVPo7mjY",
+  authDomain: "kiosco-8ae45.firebaseapp.com",
+  databaseURL: "https://kiosco-8ae45-default-rtdb.firebaseio.com",
+  projectId: "kiosco-8ae45",
+  storageBucket: "kiosco-8ae45.firebasestorage.app",
+  messagingSenderId: "635558725301",
+  appId: "1:635558725301:web:8a399c734ad518ea5da0fc"
+};
+var KFB = { db: null, error: null };
+(function(){
+  try {
+    if (window.firebase && firebase.initializeApp) {
+      firebase.initializeApp(FIREBASE_CONFIG);
+      KFB.db = firebase.database();
+    } else {
+      KFB.error = 'SDK firebase no cargado';
+    }
+  } catch (e) { KFB.error = String(e); }
+})();
+
+function fbPushAll() {
+  if (!KFB.db) return;
+  try {
+    KFB.db.ref('/kilocal/products').set(DATA.products || []);
+    KFB.db.ref('/kilocal/orders').set(DATA.orders || []);
+  } catch (e) { /* sin red: sigue funcionando local */ }
+}
+function fbLoad() {
+  if (!KFB.db) return Promise.resolve(false);
+  return KFB.db.ref('/kilocal').once('value').then(function(snap){
+    var v = snap.val() || {};
+    var norm = function(x){ return Array.isArray(x) ? x : (x ? Object.keys(x).map(function(k){ var o=x[k]; return o; }) : []); };
+    var prods = norm(v.products);
+    var ords = norm(v.orders);
+    if (prods.length) DATA.products = prods;
+    if (ords.length) DATA.orders = ords;
+    try { localStorage.setItem(LS, JSON.stringify(DATA)); } catch (e) {}
+    return true;
+  }).catch(function(e){ KFB.error = String(e); return false; });
+}
+function fbOnValue(cb) {
+  if (!KFB.db) return;
+  KFB.db.ref('/kilocal').on('value', function(snap){
+    var v = snap.val() || {};
+    var norm = function(x){ return Array.isArray(x) ? x : (x ? Object.keys(x).map(function(k){ return x[k]; }) : []); };
+    var prods = norm(v.products); var ords = norm(v.orders);
+    if (prods.length) DATA.products = prods;
+    if (ords.length) DATA.orders = ords;
+    try { localStorage.setItem(LS, JSON.stringify(DATA)); } catch (e) {}
+    cb(DATA);
+  });
+}
+</script>
+<script>
+
 'use strict';
 
 /* =============================== SEED =============================== */
@@ -534,7 +596,7 @@ $('sendOrder').addEventListener('click', () => {
   const msg = 'Hola! Soy ' + nombre + ' — ' + provincia + ' (' + direccion + ').\nPedido por mayor desde KILOCAL (' + entregaTxt + ').\nHorario: ' + horario + '\nWA: ' + wa + '\n\n' + blocks;
   const mainMayor = Object.keys(by)[0];
   DATA.orders.push({ id: uid('ord'), fecha: Date.now(), cliente: nombre, direccion, horario, wa, entrega: entregaTxt, detalle: blocks, mayorista: mainMayor, estado: 'nuevo', items: items.length, provincia: provincia });
-  save(DATA);
+  save(DATA); fbPushAll();
   window.open('https://wa.me/5492646204892?text=' + encodeURIComponent(msg), '_blank', 'noopener');
   state.cart = {}; saveCart(); renderCart(); updateCartCount();
   $('cartDrawer').style.display = 'none';
@@ -590,7 +652,7 @@ function renderMayorista() {
   ).join('') || '<div class="empty">Todavía no publicaste. Usá el formulario de arriba.</div>';
   $('myProducts').querySelectorAll('[data-toggle]').forEach(b => b.addEventListener('click', () => {
     const p = DATA.products.find(x => x.id === b.dataset.toggle);
-    if (p) { p.activo = !p.activo; save(DATA); renderMayorista(); renderGrid(); }
+    if (p) { p.activo = !p.activo; save(DATA); fbPushAll(); renderMayorista(); renderGrid(); }
   }));
 
   $('ordersList').innerHTML = DATA.orders.slice().reverse().map(o =>
@@ -601,7 +663,7 @@ function renderMayorista() {
   ).join('') || '<div class="empty">Sin pedidos todavía. Cuando un kiosco pida, los ves acá.</div>';
   $('ordersList').querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => {
     const o = DATA.orders.find(x => x.id === b.dataset.id);
-    if (o) { o.estado = b.dataset.set; save(DATA); renderMayorista(); }
+    if (o) { o.estado = b.dataset.set; save(DATA); fbPushAll(); renderMayorista(); }
   }));
 }
 $('uploadBtn').addEventListener('click', () => {
@@ -612,7 +674,7 @@ $('uploadBtn').addEventListener('click', () => {
   const stock = Number($('mStock').value) || 0;
   if (!nombre || !(precio > 0)) { toast('Poné nombre y precio por caja'); return; }
   DATA.products.push({ id: uid('mp'), nombre, cat, caja: 'x' + unidades, unidades, precioCaja: precio, mayorista: DATA.mayoristaSel, stock, fecha: Date.now(), activo: true });
-  save(DATA);
+  save(DATA); fbPushAll();
   $('mNombre').value=''; $('mPrecio').value=''; $('mUnidades').value=''; $('mStock').value='';
   renderMayorista(); renderGrid();
   toast('Producto publicado');
@@ -634,6 +696,16 @@ renderGrid();
 renderCart();
 updateCartCount();
 save(DATA);
+
+// Conectar con la base: traer lo que haya (productos/pedidos) y escuchar cambios en vivo
+fbLoad().then(function(){
+  renderGrid(); renderCart(); updateCartCount();
+  if (DATA.role === 'mayorista') renderMayorista();
+  fbOnValue(function(){
+    renderGrid(); updateCartCount();
+    if (DATA.role === 'mayorista') renderMayorista();
+  });
+});
 </script>
 </body>
 </html>
