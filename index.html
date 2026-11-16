@@ -35,7 +35,7 @@ header.top{position:sticky;top:0;z-index:50;background:rgba(6,11,18,.88);backdro
 .hero{max-width:1240px;margin:0 auto;padding:30px 18px 18px;display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center}
 @media(max-width:960px){.hero{grid-template-columns:1fr}}
 .kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:800;border:1px solid #3a2e10;background:#1c160a;border-radius:999px;padding:5px 14px}
-.hero h1{font-family:Georgia,serif;font-size:clamp(30px,4.6vw,46px);line-height:1.08;margin:14px 0;color:#fff;letter-spacing:-.5px}
+.hero h1{font-family:Georgia,serif;font-size:clamp(27px,3.6vw,37px);line-height:1.08;margin:14px 0;color:#fff;letter-spacing:-.5px}
 .hero h1 .hl{background:linear-gradient(120deg,#fde68a,#fbbf24,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{color:var(--mut);font-size:15px;max-width:520px;margin:0 0 16px}
 .hero-stats{display:flex;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
@@ -71,7 +71,7 @@ label.f{display:block;font-size:10px;color:var(--mut2);text-transform:uppercase;
 
 /* ============ PRODUCT GRID ============ */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.card{background:linear-gradient(170deg,#111f30,#0d1826);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:5px;transition:transform .18s,border-color .18s}
+.card{background:linear-gradient(170deg,#111f30,#0d1826);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:5px;transition:transform .16s,border-color .16s,background .16s}
 .card:hover{transform:translateY(-4px);border-color:var(--acc2)}
 .caticon{font-size:24px}
 .card b{font-size:13px;line-height:1.35;min-height:36px;color:#fff}
@@ -233,6 +233,18 @@ footer a{color:#E9A23B}
 .mayorista:hover{border-color:#244D3B}
 @media (prefers-reduced-motion: reduce){*{transition:none !important; scroll-behavior:auto !important}}
 </style>
+<style id="tema-profesional">
+#aiHeaderBtn{background:#EDF2EA;border:1px solid #CBD5C6;color:#244D3B;border-radius:10px;padding:9px 14px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap}
+#aiPanel header div b{font-size:14px}
+footer{background:var(--bg);color:var(--mut);border-top:1px solid var(--line);padding:18px 18px}
+footer a{color:#245B45;text-decoration:none;font-weight:600}
+footer a:hover{color:#173F2E}
+footer span{max-width:1240px;display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
+.cta{height:44px}
+.add,.chip,.repBtn,.primary,.toggle,.search button,.navlinks button{min-height:44px}
+.pagination button{min-width:40px;min-height:40px}
+#aiFab{display:none !important}
+</style>
 </head>
 <body>
 
@@ -241,6 +253,7 @@ footer a{color:#E9A23B}
     <a class="logo" href="#"><div class="mark">K</div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
     <div class="spacer"></div>
     <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">🚚 Para mayoristas: publicá gratis</a>
+    <button id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">🤖 Asistente</button>
   </div>
 </header>
 
@@ -413,12 +426,12 @@ footer a{color:#E9A23B}
 </main>
 
 <footer>
-  <span>KILOCAL · Hecho en San Juan, Argentina · Kiosco ↔ Mayorista sin intermediarios · <a href="https://alex451-bip.github.io/kilocal/terminos.html" style="color:var(--acc)">Términos</a> · <a href="https://alex451-bip.github.io/kilocal/privacidad.html" style="color:var(--acc)">Privacidad</a></span>
-  <span>Piloto en San Juan y Cuyo · Datos de muestra para demo · No somos factura ni servicio de entrega propio</span>
+  <span>KILOCAL · El punto de encuentro entre kioscos y mayoristas · San Juan, Argentina</span>
+  <span><a href="https://alex451-bip.github.io/kilocal/terminos.html">Términos</a> · <a href="https://alex451-bip.github.io/kilocal/privacidad.html">Privacidad</a> · <a href="https://wa.me/5492646204892?text=Contacto%20KILOCAL">Contacto</a> · <a href="#tabs">Para mayoristas</a></span>
+  <span>Pedidos por WhatsApp · El precio y la entrega los confirma el mayorista · KILOCAL no procesa pagos</span>
 </footer>
 
 
-<button id="aiFab" aria-label="Pregúntale a KILOCAL"><div class="orb">🤖</div><div><div style="font-size:11px;letter-spacing:1px;color:#7dd3fc;text-transform:uppercase;font-weight:800">Pregúntale a KILOCAL</div><div style="font-size:10px;color:var(--mut)">precios, mayoristas, pedidos</div></div></button>
 <div id="aiPanel" role="dialog" aria-label="Asistente KILOCAL">
   <header><div class="orb">🤖</div><div><b style="color:#fff">Cerebro KILOCAL</b><div style="font-size:10px;color:var(--mut)">responde sobre el catálogo y los mayoristas</div></div><button id="aiClose" style="margin-left:auto;background:none;border:0;color:var(--mut);font-size:20px;cursor:pointer">✕</button></header>
   <div id="aiMessages"></div>
@@ -426,7 +439,7 @@ footer a{color:#E9A23B}
   <div id="aiInputRow"><input id="aiInput" placeholder="Ej: ¿precio de la yerba?" autocomplete="off"><button id="aiSend">Enviar</button></div>
 </div>
 
-<!-- Sticky cart button (mobile) -->
+<!-- asistente movido al header -->
 <button id="cartFab" style="position:fixed;right:14px;bottom:14px;z-index:80;display:none;background:var(--acc);color:#231a02;border:0;border-radius:999px;width:60px;height:60px;font-size:23px;cursor:pointer;box-shadow:var(--shadow)">🛒<span id="cartCount" style="position:absolute;top:-4px;right:-4px;background:var(--bad);color:#fff;font-size:11px;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-weight:800">0</span></button>
 
 <div id="cartDrawer" style="position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:90;display:none;align-items:flex-end;justify-content:center">
@@ -628,7 +641,7 @@ function renderGrid() {
   $('grid').innerHTML = pageItems.map(p => {
     const cheap = cheapestSellerP(p);
     const best = p.offers[cheap];
-    return '<div class="card" style="position:relative"><span class="badge">' + (p.u >= 24 ? 'CAJA GRANDE' : 'CAJA') + '</span>'
+    return '<div class="card" style="position:relative">'
       + '<div class="caticon">' + (CAT_ICON[p.cat] || '📦') + '</div><b>' + esc(p.nombre) + '</b>'
       + '<div class="sel">Mejor precio: <b>' + esc(mayoristaNombre(cheap)) + '</b> · ' + esc(mayoristaZona(cheap)) + '</div>'
       + '<div class="price">' + fmt.format(best) + ' <small>/ ' + p.caja + '</small></div>'
@@ -902,7 +915,7 @@ function aiChipsRender() {
   $('aiChips').innerHTML = chips.map(c => '<button class="aiChip">' + c + '</button>').join('');
   $('aiChips').querySelectorAll('.aiChip').forEach(b => b.addEventListener('click', () => aiSend(b.textContent)));
 }
-$('aiFab').addEventListener('click', () => { const p = $('aiPanel'); p.style.display = p.style.display === 'flex' ? 'none' : 'flex'; });
+var aiHdr = document.getElementById('aiHeaderBtn'); if (aiHdr) aiHdr.addEventListener('click', () => { const p = $('aiPanel'); p.style.display = p.style.display === 'flex' ? 'none' : 'flex'; });
 $('aiClose').addEventListener('click', () => { $('aiPanel').style.display = 'none'; });
 $('aiSend').addEventListener('click', () => aiSend());
 $('aiInput').addEventListener('keydown', e => { if (e.key === 'Enter') aiSend(); });
