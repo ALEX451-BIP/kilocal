@@ -180,7 +180,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
   <div class="bar">
     <a class="logo" href="#"><div class="mark">K</div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
     <div class="spacer"></div>
-    <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">🚚 Para mayoristas: publicá gratis</a>
+    <a class="cta" href="https://wa.me/542645252045?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">🚚 Para mayoristas: publicá gratis</a>
   </div>
 </header>
 
@@ -212,7 +212,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
     <span class="pill" style="border-color:#14532d;color:#86efac">Etapa 1 · San Juan — <b>ACTIVO</b></span>
     <span class="pill">Etapa 2 · Cuyo (Mendoza · San Luis · La Rioja) — <b>pronto</b></span>
     <span class="pill">Etapa 3 · NOA · NEA · Litoral · CABA · Bs. As. · Patagonia — <b>en espera</b></span>
-    <a class="cta" style="margin-left:auto;padding:8px 12px;font-size:11px" href="https://wa.me/5492646204892?text=Hola%20sum%C3%A1%20mi%20provincia%20a%20KILOCAL" target="_blank" rel="noopener">Sumá tu provincia →</a>
+    <a class="cta" style="margin-left:auto;padding:8px 12px;font-size:11px" href="https://wa.me/542645252045?text=Hola%20sum%C3%A1%20mi%20provincia%20a%20KILOCAL" target="_blank" rel="noopener">Sumá tu provincia →</a>
   </div>
 </section>
 
@@ -225,7 +225,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
     <span>🚚 <b style="color:#fff">El mayorista entrega</b></span>
     <span>·</span>
     <span>💸 <b style="color:#fff">$0 comisión el 1° mes</b></span>
-    <span style="margin-left:auto"><a class="cta" style="padding:6px 10px;font-size:10px" href="https://wa.me/5492646204892?text=Quiero%20publicar%20mi%20mayorista%20en%20KILOCAL" target="_blank" rel="noopener">Sumate vos →</a></span>
+    <span style="margin-left:auto"><a class="cta" style="padding:6px 10px;font-size:10px" href="https://wa.me/542645252045?text=Quiero%20publicar%20mi%20mayorista%20en%20KILOCAL" target="_blank" rel="noopener">Sumate vos →</a></span>
   </div>
 </section>
 
@@ -262,7 +262,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
         <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:12px">
           <b style="font-size:12px;color:var(--gold)">¿Sos mayorista?</b>
           <p style="font-size:11px;color:var(--mut);margin:6px 0 8px">Publicá tu lista y recibí pedidos de todos los kioscos del país. Sin costo el primer mes.</p>
-          <a class="cta" style="display:block;text-align:center" href="https://wa.me/5492646204892?text=Hola%20quiero%20publicar%20mi%20mayorista%20en%20KILOCAL" target="_blank" rel="noopener">Publicá gratis →</a>
+          <a class="cta" style="display:block;text-align:center" href="https://wa.me/542645252045?text=Hola%20quiero%20publicar%20mi%20mayorista%20en%20KILOCAL" target="_blank" rel="noopener">Publicá gratis →</a>
         </div>
       </aside>
 
@@ -311,7 +311,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
       <div class="panel" style="padding:20px">
         <h2>¿Querés que KILOCAL abra en tu provincia?</h2>
         <p style="color:var(--mut);font-size:13px">Escribinos <b>provincia + tipo de negocio</b> y te suscribís a la espera de tu zona. Cuando haya un mayorista y kioscos suficientes, te avisamos primero.</p>
-        <a class="cta" style="display:block;text-align:center;margin-bottom:14px" href="https://wa.me/5492646204892?text=Quiero%20que%20KILOCAL%20abra%20en%20mi%20provincia" target="_blank" rel="noopener">Quiero que abran en mi provincia →</a>
+        <a class="cta" style="display:block;text-align:center;margin-bottom:14px" href="https://wa.me/542645252045?text=Quiero%20que%20KILOCAL%20abra%20en%20mi%20provincia" target="_blank" rel="noopener">Quiero que abran en mi provincia →</a>
         <h2>Preguntas frecuentes</h2>
         <div class="hero-chip"><span><b>¿El flete lo paga el kiosco?</b><br><small style="color:var(--mut)">Depende del mayorista y la zona — lo que declara al publicar. Siempre claro antes de confirmar el pedido.</small></span></div>
         <div class="hero-chip"><span><b>¿Y si mi mayorista no está en KILOCAL?</b><br><small style="color:var(--mut)">Pasá su número: lo contactamos nosotros para que publique gratis su lista.</small></span></div>
@@ -670,7 +670,7 @@ function submitOrder(proveedorFiltro) {
     payloads.push({ s, msg: 'Hola! Soy ' + nombre + ' — ' + provincia + ' (' + direccion + ').\nPedido por mayor desde KILOCAL (' + entregaTxt + ').\nHorario: ' + horario + '\nWA: ' + wa + '\n\n' + order.detalle });
   }
   save(DATA); fbPushAll();
-  payloads.forEach((p, idx) => { setTimeout(() => { window.open('https://wa.me/5492646204892?text=' + encodeURIComponent(p.msg), '_blank', 'noopener'); }, idx * 350); });
+  payloads.forEach((p, idx) => { setTimeout(() => { window.open('https://wa.me/542645252045?text=' + encodeURIComponent(p.msg), '_blank', 'noopener'); }, idx * 350); });
   state.cart = {}; saveCart(); renderCart(); updateCartCount();
   $('cartDrawer').style.display = 'none';
   toast('Pedidos enviados: ' + payloads.length + ' mayorista(s)');
