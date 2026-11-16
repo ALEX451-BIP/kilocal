@@ -331,6 +331,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
 
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 <script>
 
 // ====== KILOCAL — Base de datos compartida (RTDB del proyecto kiosco-8ae45, namespace /kilocal) ======
@@ -351,6 +352,8 @@ var KFB = { db: null, error: null };
     if (window.firebase && firebase.initializeApp) {
       firebase.initializeApp(FIREBASE_CONFIG);
       KFB.db = firebase.database();
+      KFB.auth = firebase.auth();
+      KFB.auth.signInAnonymously().then(function(cred){ KFB.uid = cred.user.uid; }).catch(function(e){ KFB.error = 'auth: ' + e; });
     } else {
       KFB.error = 'SDK firebase no cargado';
     }
@@ -667,6 +670,7 @@ function renderMayorista() {
   }));
 }
 $('uploadBtn').addEventListener('click', () => {
+  if (!KFB.uid) { toast('Conectando con la base… esperá un segundo y publicá de nuevo'); return; }
   const nombre = $('mNombre').value.trim();
   const precio = Number($('mPrecio').value);
   const unidades = Number($('mUnidades').value) || 1;
