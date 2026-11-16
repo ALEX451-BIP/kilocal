@@ -277,12 +277,20 @@ button:focus-visible,.filterRow input:focus-visible,input:focus-visible{outline:
 .empty{padding:28px;font-size:13px}
 .footer-like{max-width:900px}
 </style>
+<style id="tema-final">
+html{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#cartDrawer{overscroll-behavior:contain}
+.hero h1,h2,.kicker,nav.tabs button{text-wrap:balance}
+.price,.carttotal,.provtotal,#savingsAmount{font-variant-numeric:tabular-nums}
+::selection{background:#244D3B;color:#FBF6E9}
+.add:active,.cta:active,.repBtn:active,.primary:active,.qty button:active{transform:scale(.96)}
+</style>
 </head>
 <body>
 
 <header class="top">
   <div class="bar">
-    <a class="logo" href="#"><div class="mark">K</div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
+    <a class="logo" href="#"><div class="mark" aria-hidden="true">K</div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
     <div class="spacer"></div>
     <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">🚚 Para mayoristas: publicá gratis</a>
     <button id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">🤖 Asistente</button>
@@ -376,7 +384,7 @@ button:focus-visible,.filterRow input:focus-visible,input:focus-visible{outline:
       <section>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
           <div class="search" style="margin-bottom:0;flex:1 1 320px">
-            <input id="q" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off">
+            <input id="q" name="busqueda" aria-label="Buscar productos" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off" spellcheck="false" inputmode="search">
             <button id="btnSearch">Buscar</button>
           </div>
           <button class="repBtn" id="repeatOrderBtn">🔁 Repetir mi última compra</button>
@@ -479,13 +487,13 @@ button:focus-visible,.filterRow input:focus-visible,input:focus-visible{outline:
     <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Tu pedido</h2><button id="closeCart" style="background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer">✕</button></div>
     <div id="cartItems" style="margin-top:10px"></div>
     <div class="carttotal"><span>Total</span><span id="cartTotal">$0</span></div>
-    <label class="l">Tu kiosco / negocio</label><input id="dNombre" class="fi" placeholder="Ej: Kiosco La Perla">
+    <label class="l" for="dNombre">Tu kiosco / negocio</label><input id="dNombre" name="nombre-kiosco" class="fi" autocomplete="name" inputmode="text" spellcheck="false" placeholder="Ej: Kiosco La Perla…">
     <label class="l">Provincia</label><select id="dProvincia" class="fi">
   <option>San Juan</option><option>Buenos Aires (GBA)</option><option>CABA</option><option>Catamarca</option><option>Corrientes</option><option>Chaco</option><option>Chubut</option><option>Córdoba</option><option>Entre Ríos</option><option>Formosa</option><option>Jujuy</option><option>La Pampa</option><option>La Rioja</option><option>Mendoza</option><option>Misiones</option><option>Neuquén</option><option>Río Negro</option><option>Salta</option><option>San Luis</option><option>Santa Cruz</option><option>Santa Fe</option><option>Santiago del Estero</option><option>Tierra del Fuego</option><option>Tucumán</option>
 </select>
-    <label class="l">Localidad y dirección</label><input id="dDireccion" class="fi" placeholder="Ej: Rivadavia, Gallego 1234">
+    <label class="l" for="dDireccion">Localidad y dirección</label><input id="dDireccion" name="direccion" class="fi" autocomplete="street-address" inputmode="text" placeholder="Ej: Rivadavia, Gallego 1234…">
     <label class="l">Horario para recibir el pedido</label><input id="dHorario" class="fi" placeholder="Ej: lunes a sábado, mañana">
-    <label class="l">WhatsApp de contacto</label><input id="dWhatsapp" class="fi" placeholder="264…">
+    <label class="l" for="dWhatsapp">WhatsApp de contacto</label><input id="dWhatsapp" name="whatsapp" class="fi" type="tel" autocomplete="tel" inputmode="numeric" placeholder="264…">
     <label class="l">Entrega</label><select id="dEntrega" class="fi"><option>Entrega a mi negocio (según zona del mayorista)</option><option>Retiro en el mayorista</option></select>
     <button class="primary" id="sendOrder">PEDIR YA POR WHATSAPP →</button>
     <button class="chipbtn" id="clearCart" style="width:100%;margin-top:8px;padding:12px">Vaciar pedido</button>
@@ -674,11 +682,11 @@ function renderGrid() {
     const cheap = cheapestSellerP(p);
     const best = p.offers[cheap];
     return '<div class="card" style="position:relative">'
-      + '<div class="caticon">' + (CAT_ICON[p.cat] || '📦') + '</div><b>' + esc(p.nombre) + '</b>'
+      + '<div class="caticon" aria-hidden="true">' + (CAT_ICON[p.cat] || '📦') + '</div><b>' + esc(p.nombre) + '</b>'
       + '<div class="sel">Mejor precio: <b>' + esc(mayoristaNombre(cheap)) + '</b> · ' + esc(mayoristaZona(cheap)) + '</div>'
       + '<div class="price">' + fmt.format(best) + ' <small>/ ' + p.caja + '</small></div>'
       + '<div class="unit">' + fmt.format(Math.round(best / p.unidades)) + ' por unidad · ' + p.cat + '</div>'
-      + '<div class="row"><div class="qty"><button data-q="-1" data-id="' + p.id + '">−</button><span id="qq-' + p.id + '">1</span><button data-q="1" data-id="' + p.id + '">+</button></div>'
+      + '<div class="row"><div class="qty"><button data-q="-1" data-id="' + p.id + '" aria-label="Quitar 1 unidad">−</button><span id="qq-' + p.id + '">1</span><button data-q="1" data-id="' + p.id + '" aria-label="Agregar 1 unidad">+</button></div>'
       + '<button class="add" data-add="' + p.id + '">Agregar</button></div></div>';
   }).join('');
   bindGrid();
