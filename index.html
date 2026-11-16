@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KILOCAL — El mayorista a un click | San Juan · Cuyo · Argentina</title>
+<meta name="description" content="Todos los mayoristas en un buscador: compará precios por caja, pedí por WhatsApp y que te lo traigan al kiosco. Gratis para kioscos el primer mes.">
+<style>
+:root{
+  --bg:#060b12; --bg2:#0a121c; --panel:#0e1926; --panel2:#122336; --panel3:#16294a;
+  --line:#1f3247; --line2:#2a4258;
+  --ink:#eaf2fa; --mut:#8ca4ba; --mut2:#5f768c;
+  --acc:#fbbf24; --acc2:#f59e0b; --gold:#fde68a; --ok:#34d399; --bad:#f87171; --info:#7dd3fc;
+  --r:16px; --shadow:0 18px 50px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(1200px 600px at 20% -10%,#0f2440 0%,transparent 60%),radial-gradient(900px 500px at 90% 0%,#122b21 0%,transparent 55%),var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif;min-height:100vh}
+
+/* ============ HEADER ============ */
+header.top{position:sticky;top:0;z-index:50;background:rgba(6,11,18,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 18px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(140deg,var(--acc) 0%,#d97706 100%);display:grid;place-items:center;font-weight:900;color:#2b1c00;font-size:22px;box-shadow:0 6px 18px rgba(251,191,36,.35)}
+.logo b{color:#fff;font-size:21px;letter-spacing:.3px;display:block;line-height:1}
+.logo small{color:var(--mut);font-size:9px;letter-spacing:2.4px;text-transform:uppercase;font-weight:700}
+.navlinks{display:flex;gap:4px;margin-left:8px}
+.navlinks button{background:transparent;border:0;color:var(--mut);font:inherit;font-size:13px;padding:8px 12px;border-radius:8px;cursor:pointer}
+.navlinks button:hover,.navlinks button.on{color:var(--gold);background:#0e1926}
+.spacer{flex:1}
+.cta{background:var(--acc);color:#231a02;border:0;border-radius:10px;font-weight:800;padding:10px 14px;cursor:pointer;font-size:12px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 14px rgba(251,191,36,.35)}
+.cta:hover{background:var(--gold)}
+
+/* ============ HERO ============ */
+.hero{max-width:1240px;margin:0 auto;padding:30px 18px 18px;display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center}
+@media(max-width:960px){.hero{grid-template-columns:1fr}}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:800;border:1px solid #3a2e10;background:#1c160a;border-radius:999px;padding:5px 14px}
+.hero h1{font-family:Georgia,serif;font-size:clamp(30px,4.6vw,46px);line-height:1.08;margin:14px 0;color:#fff;letter-spacing:-.5px}
+.hero h1 .hl{background:linear-gradient(120deg,#fde68a,#fbbf24,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mut);font-size:15px;max-width:520px;margin:0 0 16px}
+.hero-stats{display:flex;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
+.hstat b{display:block;font-size:19px;color:var(--acc)}
+.hstat span{font-size:10px;color:var(--mut2);text-transform:uppercase;letter-spacing:1px}
+.hero-card{background:linear-gradient(165deg,#16233a,#0e1926);border:1px solid var(--line2);border-radius:20px;padding:20px;box-shadow:var(--shadow);transform:rotate(-.6deg)}
+.hero-card h3{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);margin:0 0 12px}
+.hero-chip{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0b1420;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:8px;font-size:12px}
+.hero-chip b{color:#fff}
+.hero-chip small{color:var(--acc);font-weight:800;white-space:nowrap}
+.badge-new{display:inline-block;font-size:9px;background:#14532d;color:#86efac;border-radius:4px;padding:1px 6px;letter-spacing:1px;vertical-align:2px}
+
+/* ============ TABS ============ */
+nav.tabs{max-width:1240px;margin:0 auto;padding:0 18px;display:flex;gap:6px;border-bottom:1px solid var(--line)}
+nav.tabs button{background:transparent;border:0;color:var(--mut);font:inherit;padding:12px 18px;cursor:pointer;border-bottom:2px solid transparent;font-size:14px}
+nav.tabs button.on{color:var(--acc);border-bottom-color:var(--acc);font-weight:800}
+
+/* ============ LAYOUT ============ */
+main{max-width:1240px;margin:0 auto;padding:16px 18px 70px}
+.catalog-layout{display:grid;grid-template-columns:250px 1fr;gap:16px}
+@media(max-width:1000px){.catalog-layout{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.sidepanel{padding:16px}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:1.6px;color:var(--mut);margin:0 0 10px}
+label.f{display:block;font-size:10px;color:var(--mut2);text-transform:uppercase;letter-spacing:1.4px;margin:14px 0 5px}
+.filterRow{display:flex;align-items:center;gap:8px;padding:5px 4px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--ink)}
+.filterRow:hover{background:#101c2a}
+.filterRow input{accent-color:var(--acc)}
+.search{display:flex;gap:8px;margin-bottom:10px}
+.search input{flex:1;background:#0b1420;border:1px solid var(--line2);color:var(--ink);border-radius:12px;padding:13px 16px;outline:none;font-size:14px}
+.search input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(251,191,36,.15)}
+.search button{background:var(--acc);border:0;color:#231a02;font-weight:900;border-radius:12px;padding:0 18px;cursor:pointer}
+
+/* ============ PRODUCT GRID ============ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:linear-gradient(170deg,#111f30,#0d1826);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:5px;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-4px);border-color:var(--acc2)}
+.caticon{font-size:24px}
+.card b{font-size:13px;line-height:1.35;min-height:36px;color:#fff}
+.sel{font-size:10px;color:var(--mut)}
+.sel b{color:var(--gold)}
+.price{font-size:18px;font-weight:900;color:#fff}
+.price small{font-size:10px;color:var(--ok);font-weight:700}
+.unit{font-size:10px;color:var(--mut2)}
+.row{display:flex;gap:6px;align-items:center;margin-top:auto}
+.qty{display:flex;align-items:center;gap:5px;border:1px solid var(--line2);border-radius:9px;padding:2px 6px;background:#0b1420}
+.qty button{background:none;border:0;color:var(--ink);cursor:pointer;font-size:15px;padding:0 8px}
+.add{flex:1;background:linear-gradient(160deg,var(--acc),#d97706);color:#231a02;border:0;border-radius:9px;padding:8px 10px;font-weight:800;cursor:pointer}
+.add:hover{filter:brightness(1.08)}
+.badge{position:absolute;top:8px;right:8px;font-size:8px;letter-spacing:1px;background:#14532d;color:#86efac;border-radius:4px;padding:2px 6px;font-weight:800}
+.cheapest{background:#14532d;color:#86efac}
+
+/* ============ PAGINATION ============ */
+.pagination{display:flex;gap:6px;justify-content:center;align-items:center;margin:16px 0 0}
+.pagination button{background:#0e1926;border:1px solid var(--line);color:var(--mut);border-radius:8px;min-width:34px;padding:7px 10px;cursor:pointer}
+.pagination button.on{border-color:var(--acc);color:var(--acc);font-weight:800}
+.pagination .count{color:var(--mut2);font-size:11px;margin:0 8px}
+
+/* ============ MAYORISTAS DIRECTORIO ============ */
+.mayorGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:14px}
+.mcard{background:linear-gradient(165deg,#101f30,#0d1826);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:border-color .15s}
+.mcard:hover{border-color:var(--acc)}
+.mcard.sel{border-color:var(--acc);box-shadow:0 0 0 2px rgba(251,191,36,.25)}
+.avatar{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:16px;color:#2b1c00;flex:0 0 auto}
+.mcard b{color:#fff;font-size:13px;display:block}
+.mcard small{color:var(--mut);font-size:10px;display:block}
+.mcard .tag{font-size:9px;color:var(--acc);background:#1c160a;border:1px solid #3a2e10;border-radius:4px;padding:1px 6px;margin-top:4px;display:inline-block}
+
+/* ============ KIOSCO CART ============ */
+.cartgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
+@media(max-width:1000px){.cartgrid{grid-template-columns:1fr}}
+.cart{position:sticky;top:66px;padding:16px}
+.cartitem{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding:8px 0;font-size:12px}
+.cartitem small{color:var(--mut2)}
+.cartitem button{background:none;border:0;color:var(--bad);cursor:pointer}
+.carttotal{display:flex;justify-content:space-between;font-size:19px;font-weight:900;color:#fff;border-top:2px solid var(--line2);padding-top:10px;margin-top:10px}
+label.l{display:block;font-size:10px;color:var(--mut2);text-transform:uppercase;letter-spacing:1.4px;margin:12px 0 4px}
+input.fi,select.fi,textarea.fi{width:100%;background:#0b1420;border:1px solid var(--line2);color:var(--ink);border-radius:10px;padding:11px;outline:none}
+input.fi:focus,select.fi:focus,textarea.fi:focus{border-color:var(--acc)}
+.primary{background:linear-gradient(160deg,var(--ok),#059669);color:#032e1a;border:0;border-radius:12px;padding:14px;width:100%;font-weight:900;font-size:16px;cursor:pointer;margin-top:12px;letter-spacing:.3px}
+.primary:hover{filter:brightness(1.08)} .primary:disabled{opacity:.4;cursor:not-allowed}
+.note{font-size:10px;color:var(--mut2);margin-top:8px;text-align:center}
+.empty{color:var(--mut2);text-align:center;padding:26px;font-size:13px}
+
+/* ============ MAYORISTA MODE ============ */
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+@media(max-width:900px){.kpi{grid-template-columns:repeat(2,1fr)}}
+.kpi .panel{margin:0;text-align:center;padding:14px 8px}
+.kpi b{font-size:22px;color:var(--acc);display:block}
+.kpi span{font-size:9px;color:var(--mut2);text-transform:uppercase;letter-spacing:1px}
+.uploadGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:640px){.uploadGrid{grid-template-columns:1fr}}
+.uploadGrid input,.uploadGrid select{background:#0b1420;border:1px solid var(--line2);color:var(--ink);border-radius:10px;padding:11px;outline:none}
+.uploadGrid input:focus{border-color:var(--acc)}
+.prodrow{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding:8px 4px;font-size:12px;align-items:center}
+.prodrow small{color:var(--mut2)}
+.toggle{background:none;border:1px solid var(--line2);color:var(--gold);border-radius:6px;padding:3px 10px;cursor:pointer;font-size:11px}
+.badge2{font-size:9px;border-radius:5px;padding:2px 8px;font-weight:800;letter-spacing:1px}
+.b-nuevo{background:#1e3a8a;color:#bfdbfe}.b-preparando{background:#7c2d12;color:#fed7aa}.b-enviado{background:#14532d;color:#bbf7d0}.b-cerrado{background:#1f2937;color:#d1d5db}
+.ordercard{background:#0e1a26;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;font-size:12px}
+.ordercard pre{background:#060b12;border:1px solid var(--line);border-radius:8px;padding:8px;max-height:120px;overflow:auto;font-size:11px;white-space:pre-wrap;color:var(--gold)}
+.ordercard .row{margin-top:6px}
+.chipbtn{background:#0e1926;border:1px solid var(--line2);color:var(--mut);border-radius:8px;padding:5px 10px;font-size:11px;cursor:pointer}
+.chipbtn:hover{color:var(--acc);border-color:var(--acc)}
+
+#mayoristaGrid{grid-template-columns:1.05fr .95fr}
+@media(max-width:1000px){#mayoristaGrid{grid-template-columns:1fr}}
+footer{max-width:1240px;margin:0 auto;border-top:1px solid var(--line);padding:16px 18px;color:var(--mut2);font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#0b3a24;color:#a7f3d0;border:1px solid var(--ok);padding:10px 18px;border-radius:12px;font-size:12px;display:none;z-index:99}
+.spacer-x{flex:1}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bar">
+    <a class="logo" href="#"><div class="mark">K</div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
+    <div class="spacer"></div>
+    <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">🚚 Para mayoristas: publicá gratis</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="kicker">⭐ El mayorista a un click <span style="color:var(--gold)">· San Juan → Cuyo → todo el país</span></span>
+    <h1>Los mayoristas de <span class="hl">todo el país</span>.<br>Un buscador. Tu pedido, en el mostrador.</h1>
+    <p>Compará precio por caja entre cientos de mayoristas del país, pedí por WhatsApp y que te lo traigan a tu kiosco o almacén. Sin visitas, sin vueltas, con el flete del mayorista de tu zona.</p>
+    <div class="hero-stats">
+      <div class="hstat"><b>190+</b><span>Mayoristas en lista</span></div>
+      <div class="hstat"><b>24</b><span>Provincias en camino</span></div>
+      <div class="hstat"><b>$0</b><span>Comisión el 1° mes</span></div>
+      <div class="hstat"><b>2 min</b><span>Para pedir</span></div>
+    </div>
+  </div>
+  <aside class="hero-card" aria-hidden="true">
+    <h3>📦 Pedido de muestra — Kiosco La Perla</h3>
+    <div class="hero-chip"><span>Yerba KIND 1kg <small>caja x12</small></span><small>$39.000</small></div>
+    <div class="hero-chip"><span>Coca-Cola 2.25L <small>caja x6</small></span><small>$22.400</small></div>
+    <div class="hero-chip"><span>Cerveza Quilmes 1L <small>caja x6</small></span><small>$29.600</small></div>
+    <div class="hero-chip"><span>Papel higiénico Presto x4 <small>caja x20</small></span><small>$38.900</small></div>
+    <div style="font-size:10px;color:var(--mut2);margin-top:10px">✓ Entregado por el mayorista · lunes y viernes</div>
+  </aside>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:0 18px 8px">
+  <div style="border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+    <b style="color:var(--gold);white-space:nowrap">🗺 Cobertura:</b>
+    <span class="pill" style="border-color:#14532d;color:#86efac">Etapa 1 · San Juan — <b>ACTIVO</b></span>
+    <span class="pill">Etapa 2 · Cuyo (Mendoza · San Luis · La Rioja) — <b>pronto</b></span>
+    <span class="pill">Etapa 3 · NOA · NEA · Litoral · CABA · Bs. As. · Patagonia — <b>en espera</b></span>
+    <a class="cta" style="margin-left:auto;padding:8px 12px;font-size:11px" href="https://wa.me/5492646204892?text=Hola%20sum%C3%A1%20mi%20provincia%20a%20KILOCAL" target="_blank" rel="noopener">Sumá tu provincia →</a>
+  </div>
+</section>
+
+<nav class="tabs" id="tabs">
+  <button class="on" data-tab="kiosco">🛒 Catálogo y pedido</button>
+  <button data-tab="mayoristas">🏭 Mayoristas</button>
+  <button data-tab="mayorista">📤 Publicá tu lista</button>
+  <button data-tab="logistica">🚛 Logística y cobertura</button>
+</nav>
+
+<main>
+  <!-- ============ TAB: KIOSCO ============ -->
+  <div id="tab-kiosco">
+    <div class="catalog-layout">
+      <aside class="panel sidepanel">
+        <h2>Filtrar</h2>
+        <label class="f">Categoría</label>
+        <div id="filtersCats"></div>
+        <label class="f">Entrega</label>
+        <div id="filtersEntrega">
+          <label class="filterRow"><input type="radio" name="entrega" value="todos" checked> Todos</label>
+          <label class="filterRow"><input type="radio" name="entrega" value="entrega"> Me lo traen al negocio</label>
+          <label class="filterRow"><input type="radio" name="entrega" value="retiro"> Retiro en el mayorista</label>
+        </div>
+        <label class="f">Zona</label>
+        <select id="filtersZona" class="fi" style="width:100%"><option value="todos">Todas las zonas</option></select>
+        <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:12px">
+          <b style="font-size:12px;color:var(--gold)">¿Sos mayorista?</b>
+          <p style="font-size:11px;color:var(--mut);margin:6px 0 8px">Publicá tu lista y recibí pedidos de todos los kioscos del país. Sin costo el primer mes.</p>
+          <a class="cta" style="display:block;text-align:center" href="https://wa.me/5492646204892?text=Hola%20quiero%20publicar%20mi%20mayorista%20en%20KILOCAL" target="_blank" rel="noopener">Publicá gratis →</a>
+        </div>
+      </aside>
+
+      <section>
+        <div class="search">
+          <input id="q" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off">
+          <button id="btnSearch">Buscar</button>
+        </div>
+        <div id="grid" class="grid"></div>
+        <div class="empty" id="emptyNote" style="display:none">No encontré eso. Probá con "yerba", "coca" o "cerveza".</div>
+        <div class="pagination" id="pagination"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ============ TAB: MAYORISTAS ============ -->
+  <div id="tab-mayoristas" style="display:none">
+    <div class="search" style="max-width:520px"><input id="qMaj" placeholder="Buscar mayorista por nombre o zona…"><button id="btnSearchMaj">Buscar</button></div>
+    <div class="mayorGrid" id="mayoristasGrid"></div>
+  </div>
+
+
+  <!-- ============ TAB: LOGISTICA ============ -->
+  <div id="tab-logistica" style="display:none">
+    <div class="grid2" style="display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start">
+      <div class="panel" style="padding:20px">
+        <h2>Logística KILOCAL — cómo te llega el pedido</h2>
+        <div class="hero-chip"><span><b>F1 · San Juan Capital y Gran San Juan</b><br><small style="color:var(--mut)">Entrega del mayorista el mismo día o al día siguiente según su ronda. Costo: $0 o el flete que el mayorista declara para kioscos.</small></span><small>ACTIVO</small></div>
+        <div class="hero-chip"><span><b>F2 · Cuyo interprovincial</b><br><small style="color:var(--mut)">Mendoza · San Luis · La Rioja: 24 a 72 h vía transporte / camión del mayorista regional. Coordinado por WhatsApp al confirmar el pedido.</small></span><small>PRONTO</small></div>
+        <div class="hero-chip"><span><b>F3 · Todo el país</b><br><small style="color:var(--mut)">NOA, NEA, Litoral, CABA, Bs. As. y Patagonia: los mayoristas regionales de cada zona entregan a su área; KILOCAL arma el catálogo nacional y coordina el pago contra entrega.</small></span><small>EN ESPERA</small></div>
+        <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:12px">
+          <b style="color:var(--gold)">KILOCAL hoy no tiene flota propia — y esa es la jugada inteligente:</b>
+          <p style="color:var(--mut);font-size:13px;margin:6px 0">Pedimos al mayorista de tu zona que lo traiga como ya lo hace con sus kioscos de siempre. Así nadie pone un camión a los pedidos que nadie pidió, y el crecimiento nacional se financia con la demanda real de cada provincia.</p>
+          <b>Qué necesitamos para abrir tu provincia:</b>
+          <ol style="color:var(--mut);font-size:13px;margin:8px 0 0">
+            <li>Un mayorista regional que quiera sumarse (lo llamamos con tu permiso).</li>
+            <li>10+ kioscos de la zona interesados (con esto ya vale la pena para él).</li>
+            <li>Reglas de flete claras: quién paga, cuándo, hasta dónde.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="panel" style="padding:20px">
+        <h2>¿Querés que KILOCAL abra en tu provincia?</h2>
+        <p style="color:var(--mut);font-size:13px">Escribinos <b>provincia + tipo de negocio</b> y te suscribís a la espera de tu zona. Cuando haya un mayorista y kioscos suficientes, te avisamos primero.</p>
+        <a class="cta" style="display:block;text-align:center;margin-bottom:14px" href="https://wa.me/5492646204892?text=Quiero%20que%20KILOCAL%20abra%20en%20mi%20provincia" target="_blank" rel="noopener">Quiero que abran en mi provincia →</a>
+        <h2>Preguntas frecuentes</h2>
+        <div class="hero-chip"><span><b>¿El flete lo paga el kiosco?</b><br><small style="color:var(--mut)">Depende del mayorista y la zona — lo que declara al publicar. Siempre claro antes de confirmar el pedido.</small></span></div>
+        <div class="hero-chip"><span><b>¿Y si mi mayorista no está en KILOCAL?</b><br><small style="color:var(--mut)">Pasá su número: lo contactamos nosotros para que publique gratis su lista.</small></span></div>
+        <div class="hero-chip"><span><b>¿KILOCAL cobra comisión?</b><br><small style="color:var(--mut)">0% el primer mes para kioscos y mayoristas. Después, comisión por pedido confirmado, sin números mágicos.</small></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TAB: MAYORISTA ============ -->
+  <div id="tab-mayorista" style="display:none">
+    <div class="kpi">
+      <div class="panel"><b id="kProds">0</b><span>Productos publicados</span></div>
+      <div class="panel"><b id="kOrders">0</b><span>Pedidos nuevos</span></div>
+      <div class="panel"><b id="kPreparando">0</b><span>En preparación</span></div>
+      <div class="panel"><b id="kEnviados">0</b><span>Enviados</span></div>
+    </div>
+    <div class="grid2" id="mayoristaGrid" style="display:grid;gap:16px">
+      <div class="panel" style="padding:16px">
+        <h2>Publicá tus productos</h2>
+        <div class="uploadGrid">
+          <input id="mNombre" placeholder="Nombre del producto (ej: Yerba KIND 1kg)" style="grid-column:1/-1">
+          <input id="mPrecio" type="number" min="0" placeholder="Precio por CAJA ($)">
+          <input id="mUnidades" type="number" min="1" placeholder="Unidades por caja">
+          <select id="mCat"><option>Almacén</option><option>Bebidas</option><option>Snacks</option><option>Limpieza</option><option>Perfumería</option><option>Cigarrillos</option><option>Lácteos</option><option>Congelados</option></select>
+          <input id="mStock" type="number" min="0" placeholder="Stock (cajas)">
+        </div>
+        <button class="primary" id="uploadBtn">Publicar producto →</button>
+        <h2 style="margin-top:16px">Mis productos</h2>
+        <div id="myProducts"></div>
+      </div>
+      <div class="panel" style="padding:16px;max-height:640px;overflow-y:auto">
+        <h2>Pedidos recibidos</h2>
+        <div id="ordersList"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>KILOCAL · Hecho en San Juan, Argentina · Kiosco ↔ Mayorista sin intermediarios</span>
+  <span>Datos de muestra para demostrar la plataforma · Los mayoristas reales se cargan con sus listas oficiales</span>
+</footer>
+
+<!-- Sticky cart button (mobile) -->
+<button id="cartFab" style="position:fixed;right:14px;bottom:14px;z-index:80;display:none;background:var(--acc);color:#231a02;border:0;border-radius:999px;width:60px;height:60px;font-size:23px;cursor:pointer;box-shadow:var(--shadow)">🛒<span id="cartCount" style="position:absolute;top:-4px;right:-4px;background:var(--bad);color:#fff;font-size:11px;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-weight:800">0</span></button>
+
+<div id="cartDrawer" style="position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:90;display:none;align-items:flex-end;justify-content:center">
+  <div class="panel cart" style="max-width:520px;width:100%;max-height:88vh;overflow-y:auto;transform:translateY(6%);border-radius:18px 18px 0 0;padding:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Tu pedido</h2><button id="closeCart" style="background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer">✕</button></div>
+    <div id="cartItems" style="margin-top:10px"></div>
+    <div class="carttotal"><span>Total</span><span id="cartTotal">$0</span></div>
+    <label class="l">Tu kiosco / negocio</label><input id="dNombre" class="fi" placeholder="Ej: Kiosco La Perla">
+    <label class="l">Provincia</label><select id="dProvincia" class="fi">
+  <option>San Juan</option><option>Buenos Aires (GBA)</option><option>CABA</option><option>Catamarca</option><option>Corrientes</option><option>Chaco</option><option>Chubut</option><option>Córdoba</option><option>Entre Ríos</option><option>Formosa</option><option>Jujuy</option><option>La Pampa</option><option>La Rioja</option><option>Mendoza</option><option>Misiones</option><option>Neuquén</option><option>Río Negro</option><option>Salta</option><option>San Luis</option><option>Santa Cruz</option><option>Santa Fe</option><option>Santiago del Estero</option><option>Tierra del Fuego</option><option>Tucumán</option>
+</select>
+    <label class="l">Localidad y dirección</label><input id="dDireccion" class="fi" placeholder="Ej: Rivadavia, Gallego 1234">
+    <label class="l">Horario para recibir el pedido</label><input id="dHorario" class="fi" placeholder="Ej: lunes a sábado, mañana">
+    <label class="l">WhatsApp de contacto</label><input id="dWhatsapp" class="fi" placeholder="264…">
+    <label class="l">Entrega</label><select id="dEntrega" class="fi"><option>Entrega a mi negocio (según zona del mayorista)</option><option>Retiro en el mayorista</option></select>
+    <button class="primary" id="sendOrder">PEDIR YA POR WHATSAPP →</button>
+    <button class="chipbtn" id="clearCart" style="width:100%;margin-top:8px;padding:12px">Vaciar pedido</button>
+    <div class="note">El mayorista te confirma precio y entrega por WhatsApp. KILOCAL no toca tu plata: el mayorista le factura al kiosco por los canales que ya usan.</div>
+  </div>
+</div>
+
+<toast id="toast"></toast>
+
+<script>
+'use strict';
+
+/* =============================== SEED =============================== */
+const MAYORISTAS = [
+  { id: 'oasis',   nombre: 'Distribuidora El Oasis', zona: 'San Juan Capital', entrega: 'entrega', color: '#fbbf24' },
+  { id: 'sanjuan', nombre: 'Mayorista San Juan',     zona: 'Rivadavia',        entrega: 'retiro',  color: '#34d399' },
+  { id: 'cuyo',    nombre: 'Distribuidora Cuyo',     zona: 'Rawson',           entrega: 'entrega', color: '#7dd3fc' },
+  { id: 'oeste',   nombre: 'Distribuidora del Oeste',zona: 'Chimbas',          entrega: 'retiro',  color: '#f472b6' },
+  { id: 'norte',   nombre: 'Mayorista del Norte',    zona: 'San Juan Capital', entrega: 'entrega', color: '#a78bfa' },
+  { id: 'valles',  nombre: 'Mayorista Los Valles',   zona: 'Pocito',           entrega: 'entrega', color: '#fb923c' },
+  { id: 'norte2',  nombre: 'Mayorista Norte Distribución', zona: 'Rivadavia',  entrega: 'entrega', color: '#facc15' },
+  { id: 'este',    nombre: 'Distribuidora del Este', zona: 'Rivadavia',        entrega: 'retiro',  color: '#38bdf8' },
+  { id: 'sol',     nombre: 'Mayorista El Sol',       zona: 'San Juan Capital', entrega: 'entrega', color: '#f4738a' },
+  { id: 'aconcagua',nombre:'Mayorista Aconcagua',    zona: 'Chimbas',          entrega: 'entrega', color: '#4ade80' }
+];
+const CAT_ICON = { 'Almacén':'🥫', 'Bebidas':'🥤', 'Snacks':'🍿', 'Limpieza':'🧼', 'Perfumería':'🧴', 'Cigarrillos':'🚬', 'Lácteos':'🥛', 'Congelados':'❄️' };
+const PRODUCTOS = [
+  { id:'y1',  nombre:'Yerba mate molida KIND 1kg', cat:'Almacén', caja:'x12', u:12, offer:{oasis:41280, sanjuan:39840, cuyo:40560, oeste:42120, norte:39000, valles:40800, norte2:39650, este:40120, sol:38900, aconcagua:40210} },
+  { id:'a1',  nombre:'Azúcar tipo A 1kg',          cat:'Almacén', caja:'x10', u:10, offer:{oasis:14800, sanjuan:13600, cuyo:14250, oeste:15100, norte:13400, valles:14550, norte2:13780, este:14020, sol:13250, aconcagua:14310} },
+  { id:'a2',  nombre:'Aceite Natura girasol 900ml',cat:'Almacén', caja:'x12', u:12, offer:{oasis:23400, sanjuan:22100, cuyo:22800, oeste:23900, norte:21800, valles:23100, norte2:22340, este:22680, sol:21550, aconcagua:22900} },
+  { id:'f1',  nombre:'Fideos La Serenísima moño 500g', cat:'Almacén', caja:'x20', u:20, offer:{oasis:18500, sanjuan:17600, cuyo:18200, oeste:19000, norte:17200, valles:18350, norte2:17790, este:18030, sol:17050, aconcagua:18120} },
+  { id:'h1',  nombre:'Harina 0000 Cañuelas 1kg x10', cat:'Almacén', caja:'x10', u:10, offer:{oasis:9500, sanjuan:8800, cuyo:9100, oeste:9800, norte:8700, valles:9200, norte2:8910, este:9030, sol:8640, aconcagua:9150} },
+  { id:'m1',  nombre:'Manteca SanCor 200g x24',    cat:'Lácteos', caja:'x24', u:24, offer:{oasis:39900, sanjuan:38300, cuyo:39100, oeste:40900, norte:37700, valles:39500, norte2:38420, este:39110, sol:37520, aconcagua:39350} },
+  { id:'l1',  nombre:'Leche La Serenísima UHT 1L x12', cat:'Lácteos', caja:'x12', u:12, offer:{oasis:22100, sanjuan:21050, cuyo:21600, oeste:22600, norte:20700, valles:21900, norte2:21180, este:21450, sol:20550, aconcagua:21730} },
+  { id:'b1',  nombre:'Coca-Cola 2.25L retornable x6', cat:'Bebidas', caja:'x6', u:6, offer:{oasis:23800, sanjuan:22900, cuyo:23300, oeste:24500, norte:22400, valles:23600, norte2:22950, este:23220, sol:22180, aconcagua:23410} },
+  { id:'b2',  nombre:'Cerveza Quilmes 1L x6',      cat:'Bebidas', caja:'x6', u:6, offer:{oasis:31500, sanjuan:30200, cuyo:30800, oeste:32400, norte:29600, valles:31100, norte2:30350, este:30730, sol:29400, aconcagua:30920} },
+  { id:'b3',  nombre:'Gin Beefeater 750ml x6',     cat:'Bebidas', caja:'x6', u:6, offer:{oasis:128400, sanjuan:125800, cuyo:127000, oeste:131000, norte:124000, valles:129000, norte2:126600, este:127400, sol:123200, aconcagua:128200} },
+  { id:'b4',  nombre:'Sprite 2.25L x6',            cat:'Bebidas', caja:'x6', u:6, offer:{oasis:22600, sanjuan:21800, cuyo:22100, oeste:23300, norte:21400, valles:22450, norte2:21820, este:22130, sol:21250, aconcagua:22270} },
+  { id:'s1',  nombre:'LAYS clásicas 150g x24',     cat:'Snacks', caja:'x24', u:24, offer:{oasis:28300, sanjuan:27100, cuyo:27800, oeste:29000, norte:26500, valles:28100, norte2:27230, este:27690, sol:26300, aconcagua:27880} },
+  { id:'s2',  nombre:'Doritos Original 150g x20',  cat:'Snacks', caja:'x20', u:20, offer:{oasis:23600, sanjuan:22400, cuyo:23000, oeste:24200, norte:21900, valles:23300, norte2:22540, este:22920, sol:21750, aconcagua:23080} },
+  { id:'s3',  nombre:'Galletitas Toddyn x18',      cat:'Snacks', caja:'x18', u:18, offer:{oasis:15600, sanjuan:14800, cuyo:15100, oeste:16000, norte:14500, valles:15250, norte2:14920, este:15090, sol:14420, aconcagua:15190} },
+  { id:'lp1', nombre:'Ala detergente polvo 800g x24', cat:'Limpieza', caja:'x24', u:24, offer:{oasis:34000, sanjuan:32500, cuyo:33400, oeste:35000, norte:31800, valles:33850, norte2:32650, este:33280, sol:31550, aconcagua:33540} },
+  { id:'lp2', nombre:'Papel higiénico Presto x4 x20', cat:'Limpieza', caja:'x20', u:20, offer:{oasis:42000, sanjuan:39800, cuyo:40800, oeste:43200, norte:38900, valles:41300, norte2:40020, este:40780, sol:38650, aconcagua:41010} },
+  { id:'pf1', nombre:'Gillette Mach3 x10 pack x24', cat:'Perfumería', caja:'x24', u:24, offer:{oasis:36500, sanjuan:35100, cuyo:35900, oeste:37800, norte:34500, valles:36600, norte2:35250, este:35880, sol:34300, aconcagua:36070} },
+  { id:'c1',  nombre:'Marlboro Box x20 x10 cartuchos', cat:'Cigarrillos', caja:'x10', u:200, offer:{oasis:58000, sanjuan:55600, cuyo:56900, oeste:60000, norte:54800, valles:57400, norte2:55800, este:56820, sol:54520, aconcagua:57010} },
+  { id:'c2',  nombre:'Lucky Strike Box x20 x10 cartuchos', cat:'Cigarrillos', caja:'x10', u:200, offer:{oasis:52000, sanjuan:49800, cuyo:51000, oeste:53600, norte:48700, valles:51400, norte2:50050, este:50920, sol:48400, aconcagua:51110} },
+  { id:'cg1', nombre:'Hamburguesas congeladas x24', cat:'Congelados', caja:'x24', u:24, offer:{oasis:19600, sanjuan:18700, cuyo:19150, oeste:20100, norte:18350, valles:19380, norte2:18800, este:19100, sol:18200, aconcagua:19260} }
+];
+const CATS = Object.keys(CAT_ICON);
+
+const LS = 'kilocal_app_v2';
+const fmt = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 });
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const uid = p => p + Date.now().toString(36) + Math.floor(Math.random()*999);
+const toast = t => { const el = $('toast'); el.textContent = t; el.style.display = 'block'; setTimeout(() => { el.style.display = 'none'; }, 2600); };
+
+const state = { q: '', cat: 'Todos', entrega: 'todos', zona: 'todos', page: 1, perPage: 12, cart: {}, mayoristaSel: null };
+let DATA = load();
+
+function fresh() {
+  const products = PRODUCTOS.map(p => ({ id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.u, offers: p.offer, activo: true }));
+  return { products, orders: [], role: 'kiosco', mayoristaSel: 'oasis' };
+}
+function load() { try { return JSON.parse(localStorage.getItem(LS)) || fresh(); } catch { return fresh(); } }
+function save(d) { localStorage.setItem(LS, JSON.stringify(d)); }
+
+/* ============================ CATÁLOGO ============================ */
+function cheapestSellerP(p) { return Object.keys(p.offers).reduce((a, b) => p.offers[a] <= p.offers[b] ? a : b); }
+function mayoristaNombre(id) { const m = MAYORISTAS.find(x => x.id === id); return m ? m.nombre : id; }
+function mayoristaZona(id) { const m = MAYORISTAS.find(x => x.id === id); return m ? m.zona : ''; }
+
+function mergedCatalog() {
+  const upl = (DATA.products || []).filter(p => p.activo).map(p => ({
+    id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.unidades, offers: { [p.mayorista]: p.precioCaja }
+  }));
+  const seed = PRODUCTOS.map(p => ({ id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.u, offers: p.offer }));
+  return seed.concat(upl);
+}
+function filtered() {
+  return mergedCatalog().filter(p => {
+    if (state.cat !== 'Todos' && p.cat !== state.cat) return false;
+    if (state.q && !p.nombre.toLowerCase().includes(state.q)) return false;
+    if (state.mayoristaSel && p.offers[state.mayoristaSel] == null) return false;
+    if (state.entrega !== 'todos') {
+      const okEntrega = state.entrega === 'entrega' ? Object.keys(p.offers).some(m => MAYORISTAS.find(x => x.id === m) && MAYORISTAS.find(x => x.id === m).entrega === 'entrega') : true;
+      if (!okEntrega) return false;
+    }
+    if (state.zona !== 'todos') {
+      const okZona = Object.keys(p.offers).some(m => MAYORISTAS.find(x => x.id === m) && MAYORISTAS.find(x => x.id === m).zona === state.zona);
+      if (!okZona) return false;
+    }
+    return true;
+  });
+}
+
+function renderFilters() {
+  const cats = ['Todos'].concat(CATS);
+  $('filtersCats').innerHTML = cats.map(c =>
+    '<label class="filterRow"><input type="radio" name="cat" value="' + c + '"' + (c === state.cat ? ' checked' : '') + '> ' + (CAT_ICON[c] ? CAT_ICON[c] + ' ' : '') + c + '</label>'
+  ).join('');
+  $('filtersCats').querySelectorAll('input').forEach(i => i.addEventListener('change', () => { state.cat = i.value; state.page = 1; renderGrid(); }));
+  $('filtersEntrega').querySelectorAll('input').forEach(i => i.addEventListener('change', () => { state.entrega = i.value; state.page = 1; renderGrid(); }));
+  // Zonas disponibles
+  const zonas = Array.from(new Set(MAYORISTAS.map(m => m.zona))).sort();
+  $('filtersZona').innerHTML = '<option value="todos">Todas las zonas</option>' + zonas.map(z => '<option value="' + z + '">' + z + '</option>').join('');
+  $('filtersZona').addEventListener('change', () => { state.zona = $('filtersZona').value; state.page = 1; renderGrid(); });
+}
+
+function renderGrid() {
+  const list = filtered();
+  const total = list.length;
+  const pages = Math.max(1, Math.ceil(total / state.perPage));
+  if (state.page > pages) state.page = 1;
+  const start = (state.page - 1) * state.perPage;
+  const pageItems = list.slice(start, start + state.perPage);
+  $('emptyNote').style.display = total ? 'none' : 'block';
+  $('grid').innerHTML = pageItems.map(p => {
+    const cheap = cheapestSellerP(p);
+    const best = p.offers[cheap];
+    return '<div class="card" style="position:relative"><span class="badge">' + (p.u >= 24 ? 'CAJA GRANDE' : 'CAJA') + '</span>'
+      + '<div class="caticon">' + (CAT_ICON[p.cat] || '📦') + '</div><b>' + esc(p.nombre) + '</b>'
+      + '<div class="sel">Mejor precio: <b>' + esc(mayoristaNombre(cheap)) + '</b> · ' + esc(mayoristaZona(cheap)) + '</div>'
+      + '<div class="price">' + fmt.format(best) + ' <small>/ ' + p.caja + '</small></div>'
+      + '<div class="unit">' + fmt.format(Math.round(best / p.unidades)) + ' por unidad · ' + p.cat + '</div>'
+      + '<div class="row"><div class="qty"><button data-q="-1" data-id="' + p.id + '">−</button><span id="qq-' + p.id + '">1</span><button data-q="1" data-id="' + p.id + '">+</button></div>'
+      + '<button class="add" data-add="' + p.id + '">Agregar</button></div></div>';
+  }).join('');
+  bindGrid();
+  renderPagination(total, pages);
+}
+function renderPagination(total, pages) {
+  let html = '<button data-pg="prev">‹</button>';
+  for (let i = 1; i <= pages; i++) html += '<button data-pg="' + i + '" class="' + (i === state.page ? 'on' : '') + '">' + i + '</button>';
+  html += '<button data-pg="next">›</button><span class="count">' + total + ' productos · pág ' + state.page + '/' + pages + '</span>';
+  $('pagination').innerHTML = html;
+  $('pagination').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    const v = b.dataset.pg;
+    if (v === 'prev') state.page = Math.max(1, state.page - 1);
+    else if (v === 'next') state.page = Math.min(pages, state.page + 1);
+    else state.page = Number(v);
+    renderGrid();
+    window.scrollTo({ top: 200, behavior: 'smooth' });
+  }));
+}
+function bindGrid() {
+  $('grid').querySelectorAll('[data-q]').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.id, d = Number(b.dataset.q);
+    const el = $('qq-' + id);
+    el.textContent = Math.max(1, (Number(el.textContent) || 1) + d);
+  }));
+  $('grid').querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.add;
+    const p = mergedCatalog().find(x => x.id === id);
+    if (!p) return;
+    const cheap = cheapestSellerP(p);
+    const qty = Number($('qq-' + id).textContent) || 1;
+    const key = cheap + '|' + id;
+    state.cart[key] = (state.cart[key] || 0) + qty;
+    saveCart();
+    renderCart();
+    toast('Agregado al pedido');
+    updateCartCount();
+  }));
+}
+function saveCart() { try { localStorage.setItem(LS + '_cart', JSON.stringify(state.cart)); } catch {} }
+function loadCart() { try { return JSON.parse(localStorage.getItem(LS + '_cart')) || {}; } catch { return {}; } }
+state.cart = loadCart();
+
+/* ============================ CART ============================ */
+function updateCartCount() {
+  const n = Object.values(state.cart).reduce((s, q) => s + q, 0);
+  $('cartCount').textContent = n;
+  $('cartFab').style.display = n > 0 ? 'grid' : 'none';
+}
+function renderCart() {
+  const items = Object.entries(state.cart);
+  if (!items.length) { $('cartItems').innerHTML = '<div class="empty">Todavía no agregaste nada. Buscá algo arriba 👆</div>'; }
+  const all = mergedCatalog();
+  $('cartItems').innerHTML = items.map(([key, q]) => {
+    const [seller, id] = key.split('|');
+    const p = all.find(x => x.id === id);
+    if (!p) return '';
+    const px = p.offers[seller] || 0;
+    return '<div class="cartitem"><span><b>' + esc(mayoristaNombre(seller)) + '</b><br>' + esc(p.nombre) + '<br><small>caja ' + p.caja + ' × ' + q + ' · ' + mayoristaZona(seller) + '</small></span><span style="text-align:right"><b>' + fmt.format(px * q) + '</b><br><button data-del="' + key + '">Quitar</button></span></div>';
+  }).join('');
+  const total = items.reduce((s, [key, q]) => { const [se, id] = key.split('|'); const p = all.find(x => x.id === id); return s + (p ? (p.offers[se] || 0) * q : 0); }, 0);
+  $('cartTotal').textContent = fmt.format(total);
+  $('sendOrder').disabled = items.length === 0;
+  $('cartItems').querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => { delete state.cart[b.dataset.del]; saveCart(); renderCart(); updateCartCount(); }));
+}
+$('cartFab').addEventListener('click', () => { $('cartDrawer').style.display = 'flex'; });
+$('closeCart').addEventListener('click', () => { $('cartDrawer').style.display = 'none'; });
+$('cartDrawer').addEventListener('click', e => { if (e.target.id === 'cartDrawer') $('cartDrawer').style.display = 'none'; });
+$('clearCart').addEventListener('click', () => { state.cart = {}; saveCart(); renderCart(); updateCartCount(); });
+$('sendOrder').addEventListener('click', () => {
+  const items = Object.entries(state.cart);
+  if (!items.length) return;
+  const nombre = $('dNombre').value.trim() || 'Mi negocio';
+  const direccion = $('dDireccion').value.trim() || '(sin dirección)';
+  const horario = $('dHorario').value.trim() || '(sin horario)';
+  const wa = $('dWhatsapp').value.trim() || '';
+  const entrega = $('dEntrega').value;
+  const all = mergedCatalog();
+  const by = {}; items.forEach(([key, q]) => { const [s] = key.split('|'); (by[s] = by[s] || []).push([key, q]); });
+  const blocks = Object.entries(by).map(([s, arr]) => {
+    const lines = arr.map(([key, q]) => { const [, id] = key.split('|'); const p = all.find(x => x.id === id); return '- ' + (p ? p.nombre : id) + ' x' + q + ' caja(s) · ' + fmt.format(p ? (p.offers[s] || 0) * q : 0); });
+    return 'MAYORISTA: ' + mayoristaNombre(s) + '\n' + lines.join('\n');
+  }).join('\n\n');
+  const entregaTxt = entrega.startsWith('Entrega') ? 'Entrega a mi negocio' : 'Voy a retirar';
+  const provincia = (document.getElementById('dProvincia') || {}).value || 'San Juan';
+  const msg = 'Hola! Soy ' + nombre + ' — ' + provincia + ' (' + direccion + ').\nPedido por mayor desde KILOCAL (' + entregaTxt + ').\nHorario: ' + horario + '\nWA: ' + wa + '\n\n' + blocks;
+  const mainMayor = Object.keys(by)[0];
+  DATA.orders.push({ id: uid('ord'), fecha: Date.now(), cliente: nombre, direccion, horario, wa, entrega: entregaTxt, detalle: blocks, mayorista: mainMayor, estado: 'nuevo', items: items.length, provincia: provincia });
+  save(DATA);
+  window.open('https://wa.me/5492646204892?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  state.cart = {}; saveCart(); renderCart(); updateCartCount();
+  $('cartDrawer').style.display = 'none';
+  toast('Pedido enviado al mayorista por WhatsApp');
+});
+$('btnSearch').addEventListener('click', () => { state.q = $('q').value.trim().toLowerCase(); state.page = 1; renderGrid(); });
+$('q').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); state.page = 1; renderGrid(); });
+
+/* ============================ TABS ============================ */
+document.querySelectorAll('#tabs button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b));
+  $('tab-kiosco').style.display = b.dataset.tab === 'kiosco' ? 'block' : 'none';
+  $('tab-mayoristas').style.display = b.dataset.tab === 'mayoristas' ? 'block' : 'none';
+  $('tab-mayorista').style.display = b.dataset.tab === 'mayorista' ? 'block' : 'none';
+  $('tab-logistica').style.display = b.dataset.tab === 'logistica' ? 'block' : 'none';
+  if (b.dataset.tab === 'mayoristas') renderMayoristas();
+  if (b.dataset.tab === 'mayorista') renderMayorista();
+}));
+
+/* ============================ MAYORISTAS DIRECTORIO ============================ */
+function renderMayoristas() {
+  const q = ($('qMaj').value || '').trim().toLowerCase();
+  const list = MAYORISTAS.filter(m => !q || (m.nombre + ' ' + m.zona).toLowerCase().includes(q));
+  $('mayoristasGrid').innerHTML = list.map(m => {
+    const n = mergedCatalog().filter(p => p.offers[m.id] != null).length;
+    const initials = m.nombre.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+    const sel = state.mayoristaSel === m.id;
+    return '<div class="mcard' + (sel ? ' sel' : '') + '" data-mid="' + m.id + '"><div class="avatar" style="background:' + m.color + '">' + esc(initials) + '</div><div><b>' + esc(m.nombre) + '</b><small>' + esc(m.zona) + ' · ' + (m.entrega === 'entrega' ? '🚚 entrega' : '🏪 retiro en local') + '</small><span class="tag">' + n + ' productos · entrega ' + (m.entrega === 'entrega' ? 'sí' : 'no') + '</span></div></div>';
+  }).join('') || '<div class="empty">Sin resultados para esa búsqueda.</div>';
+  $('mayoristasGrid').querySelectorAll('.mcard').forEach(c => c.addEventListener('click', () => {
+    state.mayoristaSel = state.mayoristaSel === c.dataset.mid ? null : c.dataset.mid;
+    document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x.dataset.tab === 'kiosco'));
+    $('tab-mayoristas').style.display = 'none';
+    $('tab-kiosco').style.display = 'block';
+    $('tab-mayorista').style.display = 'none';
+    state.page = 1;
+    renderGrid();
+    toast(state.mayoristaSel ? 'Mayorista filtrado: ' + mayoristaNombre(state.mayoristaSel) : 'Filtro de mayorista quitado');
+  }));
+}
+$('btnSearchMaj').addEventListener('click', renderMayoristas);
+$('qMaj').addEventListener('input', renderMayoristas);
+
+/* ============================ MAYORISTA MODE ============================ */
+function renderMayorista() {
+  $('kProds').textContent = (DATA.products || []).filter(p => p.activo).length;
+  $('kOrders').textContent = DATA.orders.filter(o => o.estado === 'nuevo').length;
+  $('kPreparando').textContent = DATA.orders.filter(o => o.estado === 'preparando').length;
+  $('kEnviados').textContent = DATA.orders.filter(o => o.estado === 'enviado').length;
+
+  $('myProducts').innerHTML = (DATA.products || []).map(p =>
+    '<div class="prodrow"><span><b>' + esc(p.nombre) + '</b><br><small>' + fmt.format(p.precioCaja) + '/caja · ' + p.unidades + ' un · stock ' + p.stock + '</small></span><button class="toggle" data-toggle="' + p.id + '">' + (p.activo ? 'Activo' : 'Pausado') + '</button></div>'
+  ).join('') || '<div class="empty">Todavía no publicaste. Usá el formulario de arriba.</div>';
+  $('myProducts').querySelectorAll('[data-toggle]').forEach(b => b.addEventListener('click', () => {
+    const p = DATA.products.find(x => x.id === b.dataset.toggle);
+    if (p) { p.activo = !p.activo; save(DATA); renderMayorista(); renderGrid(); }
+  }));
+
+  $('ordersList').innerHTML = DATA.orders.slice().reverse().map(o =>
+    '<div class="ordercard"><div class="row" style="justify-content:space-between"><b>' + esc(o.cliente) + '</b><span class="badge2 b-' + o.estado + '">' + esc(o.estado.toUpperCase()) + '</span></div>'
+    + '<div style="color:var(--mut);font-size:11px">' + esc(o.direccion) + ' · ' + esc(o.horario) + ' · WA ' + esc(o.wa) + '</div>'
+    + '<pre>' + esc(o.detalle) + '</pre>'
+    + '<div class="row"><button class="chipbtn" data-set="preparando" data-id="' + o.id + '">Preparando</button><button class="chipbtn" data-set="enviado" data-id="' + o.id + '">Enviado</button><button class="chipbtn" data-set="cerrado" data-id="' + o.id + '">Cerrado</button></div></div>'
+  ).join('') || '<div class="empty">Sin pedidos todavía. Cuando un kiosco pida, los ves acá.</div>';
+  $('ordersList').querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => {
+    const o = DATA.orders.find(x => x.id === b.dataset.id);
+    if (o) { o.estado = b.dataset.set; save(DATA); renderMayorista(); }
+  }));
+}
+$('uploadBtn').addEventListener('click', () => {
+  const nombre = $('mNombre').value.trim();
+  const precio = Number($('mPrecio').value);
+  const unidades = Number($('mUnidades').value) || 1;
+  const cat = $('mCat').value;
+  const stock = Number($('mStock').value) || 0;
+  if (!nombre || !(precio > 0)) { toast('Poné nombre y precio por caja'); return; }
+  DATA.products.push({ id: uid('mp'), nombre, cat, caja: 'x' + unidades, unidades, precioCaja: precio, mayorista: DATA.mayoristaSel, stock, fecha: Date.now(), activo: true });
+  save(DATA);
+  $('mNombre').value=''; $('mPrecio').value=''; $('mUnidades').value=''; $('mStock').value='';
+  renderMayorista(); renderGrid();
+  toast('Producto publicado');
+});
+
+/* ============================ INIT ============================ */
+function setRole(r) { DATA.role = r; save(DATA); }
+renderFilters();
+if (DATA.role === 'mayorista') {
+  $('tab-kiosco').style.display = 'none';
+  $('tab-mayoristas').style.display = 'none';
+  $('tab-mayorista').style.display = 'block';
+  document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x.dataset.tab === 'mayorista'));
+} else {
+  $('tab-mayorista').style.display = 'none';
+  $('tab-logistica').style.display = 'none';
+}
+renderGrid();
+renderCart();
+updateCartCount();
+save(DATA);
+</script>
+</body>
+</html>
