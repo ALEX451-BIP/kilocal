@@ -7,11 +7,11 @@
 <meta name="description" content="Todos los mayoristas en un buscador: compará precios por caja, pedí por WhatsApp y que te lo traigan al kiosco. Gratis para kioscos el primer mes.">
 <style>
 :root{
-  --bg:#060b12; --bg2:#0a121c; --panel:#0e1926; --panel2:#122336; --panel3:#16294a;
-  --line:#1f3247; --line2:#2a4258;
-  --ink:#eaf2fa; --mut:#8ca4ba; --mut2:#5f768c;
-  --acc:#fbbf24; --acc2:#f59e0b; --gold:#fde68a; --ok:#34d399; --bad:#f87171; --info:#7dd3fc;
-  --r:16px; --shadow:0 18px 50px rgba(0,0,0,.55);
+  --bg:#F5F2E9; --bg2:#EFECE0; --panel:#FFFFFF; --panel2:#FAF9F4; --panel3:#F0EEE3;
+  --line:#DDD9CE; --line2:#CFCBBB;
+  --ink:#292D27; --mut:#62665C; --mut2:#8A8D81;
+  --acc:#E9A23B; --acc2:#A65B16; --gold:#E9A23B; --ok:#28764A; --bad:#B83B32; --info:#315F83;
+  --r:16px; --shadow:0 14px 36px rgba(35,45,38,.18);
 }
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -173,6 +173,66 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
 #aiSend{background:var(--acc);color:#231a02;border:0;border-radius:10px;padding:0 16px;font-weight:800;cursor:pointer}
 
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+<style id="tema-barrio">
+body{background:radial-gradient(900px 500px at 15% 0%, #FDFBF2 0%, transparent 60%),var(--bg);color:var(--ink)}
+.mark{background:linear-gradient(140deg,#244D3B,#1C3A2C);color:#FBF6E9;box-shadow:0 6px 18px rgba(36,77,59,.35)}
+.logo b{color:#244D3B}
+.logo small{color:var(--mut)}
+.navlinks button{color:var(--mut)}
+.navlinks button:hover,.navlinks button.on{color:#244D3B;background:#EFECE0}
+.cta{background:#244D3B;color:#FBF6E9;box-shadow:0 4px 14px rgba(36,77,59,.3)}
+.cta:hover{background:#1C3A2C}
+header.top{background:rgba(245,242,233,.94);border-bottom:1px solid var(--line)}
+.kicker{color:#244D3B;border-color:#CBD5C6;background:#EDF2EA}
+.hero h1{font-family:Fraunces,Georgia,serif;font-weight:600;color:#244D3B;letter-spacing:-.4px}
+.hero h1 .hl{background:linear-gradient(120deg,#E9A23B,#A65B16);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mut)}
+.hstat b{color:#244D3B}
+.hero-card{background:#FFFFFF;border:1px solid var(--line2);box-shadow:0 12px 40px rgba(35,45,38,.14);transform:rotate(-.4deg)}
+.hero-card h3{color:var(--mut)}
+.hero-chip{background:#FAF9F4;border:1px solid var(--line);color:var(--ink)}
+.hero-chip small{color:#244D3B}
+.cta.ghost{background:transparent;color:#244D3B;border:1px solid #244D3B;box-shadow:none}
+nav.tabs{border-bottom:1px solid var(--line)}
+nav.tabs button{color:var(--mut)}
+nav.tabs button.on{color:#244D3B;border-bottom-color:#244D3B}
+.panel,.sidepanel,.card,.prodrow{background:var(--panel);border-color:var(--line)}
+.card b,.card .price,.sel b{color:#244D3B}
+.card:hover{border-color:#244D3B}
+.add{background:#244D3B;color:#FBF6E9}
+.add:hover{background:#1C3A2C}
+.qty button{color:var(--ink)}
+.badge{background:#EDF2EA;color:#244D3B}
+.qty{background:#FAF9F4;border-color:var(--line)}
+.search input{background:#FFFFFF;border-color:var(--line);color:var(--ink);box-shadow:none}
+.search input:focus{border-color:#244D3B;box-shadow:0 0 0 3px rgba(36,77,59,.15)}
+.search button{background:#244D3B;color:#FBF6E9}
+.chip{background:#FAF9F4;border-color:var(--line);color:var(--mut)}
+.chip.on{background:#244D3B;border-color:#244D3B;color:#FBF6E9}
+.filterRow{color:var(--ink)}
+.filterRow:hover{background:#F0EEE3}
+.empty{color:var(--mut2)}
+.pagination button{background:#FFFFFF;border-color:var(--line);color:var(--mut)}
+.pagination button.on{border-color:#244D3B;color:#244D3B}
+.savingsCard{background:#EDF2EA;border-color:#CBD5C6;color:#244D3B}
+.cartitem button{color:#B83B32}
+.carttotal{color:#244D3B;border-top-color:var(--line)}
+.primary{background:#244D3B;color:#FBF6E9;box-shadow:0 8px 24px rgba(36,77,59,.35)}
+.primary:hover{background:#1C3A2C}
+.provSend{background:#244D3B;color:#FBF6E9}
+.repBtn{background:#EDF2EA;border-color:#CBD5C6;color:#244D3B}
+.toast{background:#244D3B;color:#FBF6E9;border-color:#244D3B}
+#cartFab{background:#244D3B;color:#FBF6E9}
+#aiFab{background:#244D3B;color:#FBF6E9;border:0}
+footer{background:#244D3B;color:#E9E6D8;border-top:0}
+footer a{color:#E9A23B}
+.mayorista{background:#FFFFFF;border-color:var(--line);color:var(--ink)}
+.mayorista:hover{border-color:#244D3B}
+@media (prefers-reduced-motion: reduce){*{transition:none !important; scroll-behavior:auto !important}}
+</style>
 </head>
 <body>
 
@@ -186,9 +246,11 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
 
 <section class="hero">
   <div>
-    <span class="kicker">⭐ El mayorista a un click <span style="color:var(--gold)">· San Juan → Cuyo → todo el país</span></span>
-    <h1>Los mayoristas de <span class="hl">todo el país</span>.<br>Un buscador. Tu pedido, en el mostrador.</h1>
-    <p>Compará precio por caja entre cientos de mayoristas del país, pedí por WhatsApp y que te lo traigan a tu kiosco o almacén. Sin visitas, sin vueltas, con el flete del mayorista de tu zona.</p>
+    <span class="kicker">Mayoristas para tu negocio · San Juan</span>
+    <h1>Abastecé tu <span class="hl">kiosco</span>.<br>Compará antes de comprar.</h1>
+    <p>Encontrá productos y precios de distintos mayoristas. Armá tu pedido y contactá directamente al proveedor por WhatsApp.</p>
+    <div style="display:flex;gap:10px;margin:4px 0 14px;flex-wrap:wrap"><a class="cta" href="#grid">Explorar mayoristas</a><a class="cta ghost" href="#como-funciona">Cómo funciona</a></div>
+    <p style="font-size:11px;color:var(--mut);margin:0">Sin pagos dentro de KILOCAL. El mayorista confirma precio, stock y entrega.</p>
     <div class="hero-stats">
       <div class="hstat"><b>10+</b><span>Mayoristas priorizados</span></div>
       <div class="hstat"><b>24</b><span>Provincias en espera</span></div>
@@ -197,7 +259,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
     </div>
   </div>
   <aside class="hero-card" aria-hidden="true">
-    <h3>📦 Pedido de muestra — Kiosco La Perla</h3>
+    <h3>📦 Pedido de muestra (ejemplo) — Kiosco La Perla</h3>
     <div class="hero-chip"><span>Yerba KIND 1kg <small>caja x12</small></span><small>$39.000</small></div>
     <div class="hero-chip"><span>Coca-Cola 2.25L <small>caja x6</small></span><small>$22.400</small></div>
     <div class="hero-chip"><span>Cerveza Quilmes 1L <small>caja x6</small></span><small>$29.600</small></div>
@@ -240,7 +302,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
   <!-- ============ TAB: KIOSCO ============ -->
   <div id="tab-kiosco">
     
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:0 0 12px">
+<div id="como-funciona" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:0 0 12px">
   <div class="panel" style="padding:12px"><b style="color:var(--acc)">1 · Buscá</b><p style="font-size:12px;color:var(--mut);margin:6px 0">Escribí el producto. KILOCAL te muestra los precios por caja de todos los mayoristas.</p></div>
   <div class="panel" style="padding:12px"><b style="color:var(--acc)">2 · Compará</b><p style="font-size:12px;color:var(--mut);margin:6px 0">Tocá un producto → compará lado a lado. Agregá al carrito lo que te conviene.</p></div>
   <div class="panel" style="padding:12px"><b style="color:var(--acc)">3 · Te lo traen</b><p style="font-size:12px;color:var(--mut);margin:6px 0">Enviás el pedido por WhatsApp → el mayorista confirma y te lo entrega según su zona.</p></div>
