@@ -133,8 +133,15 @@ input.fi:focus,select.fi:focus,textarea.fi:focus{border-color:var(--acc)}
 .prodrow{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding:8px 4px;font-size:12px;align-items:center}
 .prodrow small{color:var(--mut2)}
 .toggle{background:none;border:1px solid var(--line2);color:var(--gold);border-radius:6px;padding:3px 10px;cursor:pointer;font-size:11px}
+.provGroup{border:1px solid var(--line2);border-radius:14px;padding:10px;margin-bottom:10px;background:#0c1622}
+.provHead{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:var(--gold);margin-bottom:6px}
+.provHead b{color:#fff}
+.provTotal{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px dashed var(--line);padding:8px 2px;margin-top:6px;font-weight:800}
+.provSend{background:#22c55e;color:#052e12;border:0;border-radius:10px;padding:10px;width:100%;font-weight:900;cursor:pointer;margin-top:6px}
+.repBtn{background:#1b2b46;border:1px solid var(--acc);color:var(--gold);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:12px;font-weight:800}
+.savingsCard{background:linear-gradient(160deg,#14261a,#0f1f14);border:1px solid #1f3d2a;border-radius:14px;padding:10px 12px;margin:0 0 10px;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
 .badge2{font-size:9px;border-radius:5px;padding:2px 8px;font-weight:800;letter-spacing:1px}
-.b-nuevo{background:#1e3a8a;color:#bfdbfe}.b-preparando{background:#7c2d12;color:#fed7aa}.b-enviado{background:#14532d;color:#bbf7d0}.b-cerrado{background:#1f2937;color:#d1d5db}
+.b-nuevo{background:#1e3a8a;color:#bfdbfe}.b-recibido{background:#3730a3;color:#e0e7ff}.b-confirmado{background:#075985;color:#bae6fd}.b-preparando{background:#7c2d12;color:#fed7aa}.b-camino{background:#4d7c0f;color:#d9f99d}.b-entregado{background:#14532d;color:#bbf7d0}.b-cancelado{background:#3f1f1f;color:#fca5a5}.b-enviado{background:#14532d;color:#bbf7d0}.b-cerrado{background:#1f2937;color:#d1d5db}
 .ordercard{background:#0e1a26;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;font-size:12px}
 .ordercard pre{background:#060b12;border:1px solid var(--line);border-radius:8px;padding:8px;max-height:120px;overflow:auto;font-size:11px;white-space:pre-wrap;color:var(--gold)}
 .ordercard .row{margin-top:6px}
@@ -240,10 +247,14 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
       </aside>
 
       <section>
-        <div class="search">
-          <input id="q" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off">
-          <button id="btnSearch">Buscar</button>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
+          <div class="search" style="margin-bottom:0;flex:1 1 320px">
+            <input id="q" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off">
+            <button id="btnSearch">Buscar</button>
+          </div>
+          <button class="repBtn" id="repeatOrderBtn">🔁 Repetir mi última compra</button>
         </div>
+        <div class="savingsCard" id="savingsCard" style="display:none"><span>💡 KILOCAL te ahorra <b id="savingsAmount">$0</b> vs el precio más caro</span><span style="color:var(--mut2);font-size:10px">calculado del carrito</span></div>
         <div id="grid" class="grid"></div>
         <div class="empty" id="emptyNote" style="display:none">No encontré eso. Probá con "yerba", "coca" o "cerveza".</div>
         <div class="pagination" id="pagination"></div>
@@ -594,23 +605,29 @@ function renderCart() {
   const items = Object.entries(state.cart);
   if (!items.length) { $('cartItems').innerHTML = '<div class="empty">Todavía no agregaste nada. Buscá algo arriba 👆</div>'; }
   const all = mergedCatalog();
-  $('cartItems').innerHTML = items.map(([key, q]) => {
-    const [seller, id] = key.split('|');
-    const p = all.find(x => x.id === id);
-    if (!p) return '';
-    const px = p.offers[seller] || 0;
-    return '<div class="cartitem"><span><b>' + esc(mayoristaNombre(seller)) + '</b><br>' + esc(p.nombre) + '<br><small>caja ' + p.caja + ' × ' + q + ' · ' + mayoristaZona(seller) + '</small></span><span style="text-align:right"><b>' + fmt.format(px * q) + '</b><br><button data-del="' + key + '">Quitar</button></span></div>';
+  const byP = {}; items.forEach(([key, q]) => { const [s] = key.split('|'); (byP[s] = byP[s] || []).push([key, q]); });
+  $('cartItems').innerHTML = Object.entries(byP).map(([seller, arr]) => {
+    const rows = arr.map(([key, q]) => {
+      const [se, id] = key.split('|');
+      const p = all.find(x => x.id === id);
+      const px = p ? (p.offers[se] || 0) : 0;
+      return '<div class="cartitem"><span>' + esc(p ? p.nombre : id) + '<br><small>caja ' + (p ? p.caja : '') + ' × ' + q + ' · ' + mayoristaZona(se) + '</small></span><span style="text-align:right"><b>' + fmt.format(px * q) + '</b><br><button data-del="' + key + '">Quitar</button></span></div>';
+    }).join('');
+    const subtotal = arr.reduce((sum, [key, q]) => { const [se, id] = key.split('|'); const p = all.find(x => x.id === id); return sum + (p ? (p.offers[se] || 0) * q : 0); }, 0);
+    return '<div class="provGroup"><div class="provHead"><span>🏪 <b>' + esc(mayoristaNombre(seller)) + '</b> · ' + esc(mayoristaZona(seller)) + '</span><span>' + arr.length + ' producto(s)</span></div>' + rows + '<div class="provTotal"><span>Subtotal</span><span>' + fmt.format(subtotal) + '</span></div><button class="provSend" data-prov="' + seller + '">💬 Enviar pedido a ' + esc(mayoristaNombre(seller)) + '</button></div>';
   }).join('');
   const total = items.reduce((s, [key, q]) => { const [se, id] = key.split('|'); const p = all.find(x => x.id === id); return s + (p ? (p.offers[se] || 0) * q : 0); }, 0);
   $('cartTotal').textContent = fmt.format(total);
   $('sendOrder').disabled = items.length === 0;
-  $('cartItems').querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => { delete state.cart[b.dataset.del]; saveCart(); renderCart(); updateCartCount(); }));
+  $('cartItems').querySelectorAll('[data-prov]').forEach(b => b.addEventListener('click', () => submitOrder(b.dataset.prov)));
+  $('cartItems').querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => { delete state.cart[b.dataset.del]; saveCart(); renderCart(); updateCartCount(); calcSavings(); }));
+  calcSavings();
 }
 $('cartFab').addEventListener('click', () => { $('cartDrawer').style.display = 'flex'; });
 $('closeCart').addEventListener('click', () => { $('cartDrawer').style.display = 'none'; });
 $('cartDrawer').addEventListener('click', e => { if (e.target.id === 'cartDrawer') $('cartDrawer').style.display = 'none'; });
 $('clearCart').addEventListener('click', () => { state.cart = {}; saveCart(); renderCart(); updateCartCount(); });
-$('sendOrder').addEventListener('click', () => {
+function submitOrder(proveedorFiltro) {
   const items = Object.entries(state.cart);
   if (!items.length) return;
   const nombre = $('dNombre').value.trim() || 'Mi negocio';
@@ -618,23 +635,27 @@ $('sendOrder').addEventListener('click', () => {
   const horario = $('dHorario').value.trim() || '(sin horario)';
   const wa = $('dWhatsapp').value.trim() || '';
   const entrega = $('dEntrega').value;
+  const provincia = (document.getElementById('dProvincia') || {}).value || 'San Juan';
+  const entregaTxt = entrega.startsWith('Entrega') ? 'Entrega a mi negocio' : 'Voy a retirar';
   const all = mergedCatalog();
   const by = {}; items.forEach(([key, q]) => { const [s] = key.split('|'); (by[s] = by[s] || []).push([key, q]); });
-  const blocks = Object.entries(by).map(([s, arr]) => {
+  const targets = proveedorFiltro ? [[proveedorFiltro, by[proveedorFiltro]]] : Object.entries(by);
+  const payloads = [];
+  for (const [s, arr] of targets) {
+    if (!arr) continue;
     const lines = arr.map(([key, q]) => { const [, id] = key.split('|'); const p = all.find(x => x.id === id); return '- ' + (p ? p.nombre : id) + ' x' + q + ' caja(s) · ' + fmt.format(p ? (p.offers[s] || 0) * q : 0); });
-    return 'MAYORISTA: ' + mayoristaNombre(s) + '\n' + lines.join('\n');
-  }).join('\n\n');
-  const entregaTxt = entrega.startsWith('Entrega') ? 'Entrega a mi negocio' : 'Voy a retirar';
-  const provincia = (document.getElementById('dProvincia') || {}).value || 'San Juan';
-  const msg = 'Hola! Soy ' + nombre + ' — ' + provincia + ' (' + direccion + ').\nPedido por mayor desde KILOCAL (' + entregaTxt + ').\nHorario: ' + horario + '\nWA: ' + wa + '\n\n' + blocks;
-  const mainMayor = Object.keys(by)[0];
-  DATA.orders.push({ id: uid('ord'), fecha: Date.now(), cliente: nombre, direccion, horario, wa, entrega: entregaTxt, detalle: blocks, mayorista: mainMayor, estado: 'nuevo', items: items.length, provincia: provincia });
+    const subtotal = arr.reduce((sum, [key, q]) => { const [, id] = key.split('|'); const p = all.find(x => x.id === id); return sum + (p ? (p.offers[s] || 0) * q : 0); }, 0);
+    const order = { id: uid('ord'), fecha: Date.now(), cliente: nombre, direccion, horario, wa, entrega: entregaTxt, detalle: 'MAYORISTA: ' + mayoristaNombre(s) + '\n' + lines.join('\n'), mayorista: s, items: arr.map(([k]) => { const [ss, id] = k.split('|'); return { id, qty: 1, precio: all.find(x => x.id === id).offers[ss] }; }), subtotal, estado: 'recibido', provincia };
+    DATA.orders.push(order);
+    payloads.push({ s, msg: 'Hola! Soy ' + nombre + ' — ' + provincia + ' (' + direccion + ').\nPedido por mayor desde KILOCAL (' + entregaTxt + ').\nHorario: ' + horario + '\nWA: ' + wa + '\n\n' + order.detalle });
+  }
   save(DATA); fbPushAll();
-  window.open('https://wa.me/5492646204892?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  payloads.forEach((p, idx) => { setTimeout(() => { window.open('https://wa.me/5492646204892?text=' + encodeURIComponent(p.msg), '_blank', 'noopener'); }, idx * 350); });
   state.cart = {}; saveCart(); renderCart(); updateCartCount();
   $('cartDrawer').style.display = 'none';
-  toast('Pedido enviado al mayorista por WhatsApp');
-});
+  toast('Pedidos enviados: ' + payloads.length + ' mayorista(s)');
+}
+$('sendOrder').addEventListener('click', () => submitOrder(null));
 $('btnSearch').addEventListener('click', () => { state.q = $('q').value.trim().toLowerCase(); state.page = 1; renderGrid(); });
 $('q').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); state.page = 1; renderGrid(); });
 
@@ -692,7 +713,7 @@ function renderMayorista() {
     '<div class="ordercard"><div class="row" style="justify-content:space-between"><b>' + esc(o.cliente) + '</b><span class="badge2 b-' + o.estado + '">' + esc(o.estado.toUpperCase()) + '</span></div>'
     + '<div style="color:var(--mut);font-size:11px">' + esc(o.direccion) + ' · ' + esc(o.horario) + ' · WA ' + esc(o.wa) + '</div>'
     + '<pre>' + esc(o.detalle) + '</pre>'
-    + '<div class="row"><button class="chipbtn" data-set="preparando" data-id="' + o.id + '">Preparando</button><button class="chipbtn" data-set="enviado" data-id="' + o.id + '">Enviado</button><button class="chipbtn" data-set="cerrado" data-id="' + o.id + '">Cerrado</button></div></div>'
+    + '<div class="row"><button class="chipbtn" data-set="recibido" data-id="' + o.id + '">Recibido</button><button class="chipbtn" data-set="confirmado" data-id="' + o.id + '">Confirmado</button><button class="chipbtn" data-set="preparando" data-id="' + o.id + '">Preparando</button><button class="chipbtn" data-set="camino" data-id="' + o.id + '">En camino</button><button class="chipbtn" data-set="entregado" data-id="' + o.id + '">Entregado</button><button class="chipbtn" data-set="cancelado" data-id="' + o.id + '">Cancelado</button></div></div>'
   ).join('') || '<div class="empty">Sin pedidos todavía. Cuando un kiosco pida, los ves acá.</div>';
   $('ordersList').querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => {
     const o = DATA.orders.find(x => x.id === b.dataset.id);
@@ -804,6 +825,41 @@ $('aiClose').addEventListener('click', () => { $('aiPanel').style.display = 'non
 $('aiSend').addEventListener('click', () => aiSend());
 $('aiInput').addEventListener('keydown', e => { if (e.key === 'Enter') aiSend(); });
 
+
+/* ============ REPETIR + AHORROS ============ */
+function calcSavings() {
+  const items = Object.entries(state.cart);
+  if (!items.length) { $('savingsCard').style.display = 'none'; return; }
+  const all = mergedCatalog();
+  let smart = 0, max = 0;
+  for (const [key, q] of items) {
+    const [se, id] = key.split('|');
+    const p = all.find(x => x.id === id);
+    if (!p) continue;
+    const prices = Object.keys(p.offers).map(k => p.offers[k]);
+    const maxP = Math.max.apply(null, prices);
+    const curP = p.offers[se] || 0;
+    smart += curP * q; max += maxP * q;
+  }
+  const diff = Math.max(0, max - smart);
+  if (diff > 0) { $('savingsAmount').textContent = fmt.format(diff); $('savingsCard').style.display = 'flex'; } else { $('savingsCard').style.display = 'none'; }
+}
+$('repeatOrderBtn').addEventListener('click', () => {
+  const last = (DATA.orders || []).slice().reverse().find(o => Array.isArray(o.items) && o.items.length);
+  if (!last) { toast('Todavía no hiciste ningún pedido'); return; }
+  const all = mergedCatalog();
+  let added = 0;
+  for (const it of last.items) {
+    const p = all.find(x => x.id === it.id);
+    if (!p) continue;
+    const cheap = cheapestSellerP(p);
+    const key = cheap + '|' + p.id;
+    state.cart[key] = (state.cart[key] || 0) + (it.qty || 1);
+    added++;
+  }
+  saveCart(); renderCart(); updateCartCount(); calcSavings();
+  toast(added ? 'Repetí tu última compra: agregué ' + added + ' producto(s)' : 'Los productos cambiaron');
+});
 /* ============================ INIT ============================ */
 function setRole(r) { DATA.role = r; save(DATA); }
 if (!localStorage.getItem('kilocal_ai_seen')) {
