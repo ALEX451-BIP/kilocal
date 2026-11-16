@@ -285,12 +285,24 @@ html{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 ::selection{background:#244D3B;color:#FBF6E9}
 .add:active,.cta:active,.repBtn:active,.primary:active,.qty button:active{transform:scale(.96)}
 </style>
+<style id="tema-2026">
+.mark{box-shadow:0 8px 22px rgba(43,60,46,.4)}
+.hero h1{text-shadow:0 2px 0 rgba(31,54,43,.08)}
+.card::before{content:"";display:block;height:4px;width:52px;background:var(--acc);border-radius:0 0 4px 4px;margin:-14px -14px 8px;opacity:.9}
+.add{box-shadow:0 10px 26px rgba(36,77,59,.35)}
+.add:hover{box-shadow:0 14px 32px rgba(36,77,59,.4);filter:brightness(1.05)}
+.caticon{box-shadow:inset 0 0 0 1px rgba(35,45,38,.08)}
+.kicker{border-radius:6px}
+.trust-row{display:flex;gap:8px;flex-wrap:wrap}
+.hero-card{padding:18px 18px 14px}
+h2{color:#A65B16}
+</style>
 </head>
 <body>
 
 <header class="top">
   <div class="bar">
-    <a class="logo" href="#"><div class="mark" aria-hidden="true">K</div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
+    <a class="logo" href="#"><div class="mark" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" role="img" aria-label="KILOCAL"><rect width="34" height="34" rx="9" fill="url(#g)"/><path d="M10 11 L17 24 L24 11" stroke="#FBF6E9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="26.5" y="10" width="3" height="3" rx=".6" transform="rotate(45 28 11.5)" fill="#E9A23B"/><defs><linearGradient id="g" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#244D3B"/><stop offset="1" stop-color="#7C5A17"/></linearGradient></defs></svg></div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
     <div class="spacer"></div>
     <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">🚚 Para mayoristas: publicá gratis</a>
     <button id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">🤖 Asistente</button>
@@ -299,7 +311,7 @@ html{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
 <section class="hero">
   <div>
-    <span class="kicker">Mayoristas para tu negocio · San Juan</span>
+    <svg viewBox="0 0 220 40" width="210" height="38" style="margin-bottom:14px" role="img" aria-label="KILOCAL: toldo de kiosco"><path d="M2 22 L18 8 L202 8 L218 22 Z" fill="#244D3B"/><path d="M10 22 L118 22 L112 8 L16 8 Z" fill="#E9A23B"/><path d="M20 8 L24 22 M52 8 L56 22 M84 8 L88 22 M116 8 L120 22 M156 8 L160 22 M200 8 L204 22" stroke="#244D3B" stroke-width="4"/><path d="M2 22 h38 M80 22 h40 M154 22 h64" stroke="#F5F2E9" stroke-width="3"/></svg><span class="kicker">Mayoristas para tu negocio · San Juan</span>
     <h1>Abastecé tu <span class="hl">kiosco</span>.<br>Compará antes de comprar.</h1>
     <p>Encontrá productos y precios de distintos mayoristas. Armá tu pedido y contactá directamente al proveedor por WhatsApp.</p>
     <div style="display:flex;gap:10px;margin:4px 0 14px;flex-wrap:wrap"><a class="cta" href="#grid">Explorar mayoristas</a><a class="cta ghost" href="#como-funciona">Cómo funciona</a></div>
@@ -334,11 +346,11 @@ html{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <section style="max-width:1240px;margin:2px auto 0;padding:0 18px 2px">
   <div style="display:flex;gap:10px;flex-wrap:wrap;border:1px solid var(--line);border-radius:14px;background:rgba(14,25,38,.7);padding:10px 14px;align-items:center;font-size:11px;color:var(--mut)">
     <span>🔒 <b style="color:#fff">Mayoristas con identidad</b></span>
-    <span>·</span>
+    
     <span>⏱ <b style="color:#fff">Pedidos por WhatsApp</b></span>
-    <span>·</span>
+    
     <span>🚚 <b style="color:#fff">El mayorista entrega</b></span>
-    <span>·</span>
+    
     <span>💸 <b style="color:#fff">$0 comisión el 1° mes</b></span>
     <span style="margin-left:auto"><a class="cta" style="padding:6px 10px;font-size:10px" href="https://wa.me/5492646204892?text=Quiero%20publicar%20mi%20mayorista%20en%20KILOCAL" target="_blank" rel="noopener">Sumate vos →</a></span>
   </div>
@@ -585,6 +597,7 @@ const MAYORISTAS = [
   { id: 'aconcagua',nombre:'Mayorista Aconcagua',    zona: 'Chimbas',          entrega: 'entrega', color: '#4ade80' }
 ];
 const CAT_ICON = { 'Almacén':'🥫', 'Bebidas':'🥤', 'Snacks':'🍿', 'Limpieza':'🧼', 'Perfumería':'🧴', 'Cigarrillos':'🚬', 'Lácteos':'🥛', 'Congelados':'❄️' };
+const CAT_TINT = {'Almacén':'#EDF2EA','Bebidas':'#EEF4FB','Snacks':'#FBF3EC','Limpieza':'#EAF0F7','Perfumería':'#F5EEF7','Cigarrillos':'#F0EDE8','Lácteos':'#F8F7EE','Congelados':'#EDF6FA'};
 const PRODUCTOS = [
   { id:'y1',  nombre:'Yerba mate molida KIND 1kg', cat:'Almacén', caja:'x12', u:12, offer:{oasis:41280, sanjuan:39840, cuyo:40560, oeste:42120, norte:39000, valles:40800, norte2:39650, este:40120, sol:38900, aconcagua:40210} },
   { id:'a1',  nombre:'Azúcar tipo A 1kg',          cat:'Almacén', caja:'x10', u:10, offer:{oasis:14800, sanjuan:13600, cuyo:14250, oeste:15100, norte:13400, valles:14550, norte2:13780, este:14020, sol:13250, aconcagua:14310} },
@@ -682,7 +695,7 @@ function renderGrid() {
     const cheap = cheapestSellerP(p);
     const best = p.offers[cheap];
     return '<div class="card" style="position:relative">'
-      + '<div class="caticon" aria-hidden="true">' + (CAT_ICON[p.cat] || '📦') + '</div><b>' + esc(p.nombre) + '</b>'
+      + '<div class="caticon" aria-hidden="true" style="background:' + (CAT_TINT[p.cat] || '#EDF2EA') + ';box-shadow:inset 0 0 0 1px rgba(35,45,38,.08)">' + (CAT_ICON[p.cat] || '📦') + '</div><b>' + esc(p.nombre) + '</b>'
       + '<div class="sel">Mejor precio: <b>' + esc(mayoristaNombre(cheap)) + '</b> · ' + esc(mayoristaZona(cheap)) + '</div>'
       + '<div class="price">' + fmt.format(best) + ' <small>/ ' + p.caja + '</small></div>'
       + '<div class="unit">' + fmt.format(Math.round(best / p.unidades)) + ' por unidad · ' + p.cat + '</div>'
