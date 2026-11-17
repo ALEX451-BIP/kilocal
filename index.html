@@ -448,8 +448,85 @@ body.marketplace{background:#F1F3F5;color:#172026;font-family:"DM Sans",Arial,sa
 @media(max-width:1060px){.marketplace .hero{grid-template-columns:1fr!important;border-radius:0 0 14px 14px}.marketplace .app-frame{justify-self:stretch!important;max-width:none!important}.marketplace .catalog-layout,.marketplace .cartgrid,.marketplace #mayoristaGrid{grid-template-columns:1fr!important}.marketplace .sidepanel,.marketplace .cart{position:static!important}}
 @media(max-width:760px){.marketplace .bar{height:auto;min-height:62px;padding:9px 14px!important;gap:8px;flex-wrap:wrap}.marketplace .logo small{display:none}.marketplace .hero{padding:20px 16px!important}.marketplace .hero h1{font-size:38px!important}.marketplace .hero-stats{gap:12px!important;flex-wrap:wrap}.marketplace .hstat span{font-size:9px!important}.marketplace .coverage-bar,.marketplace .trust-strip,.marketplace .demo-notice,.marketplace nav.tabs,.marketplace .cat-rail-wrap,.marketplace main,.marketplace footer{padding-left:14px!important;padding-right:14px!important}.marketplace .trust-strip{display:none!important}.marketplace .demo-notice{font-size:10px!important}.marketplace .search button{padding:0 12px!important}.marketplace .grid{grid-template-columns:1fr!important}.marketplace .card{grid-template-columns:72px minmax(0,1fr)!important;padding:9px!important}.marketplace .prod-img-wrap{width:72px!important;height:72px!important}.marketplace .hero-actions .cta{width:100%;justify-content:center}.marketplace .coverage-inner .cta{width:100%;justify-content:center}}
 </style>
+<style id="role-flows">
+.role-gate{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:18px;background:rgba(7,17,13,.72);backdrop-filter:blur(8px)}
+.role-gate[hidden]{display:none!important}
+.role-box{width:min(960px,100%);max-height:min(720px,96vh);overflow:auto;background:#FFFDF5;border:1px solid #C9CCBD;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.32);padding:clamp(20px,4vw,34px);color:#172026}
+.role-kicker{margin:0 0 8px;color:#0B6B43;font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+.role-box h1{max-width:720px;margin:0;font-size:clamp(27px,3.6vw,44px);line-height:1.02;letter-spacing:-.045em;color:#172026}
+.role-lead{max-width:610px;margin:12px 0 20px;color:#55616C;line-height:1.5}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.role-card{position:relative;display:flex;flex-direction:column;min-height:230px;padding:20px;background:#F7F8FA;border:1px solid #D9DEE3;border-radius:16px}
+.role-card:focus-within{border-color:#0B6B43;box-shadow:0 0 0 3px rgba(11,107,67,.14)}
+.role-icon{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;color:#0B6B43}
+.role-icon span{display:grid;place-items:center;width:42px;height:42px;border:1px solid #B5D4C3;border-radius:12px;background:#EDF7F1;font-size:20px}
+.role-card h2{margin:16px 0 8px;font-size:20px;color:#172026;letter-spacing:-.02em}
+.role-card p{margin:0;color:#55616C;font-size:13px;line-height:1.45}
+.role-card label{display:grid;gap:6px;margin:16px 0 10px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#55616C}
+.role-card select{height:44px;border:1px solid #C9CED6;border-radius:9px;padding:0 10px;background:#fff;color:#172026}
+.role-action{min-height:46px;margin-top:auto;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:0 14px;background:#0B6B43;color:#fff;font-weight:800;cursor:pointer}
+.role-action:hover{background:#064D2D}.role-action.secondary{background:#172026;margin-top:12px}.role-action.secondary:hover{background:#35434D}
+.role-cancel{display:block;margin:14px auto 0;border:0;background:none;color:#55616C;text-decoration:underline;min-height:44px;cursor:pointer}
+.role-chip-wrap{max-width:1320px;margin:0 auto;padding:8px 24px;background:#fff;border-bottom:1px solid #E0E4E8}
+.role-chip{display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 10px;background:#F7F8FA;border:1px solid #DEE2E6;border-radius:10px;color:#55616C;font-size:11px}
+.role-chip.visible{display:flex}.role-chip b{color:#0B6B43}.role-reset{border:0;background:#fff;border:1px solid #C9CED6;border-radius:7px;min-height:32px;padding:0 9px;cursor:pointer;color:#172026}
+.lead-modal{position:fixed;inset:0;z-index:125;display:none;place-items:center;padding:18px;background:rgba(7,17,13,.75);backdrop-filter:blur(8px)}
+.lead-modal[hidden]{display:none!important}
+.lead-box{width:min(560px,100%);max-height:94vh;overflow:auto;background:#FFFDF5;border-radius:16px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.34)}
+.lead-head{display:flex;align-items:start;justify-content:space-between;gap:12px}.lead-head h2{margin:0;color:#172026;font-size:23px}.lead-head p{margin:6px 0 0;color:#55616C;font-size:13px}.lead-close{border:0;background:#F1F3F5;width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px}.lead-form{display:grid;gap:10px;margin-top:16px}.lead-form label{display:grid;gap:6px;color:#55616C;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.lead-form input,.lead-form select,.lead-form textarea{min-height:44px;border:1px solid #C9CED6;border-radius:9px;padding:0 10px;color:#172026;background:#fff}.lead-form textarea{min-height:82px;padding:10px}.lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{outline:0;border-color:#0B6B43;box-shadow:0 0 0 3px rgba(11,107,67,.14)}.lead-error{min-height:18px;color:#B14B3F;font-size:12px}.lead-submit{min-height:48px;border:0;border-radius:10px;background:#0B6B43;color:#fff;font-weight:850;cursor:pointer}.lead-submit:hover{background:#064D2D}.lead-note{margin:10px 0 0;color:#7B8792;font-size:10px;text-align:center}
+@media(max-width:760px){.role-gate,.lead-modal{place-items:end center;padding:0;overflow:auto}.role-box{max-height:96vh;border-radius:18px 18px 0 0;padding:20px}.role-grid{grid-template-columns:1fr}.role-card{min-height:auto}.role-chip-wrap{padding:8px 14px}.lead-box{border-radius:18px 18px 0 0;max-height:96vh}}
+</style>
 </head>
 <body class="marketplace">
+
+<section id="roleGate" class="role-gate" role="dialog" aria-modal="true" aria-labelledby="roleTitle" hidden>
+  <div class="role-box">
+    <p class="role-kicker">Bienvenido a KILOCAL</p>
+    <h1 id="roleTitle">Entrá según cómo usás KILOCAL.</h1>
+    <p class="role-lead">Elegí si sos un kiosco o un mayorista. El cliente ve su zona y los mayoristas que operan ahí. El mayorista pasa sus datos y queda en contacto con nuestro equipo.</p>
+    <div class="role-grid">
+      <section class="role-card" aria-labelledby="roleClientTitle">
+        <div class="role-icon"><span aria-hidden="true">🏪</span>Cliente / Kiosco</div>
+        <h2 id="roleClientTitle">Comprá con precios de caja.</h2>
+        <p>Elegís tu localidad, filtrás los mayoristas que trabajan en tu zona y armás el pedido para enviarlo por WhatsApp.</p>
+        <label for="clientZone">¿Dónde estás?<select id="clientZone" required>
+          <option value="todos">Elegí tu zona</option>
+          <option value="San Juan Capital">San Juan Capital</option>
+          <option value="Rawson">Rawson</option>
+          <option value="Rivadavia">Rivadavia</option>
+          <option value="Chimbas">Chimbas</option>
+          <option value="Pocito">Pocito</option>
+          <option value="Otra">Otra localidad</option>
+        </select></label>
+        <button id="enterClient" class="role-action" type="button">Entrar como cliente →</button>
+      </section>
+      <section class="role-card" aria-labelledby="roleMayoristaTitle">
+        <div class="role-icon"><span aria-hidden="true">🏭</span>Mayorista</div>
+        <h2 id="roleMayoristaTitle">Publicá tus precios y recibí pedidos.</h2>
+        <p>Si querés sumar tu mayorista a KILOCAL, pasanos tus datos y te mostramos cómo cargar tu lista, tu cobertura y tus canales de venta.</p>
+        <button id="enterMayorista" class="role-action secondary" type="button">Entrar como mayorista →</button>
+        <p class="lead-note">No cargamos tu lista sin tu autorización. Todo queda bajo tus condiciones comerciales.</p>
+      </section>
+    </div>
+    <button id="exploreWithoutRole" class="role-cancel" type="button">Explorar sin elegir</button>
+  </div>
+</section>
+
+<div id="mayoristaLead" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="leadTitle" hidden>
+  <div class="lead-box">
+    <div class="lead-head"><div><h2 id="leadTitle">Sumar mi mayorista</h2><p>Contanos lo esencial. Con eso te contactamos para coordinar una demo y definir cómo publicamos tu lista.</p></div><button id="closeMayoristaLead" class="lead-close" type="button" aria-label="Cerrar formulario">×</button></div>
+    <form id="mayoristaLeadForm" class="lead-form" novalidate>
+      <label>Nombre comercial<input id="leadName" name="nombre" autocomplete="organization" required placeholder="Ej: Distribuidora El Sol"></label>
+      <label>Localidad / zona de entrega<input id="leadZone" name="localidad" autocomplete="address-level2" required placeholder="Ej: Rivadavia, San Juan"></label>
+      <label>WhatsApp de pedidos<input id="leadWhatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" required placeholder="264..."></label>
+      <label>Rubro principal<select id="leadRubro" name="rubro" required><option value="">Elegí un rubro</option><option>Almacén y bebidas</option><option>Snacks y cigarrillos</option><option>Limpieza y hogar</option><option>Lácteos y congelados</option><option>Bazar y ferretería</option><option>Otro rubro</option></select></label>
+      <label>Tu lista y condiciones<textarea id="leadMessage" name="mensaje" placeholder="Ej: vendemos mayorista de almacén y bebidas, entregamos en Rivadavia, mínimo $..."></textarea></label>
+      <div id="leadError" class="lead-error" role="alert" aria-live="polite"></div>
+      <button class="lead-submit" type="submit">Enviar mensaje al equipo KILOCAL →</button>
+    </form>
+    <p class="lead-note">Se abre WhatsApp con tus datos precargados. KILOCAL no guarda tu tarjeta ni tu contraseña.</p>
+  </div>
+</div>
 
 <header class="top">
   <div class="bar">
@@ -459,6 +536,7 @@ body.marketplace{background:#F1F3F5;color:#172026;font-family:"DM Sans",Arial,sa
     <button id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">Asistente KILOCAL</button>
   </div>
 </header>
+<div id="roleChipWrap" class="role-chip-wrap"><div id="roleChip" class="role-chip"><span>Estás como <b id="roleChipValue">cliente</b> · <span id="roleChipZone">San Juan</span></span><button id="resetRole" class="role-reset" type="button">Cambiar</button></div></div>
 
 <section class="hero">
   <div>
@@ -633,7 +711,7 @@ body.marketplace{background:#F1F3F5;color:#172026;font-family:"DM Sans",Arial,sa
 
 <footer>
   <span>KILOCAL · El punto de encuentro entre kioscos y mayoristas · San Juan</span>
-  <span><a href="https://alex451-bip.github.io/kilocal/terminos.html">Términos</a> · <a href="https://alex451-bip.github.io/kilocal/privacidad.html">Privacidad</a> · <a href="https://wa.me/5492646204892?text=Contacto%20KILOCAL">Contacto</a> · <a href="#tabs">Para mayoristas</a></span>
+  <span><a href="https://alex451-bip.github.io/kilocal/terminos.html">Términos</a> · <a href="https://alex451-bip.github.io/kilocal/privacidad.html">Privacidad</a> · <a href="https://alex451-bip.github.io/kilocal/pagos.html">Pagos</a> · <a href="https://alex451-bip.github.io/kilocal/seguridad.html">Seguridad</a> · <a href="https://wa.me/5492646204892?text=Contacto%20KILOCAL">Contacto</a> · <a href="#tabs">Para mayoristas</a></span>
   <span>Pedidos por WhatsApp · El precio y la entrega los confirma el mayorista · KILOCAL no procesa pagos</span>
 </footer>
 
@@ -826,6 +904,65 @@ const fmt = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS',
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const uid = p => p + Date.now().toString(36) + Math.floor(Math.random()*999);
+
+/* ============================ BIENVENIDA / ROLES ============================ */
+const ROLE_KEY = LS + '_role_choice';
+const ROLE_ZONE_KEY = LS + '_client_zone';
+const LEAD_KEY = LS + '_mayorista_lead';
+function saveRole(role, zone) { try { localStorage.setItem(ROLE_KEY, role); localStorage.setItem(ROLE_ZONE_KEY, zone || 'todos'); } catch {} }
+function restoreRole() {
+  let role = '', zone = 'todos';
+  try { role = localStorage.getItem(ROLE_KEY) || ''; zone = localStorage.getItem(ROLE_ZONE_KEY) || 'todos'; } catch {}
+  const chip = $('roleChip');
+  if (!role) { $('roleGate').hidden = false; if (chip) chip.classList.remove('visible'); return; }
+  if (chip) { const value = $('roleChipValue'); const z = $('roleChipZone'); if (value) value.textContent = role; if (z) z.textContent = zone; chip.classList.add('visible'); }
+  if (zone && zone !== 'todos' && role === 'cliente') { state.zona = zone; $('roleGate').hidden = true; }
+  else { $('roleGate').hidden = true; }
+}
+function setClientRole() {
+  const zone = ($('clientZone') && $('clientZone').value) || 'todos';
+  saveRole('cliente', zone);
+  state.zona = zone;
+  state.page = 1;
+  $('roleGate').hidden = true;
+  if ($('roleChipValue')) { $('roleChipValue').textContent = 'cliente'; $('roleChipZone').textContent = zone; $('roleChip').classList.add('visible'); }
+  renderFilters();
+  renderGrid();
+  toast('Zona guardada: ' + zone);
+}
+function setMayoristaRole() {
+  saveRole('mayorista', 'San Juan');
+  $('roleGate').hidden = true;
+  $('mayoristaLead').hidden = false;
+  setTimeout(() => { const input = $('leadName'); if (input) input.focus(); }, 30);
+  if ($('roleChipValue')) { $('roleChipValue').textContent = 'mayorista'; $('roleChipZone').textContent = 'San Juan'; $('roleChip').classList.add('visible'); }
+}
+function openMayoristaLead() { $('roleGate').hidden = true; $('mayoristaLead').hidden = false; setTimeout(() => { const input = $('leadName'); if (input) input.focus(); }, 30); }
+function resetRole() {
+  try { localStorage.removeItem(ROLE_KEY); localStorage.removeItem(ROLE_ZONE_KEY); } catch {}
+  state.zona = 'todos';
+  state.page = 1;
+  $('roleGate').hidden = false;
+  if ($('roleChip')) $('roleChip').classList.remove('visible');
+}
+function submitMayoristaLead(event) {
+  if (event) event.preventDefault();
+  const name = ($('leadName').value || '').trim();
+  const zone = ($('leadZone').value || '').trim();
+  const whatsapp = ($('leadWhatsapp').value || '').replace(/\D/g, '');
+  const rubro = $('leadRubro').value || '';
+  const message = ($('leadMessage').value || '').trim();
+  const error = $('leadError');
+  error.textContent = '';
+  if (name.length < 2 || zone.length < 2 || whatsapp.length < 7 || !rubro) { error.textContent = 'Completá nombre, localidad, rubro y un WhatsApp válido.'; return; }
+  const lead = { nombre: name, localidad: zone, whatsapp, rubro, mensaje: message, creado: new Date().toISOString() };
+  try { const old = JSON.parse(localStorage.getItem(LEAD_KEY) || '[]'); old.unshift(lead); localStorage.setItem(LEAD_KEY, JSON.stringify(old)); } catch {}
+  const text = 'Hola KILOCAL, quiero sumar mi mayorista.\n\nEmpresa: ' + name + '\nLocalidad/zona: ' + zone + '\nWhatsApp: ' + whatsapp + '\nRubro: ' + rubro + '\nMensaje: ' + (message || 'Sin mensaje adicional');
+  window.open('https://wa.me/5492646204892?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  $('mayoristaLead').hidden = true;
+  toast('Te abrimos WhatsApp. Enviá el mensaje para que KILOCAL te contacte.');
+}
+
 const toast = t => { const el = $('toast'); el.textContent = t; el.style.display = 'block'; setTimeout(() => { el.style.display = 'none'; }, 2600); };
 
 const state = { q: '', cat: 'Todos', entrega: 'todos', zona: 'todos', page: 1, perPage: 12, cart: {}, mayoristaSel: null };
@@ -1126,7 +1263,7 @@ function aiFindProducts(q) {
   const tokens = norm(q).split(/[^a-z0-9]+/).filter(t => t && t.length >= 4 && !STOP.has(t));
   if (!tokens.length) return [];
   const all = mergedCatalog();
-  // Prioridad: productos que contienen TODOS los tokens significativos
+  // Prioridad: productos que contienen todos los tokens significativos
   const full = all.filter(p => tokens.every(t => norm(p.nombre).includes(t)));
   if (full.length) return full;
   // Si no, cualquiera que contenga al menos uno fuerte (>4 letras)
@@ -1241,6 +1378,13 @@ if (!localStorage.getItem('kilocal_ai_seen')) {
   aiAdd('bot', '¡Hola! Soy el cerebro KILOCAL. Preguntame por precios, mayoristas por zona o entrega, y te armo el pedido.');
   aiChipsRender();
 }
+$('enterClient').addEventListener('click', setClientRole);
+$('enterMayorista').addEventListener('click', setMayoristaRole);
+$('exploreWithoutRole').addEventListener('click', () => { $('roleGate').hidden = true; });
+$('resetRole').addEventListener('click', resetRole);
+$('closeMayoristaLead').addEventListener('click', () => { $('mayoristaLead').hidden = true; });
+$('mayoristaLeadForm').addEventListener('submit', submitMayoristaLead);
+restoreRole();
 renderFilters();
 if (DATA.role === 'mayorista') {
   $('tab-kiosco').style.display = 'none';

@@ -32,7 +32,8 @@ small{color:var(--mut)}
   <h2>1. Qué datos recopilamos y por qué</h2>
   <ul>
     <li><strong>Del kiosco o cliente</strong>: nombre del negocio, dirección/localidad, horario de recepción, número de WhatsApp. Finalidad: armar y enviar los pedidos al mayorista, coordinar la entrega y operar el piloto comercial.</li>
-    <li><strong>Del mayorista</strong>: nombre comercial, zona de entrega, catálogo (productos, precios, stock) y WhatsApp operativo. Finalidad: permitir que los kioscos lo encuentren y le envíen pedidos.</li>
+    <li><strong>Del mayorista</strong>: nombre comercial, localidad, zona/cobertura de entrega, catálogo (productos, precios, stock) y WhatsApp operativo. Finalidad: permitir que los kioscos lo encuentren y le envíen pedidos.</li>
+    <li><strong>Lead comercial</strong>: nombre comercial, localidad, WhatsApp, rubro y mensaje enviado por el formulario “Entrar como mayorista”. Finalidad: coordinar demo, autorización y publicación de lista.</li>
     <li><strong>Técnicos</strong>: datos de navegación del navegador (en la medida en que las plataformas de Firebase y GitHub Pages los registran para seguridad y operación del servicio).</li>
   </ul>
 
@@ -41,30 +42,34 @@ small{color:var(--mut)}
     <li>Para mostrar el catálogo y los comparadores de precio.</li>
     <li>Para armar mensajes de pedido y abrirlos en WhatsApp del mayorista.</li>
     <li>Para guardar el carrito localmente en tu dispositivo (localStorage) y restaurarlo cuando vuelvas.</li>
+    <li>Para guardar localmente la elección de rol y la zona del cliente (localStorage), y construir/enviar el lead del mayorista cuando él confirma WhatsApp.</li>
     <li>Para operar el piloto y medir si el servicio genera valor real (sin identificar personalmente a las personas).</li>
   </ul>
   <p>KILOCAL <strong>no vende tus datos personales</strong>, no los cede a terceros con fines comerciales y no los usa para publicidad de terceros.</p>
 
   <h2>3. Dónde se guardan</h2>
-  <p>Los datos de catálogo y pedidos se guardan en <strong>Firebase Realtime Database</strong> (Google, servidores en Estados Unidos) y en <strong>tu propio navegador</strong> (localStorage). Los datos de los pedidos solo se leen y escriben con <strong>sesión autenticada</strong> (anónima, sin identificadores personales real en el registro público). No almacenamos tarjetas de crédito ni contraseñas bancarias.</p>
+  <p>Los datos de catálogo y pedidos se guardan en <strong>Firebase Realtime Database</strong> (Google, servidores en Estados Unidos) y en <strong>tu propio navegador</strong> (localStorage). El selector de rol/zona y los leads no verificados también pueden permanecer localmente en tu navegador; el envío formal ocurre con WhatsApp cuando vos confirmás compartir. Los datos de los pedidos solo se leen y escriben con <strong>sesión autenticada</strong> (anónima, sin identificadores personales real en el registro público). No almacenamos tarjetas de crédito ni contraseñas bancarias.</p>
 
-  <h2>4. Quién los ve</h2>
+  <h2>4. Rol y localización</h2>
+  <p>Al elegir “cliente/kiosco”, la localidad o zona que indicás se usa para pasar el filtro de mayorista. No le pedimos acceso a GPS ni coordenadas exactas en esta versión. Podés “Cambiar” el rol desde el chip de la página o borrar los datos del sitio desde el navegador. Al elegir “mayorista”, se abre un formulario; recién al pulsar “Enviar” se abre WhatsApp con el mensaje precargado.</p>
+
+  <h2>5. Quién los ve</h2>
   <ul>
     <li>El mayorista solo ve los pedidos que llegan a su canal (WhatsApp o panel).</li>
     <li>KILOCAL administra los datos para operar y evolucionar el piloto; no los publica en ningún sitio público.</li>
     <li>Terceros que proveen servicios (GitHub Pages, Firebase) procesan según sus propios términos y políticas de confidencialidad.</li>
   </ul>
 
-  <h2>5. Tus derechos</h2>
+  <h2>6. Tus derechos</h2>
   <p>En cualquier momento podés pedir acceso, rectificación, supresión o actualización de tus datos, y la eliminación de tus productos publicados (mayoristas) o de tu carrito (kioscos), escribiendo a la dirección de contacto de KILOCAL (WhatsApp desde el sitio). KILOCAL responderá en un plazo razonable. Si creés que no cumplimos con tus derechos, podés reclamar ante la <strong>AAIP</strong>.</p>
 
-  <h2>6. Seguridad</h2>
-  <p>KILOCAL cumple reglas de seguridad para el piloto: catálogo público para lectura, pedidos accesibles únicamente con sesión autenticada, y revisión continua del código. Ningún sistema es 100% seguro; reportá cualquier problema de seguridad a la dirección indicada en el sitio.</p>
+  <h2>7. Seguridad y incidentes</h2>
+  <p>KILOCAL aplica medidas de seguridad proporcionales al piloto: catálogo público para lectura, pedidos vinculados a sesión autenticada, revisión del código y ausencia de tarjetas/contraseñas bancarias en el navegador. Una sesión anónima identifica al navegador pero no a una persona ni verifica a un mayorista. Antes de tratar listings como “verificados”, se requiere autorización, dueños de catálogo y reglas/backend restringidos. Reportá cualquier vulnerabilidad escribiendo por WhatsApp.</p>
 
-  <h2>7. Menores y uso indebido</h2>
+  <h2>8. Menores y uso indebido</h2>
   <p>KILOCAL no está dirigido a menores y no recopila intencionalmente datos de menores. Si detectás un uso indebido, escribimos para resolverlo.</p>
 
-  <h2>8. Cambios</h2>
+  <h2>9. Cambios</h2>
   <p>Esta política puede actualizarse con aviso previo por el sitio. Si no estás de acuerdo, dejás de usar KILOCAL e informanos.</p>
 
   <p><small>KILOCAL · Alex Javier Erlias Vilchez · San Juan, Argentina · Contacto por WhatsApp desde el sitio.</small></p>

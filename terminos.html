@@ -61,10 +61,19 @@ small{color:var(--mut)}
   <h2>7. Limitación de responsabilidad</h2>
   <p>En la medida máxima permitida por la ley, KILOCAL no responde por daños indirectos, lucro cesante, pérdida de datos o expectativas, incumplimientos de terceros (mayoristas, transportistas o clientes), o fallas de servicios ajenos (internet, WhatsApp, Firebase, GitHub Pages). El usuario acepta que KILOCAL se ofrece “en el estado actual” y con errores ocasionales.</p>
 
-  <h2>8. Términos fiscales</h2>
+  <h2>8. Comportamiento seguro y acceso</h2>
+  <p>La versión pública usa una sesión técnica anónima de Firebase y un enlace de WhatsApp para contacto. Eso permite operar el piloto pero no valida identidad, reputación ni autorización de cada mayorista. Antes de tratar a un mayorista como verificado, KILOCAL debe: (a) validar titularidad, (b) definir dueños de catálogo y cobertura, (c) limitar escrituras por roles en Firebase o backend equivalente, (d) revisar logs y (e) aceptar un proceso de suspensión o baja de listings comprometidos.</p>
+
+  <h2>9. Pagos, facturación y pasarela</h2>
+  <p>Esta versión <strong>no procesa pagos ni cobros</strong>. El pago se realiza o se coordina directamente entre cliente y mayorista. Cualquier integración pasada o futura (por ejemplo Mercado Pago) debe cumplir: preferencia o intención creada en servidor, cero almacenamiento de tarjetas en KILOCAL, webhook validado antes de confirmar estados, monto/status contrastados contra la API oficial, reembolso/contracargo documentados y facturación a cargo del mayorista o del proveedor que vende la mercadería. Un botón client-side no es una pasarela segura.</p>
+
+  <h2>10. Funciones por rol</h2>
+  <p>El selector de “cliente/kiosco” y “mayorista” organiza la experiencia: el cliente elige localidad y ve el catálogo; el mayorista inicia un contacto para sumar su lista. En esta versión ningún rol equivale a cuenta verificada, autorización de catálogo, reputación, garantía de entrega, aprobación de publicación ni permiso administrativo.</p>
+
+  <h2>11. Términos fiscales</h2>
   <p>KILOCAL no es ni sustituye facturación fiscal. Cada mayorista emite las facturas por ventas de mercadería; KILOCAL factura únicamente por sus propios servicios (si los hubiera). Los pedidos de WhatsApp <strong>no reemplazan</strong> a las facturas electrónicas que ARCA/AFIP exige.</p>
 
-  <h2>9. Vigencia y cambios</h2>
+  <h2>12. Vigencia y cambios</h2>
   <p>Estos términos rigen desde su publicación y pueden modificarse en cualquier momento, con aviso previo por el sitio. Si no estás de acuerdo, simplemente no uses KILOCAL.</p>
 
   <p><small>KILOCAL · Alex Javier Erlias Vilchez · San Juan, Argentina · Contacto por WhatsApp desde el sitio.</small></p>
