@@ -356,6 +356,50 @@ toast{display:none;position:fixed;bottom:22px;left:50%;transform:translateX(-50%
 @media(max-width:760px){.bar{height:auto;min-height:64px;padding:9px 14px;gap:8px;flex-wrap:wrap}.logo small{display:none}.cta{padding:0 12px!important;font-size:11px!important}#aiHeaderBtn{padding:0 11px!important;font-size:11px!important}.hero{padding:24px 16px 18px!important}.coverage-bar,.trust-strip,nav.tabs,main,footer{padding-left:14px!important;padding-right:14px!important}.hero h1{font-size:40px!important}.hero p{font-size:15px!important}.hero-stats{grid-template-columns:repeat(2,1fr);gap:14px!important}.steps{grid-template-columns:1fr}.card{grid-template-columns:82px minmax(0,1fr);padding:12px!important;row-gap:4px!important}.prod-img-wrap{border-radius:14px!important}.price{font-size:19px!important}.grid{grid-template-columns:1fr}.trust-inner .cta,.coverage-inner .cta{width:100%;justify-content:center;margin-left:0!important}.tabs{overflow-x:auto;white-space:nowrap}.tabs button{flex:0 0 auto}.kpi{grid-template-columns:repeat(2,1fr)!important}.uploadGrid{grid-template-columns:1fr!important}.carttotal{font-size:18px}.hero-card h3{font-size:10px!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
+<style id="tema-distinctive">
+:root{--bg:#F1E8D8;--panel:#FFFDF5;--panel2:#F9F4EA;--panel3:#E7DBC8;--line:#D4C7B0;--line2:#BFB094;--ink:#223126;--mut:#555D50;--mut2:#746F61;--acc:#B85C38;--acc2:#8E3F23;--gold:#B85C38;--ok:#244D3B;--bad:#A44735;--focus:#D5A45A}
+body{background-color:var(--bg);background-image:radial-gradient(rgba(104,80,45,.16) 1px,transparent 1.45px),repeating-linear-gradient(0deg,transparent 0 23px,rgba(73,54,30,.08) 24px);background-size:28px 28px,100% 24px;color:var(--ink)}
+.kicker{display:none}
+.local-tag{display:block;width:max-content;max-width:100%;margin-bottom:16px;padding:0 0 8px;color:#704232;border-bottom:3px solid #B85C38;font-size:13px;line-height:1.2;font-weight:800;letter-spacing:.01em}
+.hero h1{color:#203426;letter-spacing:-.065em}
+.hero h1 .hl{color:#B85C38}
+.cta,.search button,.add,.primary,.provSend{background:#B85C38!important;border-color:#B85C38!important;color:#FFF9ED!important;box-shadow:0 8px 21px rgba(184,92,56,.25)!important}
+.cta:hover,.search button:hover,.add:hover,.primary:hover,.provSend:hover{background:#8E3F23!important;border-color:#8E3F23!important;box-shadow:0 12px 26px rgba(184,92,56,.32)!important}
+.cta.ghost{background:transparent!important;color:#244D3B!important;border-color:#244D3B!important;box-shadow:none!important}
+.cta.ghost:hover{background:#E7DBC8!important}
+#aiHeaderBtn{border-color:#C7B496!important;color:#244D3B!important}
+header.top{background:rgba(241,232,216,.9);border-bottom-color:rgba(145,68,35,.14)}
+.mark{box-shadow:0 8px 20px rgba(44,63,46,.26)!important}
+.hero-card{max-width:470px!important;background:#FFFDF5!important;border:1px solid #D4C7B0!important;border-radius:18px!important;box-shadow:8px 10px 0 rgba(36,77,59,.12),0 24px 48px rgba(58,44,28,.18)!important;overflow:hidden!important;padding:21px!important}
+.hero-card::before{content:"";position:absolute;top:-8px;right:34px;width:11px;height:11px;border-radius:50%;background:#D9D0BC;box-shadow:0 61px 0 #D9D0BC,0 122px 0 #D9D0BC,0 183px 0 #D9D0BC,0 244px 0 #D9D0BC,0 305px 0 #D9D0BC}
+.hero-card::after{content:"";position:absolute;top:0;bottom:0;left:28px;border-left:2px dashed rgba(145,68,35,.28);border-radius:0;pointer-events:none}
+.hero-card h3,.hero-chip,.hero-note{position:relative;margin-left:28px!important}
+.hero-chip{background:#F7F1E3!important;border-color:#DED2BD!important;border-radius:10px!important;box-shadow:none!important}
+.hero-chip small{color:#B85C38!important}
+.steps{gap:14px!important}
+.step-card{background:#FFFDF5!important;border:1px solid #D4C7B0!important;border-radius:14px!important;box-shadow:0 2px 0 #DED2BD!important}
+.step-card b{color:#B85C38!important;letter-spacing:.04em!important;font-size:11px!important;text-transform:uppercase}
+.step-card p{color:#555D50!important}
+.coverage-inner{background:#FFFDF5!important;border-color:#D4C7B0!important;box-shadow:none!important}
+.pill--active{background:#F5E0C7!important;border-color:#D3A679!important;color:#704232!important}
+.trust-item{background:#E7DBC8!important;border-color:#D0BDA1!important;color:#534C3F!important;border-radius:8px!important}
+.trust-item b{color:#B85C38!important}
+.panel,.sidepanel,.card,.mcard,.ordercard,.provGroup{background:#FFFDF5!important;border-color:#D4C7B0!important;box-shadow:none!important}
+.card{border-radius:15px!important}
+.card:hover{box-shadow:8px 8px 0 rgba(36,77,59,.1)!important;transform:translate(-1px,-1px)!important}
+.prod-img-wrap{background:#E8E1D0!important;border-radius:10px!important}
+.price{color:#244D3B!important}
+.sel b{color:#B85C38!important}
+.search input{background:#FFFDF5!important;border-color:#D4C7B0!important}
+.search input:focus{border-color:#B85C38!important;box-shadow:0 0 0 4px rgba(184,92,56,.14)!important}
+.filterRow input,.filterRow:hover{accent-color:#B85C38!important;background:#F5F0E4!important}
+.pagination button.on{background:#B85C38!important;border-color:#B85C38!important;color:#FFF9ED!important}
+.savingsCard{background:#F5E0C7!important;border-color:#D3A679!important}
+.savingsCard span:first-child b{color:#8E3F23!important}
+input.fi,select.fi,textarea.fi,.uploadGrid input,.uploadGrid select{background:#FFFDF5!important;border-color:#D4C7B0!important}
+button:focus-visible,a:focus-visible{outline-color:#D5A45A!important}
+::selection{background:#B85C38!important;color:#FFF9ED!important}
+</style>
 </head>
 <body>
 
@@ -370,7 +414,7 @@ toast{display:none;position:fixed;bottom:22px;left:50%;transform:translateX(-50%
 
 <section class="hero">
   <div>
-    <span class="kicker">Mayoristas para tu negocio · San Juan</span>
+    <span class="local-tag">Precios por caja para kioscos de San Juan</span>
     <h1>Abastecé tu <span class="hl">kiosco</span>.<br>Compará antes de comprar.</h1>
     <p>Encontrá productos y precios de distintos mayoristas. Armá tu pedido y contactá directamente al proveedor por WhatsApp.</p>
     <div class="hero-actions"><a class="cta" href="#grid">Ver catálogo →</a><a class="cta ghost" href="#como-funciona">Cómo funciona</a></div>
