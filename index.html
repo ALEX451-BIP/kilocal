@@ -509,11 +509,18 @@ body.marketplace{background:var(--premium-bg)!important;color:var(--premium-ink)
 .marketplace .coverage-bar{max-width:1280px!important;padding:14px 28px!important}.marketplace .coverage-inner{background:var(--premium-paper)!important;border:1px solid var(--premium-line)!important;border-radius:12px!important;padding:12px 16px!important;box-shadow:0 2px 8px rgba(17,36,26,.04)!important}.marketplace .pill--active{background:#EDF6EC!important;border-color:#C6D9C4!important;color:var(--premium-deep)!important}.marketplace .cat-rail-wrap{max-width:1280px!important;padding:8px 28px!important}.marketplace .cat-chip{border-color:var(--premium-line)!important;background:#FFFDF7!important;color:var(--premium-deep)!important;transition-property:border-color,background-color,color,transform}.marketplace .cat-chip.on{background:var(--premium-deep)!important;border-color:var(--premium-deep)!important;color:#fff!important}
 .marketplace main{max-width:1280px!important;padding-top:24px!important}.marketplace .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,246px),1fr))!important;gap:18px!important}.marketplace .card{min-height:160px!important;padding:16px!important;border:1px solid var(--premium-line)!important;border-radius:16px!important;background:#FFFDF7!important;box-shadow:0 2px 8px rgba(17,36,26,.05)!important}.marketplace .card:hover{border-color:#C1D2BD!important;box-shadow:0 14px 34px rgba(22,74,55,.12)!important;transform:translateY(-2px)!important}.marketplace .prod-img-wrap{border-radius:12px!important;background:var(--premium-sage)!important}.marketplace .card b{color:var(--premium-ink)!important}.marketplace .supplier-dot{background:var(--premium-deep)!important}.marketplace .sel b{color:var(--premium-gold)!important}.marketplace .price{color:var(--premium-ink)!important;font-size:22px!important}.marketplace .add{background:var(--premium-deep)!important;border-radius:8px!important}.marketplace .add:hover{background:var(--premium-deep-hover)!important}.marketplace .sidepanel{border:1px solid var(--premium-line)!important;border-radius:14px!important;background:#FFFDF7!important;padding:18px!important;box-shadow:0 2px 8px rgba(17,36,26,.04)!important}.marketplace .sidepanel h2,.marketplace .panel h2{color:var(--premium-deep)!important;letter-spacing:.08em!important;font-size:12px!important}.marketplace .search input{border-color:var(--premium-line)!important;background:#fff!important;height:48px!important;border-radius:10px!important}.marketplace .search input:focus{border-color:var(--premium-deep)!important;box-shadow:0 0 0 3px rgba(22,74,55,.12)!important}.marketplace .search button{background:var(--premium-deep)!important;border-radius:10px!important;height:48px!important}
 .role-gate .role-box{background:var(--premium-paper)!important;border:1px solid var(--premium-line)!important;border-radius:18px!important;box-shadow:0 24px 70px rgba(17,36,26,.16)!important}.role-gate .role-card{background:#F4F6EF!important;border:1px solid var(--premium-line)!important;border-radius:14px!important}.role-gate .role-icon span{background:#EDF6EC!important;border-color:#CBDBC6!important;color:var(--premium-deep)!important}.role-gate .role-action{background:var(--premium-deep)!important;border-radius:8px!important}.role-gate .role-action.secondary{background:var(--premium-gold)!important;color:var(--premium-ink)!important}.lead-box{background:var(--premium-paper)!important;border:1px solid var(--premium-line)!important}.lead-submit{background:var(--premium-deep)!important;border-radius:8px!important}.lead-submit:hover{background:var(--premium-deep-hover)!important}
+.skip-link{position:fixed;top:-80px;left:16px;z-index:1000;background:var(--premium-deep);color:#FFFDF7;padding:12px 16px;border-radius:8px;text-decoration:none;font-weight:800}.skip-link:focus{top:14px;outline:3px solid var(--premium-gold);outline-offset:3px}
 @media(max-width:900px){.marketplace .hero{grid-template-columns:1fr!important;padding:34px 16px!important;gap:28px!important}.marketplace .bar{height:60px!important;padding:0 14px!important}.marketplace .hero-panel{min-height:260px!important}.marketplace .hero-route{grid-template-columns:1fr!important;margin-top:12px!important;gap:8px!important}.marketplace .route-item{border-right:0!important;border-bottom:1px solid var(--premium-line)!important;padding:8px 0!important}.marketplace .hero h1{font-size:44px!important}.marketplace .coverage-bar,.marketplace nav.tabs,.marketplace .cat-rail-wrap,.marketplace main,.marketplace footer{padding-left:14px!important;padding-right:14px!important}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
+<style id="perfection-polish">
+.marketplace .hero h1{overflow-wrap:break-word}.marketplace .hero-panel{min-width:0}.marketplace .hero-panel-row{min-width:0}.marketplace .hero-panel-row span{min-width:0;overflow-wrap:anywhere}.marketplace .catalog-layout,.marketplace .grid,.marketplace .card{min-width:0}.marketplace .card b{overflow-wrap:anywhere}
+@media(forced-colors:active){.skip-link,.cta,.cat-chip.on,.add,.primary,.lead-submit{border:2px solid currentColor!important}.card,.panel,.hero-panel,.role-card,.lead-box{border:1px solid currentColor!important}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"KILOCAL","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://alex451-bip.github.io/kilocal/","description":"Marketplace mayorista para comparación de precios por caja y pedidos por WhatsApp en San Juan, Argentina.","inLanguage":"es-AR","addressRegion":"San Juan","addressCountry":"AR"}</script>
 </head>
 <body class="marketplace">
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 <section id="roleGate" class="role-gate" role="dialog" aria-modal="true" aria-labelledby="roleTitle" hidden>
   <div class="role-box">
@@ -615,7 +622,7 @@ body.marketplace{background:var(--premium-bg)!important;color:var(--premium-ink)
 </nav>
 <div class="cat-rail-wrap" aria-label="Accesos rápidos por categoría"><div id="catQuick" class="cat-rail"></div></div>
 
-<main>
+<main id="main">
   <!-- ============ TAB: KIOSCO ============ -->
   <div id="tab-kiosco">
     
@@ -842,7 +849,7 @@ const MAYORISTAS = [
   { id: 'sol',     nombre: 'Mayorista El Sol',       zona: 'San Juan Capital', entrega: 'entrega', color: '#f4738a' },
   { id: 'aconcagua',nombre:'Mayorista Aconcagua',    zona: 'Chimbas',          entrega: 'entrega', color: '#4ade80' }
 ];
-const CAT_ICON = { 'Almacén':'🥫', 'Bebidas':'🥤', 'Snacks':'🍿', 'Limpieza':'🧼', 'Perfumería':'🧴', 'Cigarrillos':'🚬', 'Lácteos':'🥛', 'Congelados':'❄️' };
+const CAT_ICON = {};
 const PRODUCT_IMAGES = {
 
   'y1': `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="14" width="52" height="38" rx="6" fill="#1E5A3A"/><rect x="6" y="14" width="52" height="12" rx="6" fill="#2E7D4F"/><ellipse cx="32" cy="32" rx="10" ry="8" fill="#8BC34A"/><path d="M25 32q7-6 14 0" stroke="#1E5A3A" stroke-width="1.6" fill="none"/><path d="M28 32q4-3 8 0" stroke="#1E5A3A" stroke-width="1.4" fill="none"/></svg>`,
@@ -1398,7 +1405,19 @@ $('exploreWithoutRole').addEventListener('click', () => { $('roleGate').hidden =
 $('resetRole').addEventListener('click', resetRole);
 $('closeMayoristaLead').addEventListener('click', () => { $('mayoristaLead').hidden = true; });
 $('mayoristaLeadForm').addEventListener('submit', submitMayoristaLead);
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  $('roleGate').hidden = true;
+  $('mayoristaLead').hidden = true;
+  $('cartDrawer').style.display = 'none';
+});
+const qaMode = new URLSearchParams(location.search).get('qa');
+if (qaMode === 'client' || qaMode === 'blank') {
+  state.zona = 'todos';
+  $('roleGate').hidden = true;
+}
 restoreRole();
+if (qaMode === 'client' || qaMode === 'blank') { $('roleGate').hidden = true; }
 renderFilters();
 if (DATA.role === 'mayorista') {
   $('tab-kiosco').style.display = 'none';
