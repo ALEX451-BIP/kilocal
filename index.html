@@ -3,8 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KILOCAL — El mayorista a un click | San Juan</title>
-<meta name="description" content="Todos los mayoristas en un buscador: compará precios por caja, pedí por WhatsApp y que te lo traigan al kiosco. Gratis para kioscos el primer mes.">
+<meta name="theme-color" content="#17261E">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index,follow">
+<title>KILOCAL — Mayoristas para kioscos en San Juan</title>
+<meta name="description" content="KILOCAL junta mayoristas de San Juan: compará precios por caja, armá el pedido y contactá al proveedor por WhatsApp. Sin comisión para kioscos el primer mes.">
+<link rel="canonical" href="https://alex451-bip.github.io/kilocal/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://alex451-bip.github.io/kilocal/">
+<meta property="og:site_name" content="KILOCAL">
+<meta property="og:title" content="KILOCAL — Mayoristas para kioscos en San Juan">
+<meta property="og:description" content="Compará precios por caja entre mayoristas de San Juan y mandá el pedido por WhatsApp.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KILOCAL — Mayoristas para kioscos en San Juan">
+<meta name="twitter:description" content="Compará cajas, armá tu pedido y pedí directo por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317261E'/%3E%3Cpath d='M14 18L32 49L50 18' fill='none' stroke='%23FFFDF5' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='50' y='16' width='6' height='6' fill='%23C15B33' transform='rotate(45 53 19)'/%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#F5F2E9; --bg2:#EFECE0; --panel:#FFFFFF; --panel2:#FAF9F4; --panel3:#F0EEE3;
@@ -344,7 +358,7 @@ input.fi:focus,select.fi:focus,textarea.fi:focus,.uploadGrid input:focus,.upload
 /* Cart FAB, footer, toast */
 #cartFab{position:fixed;right:18px!important;bottom:18px!important;display:none;width:62px!important;height:62px!important;border-radius:50%!important;background:#244D3B!important;color:#FFFDF6!important;border:0!important;box-shadow:0 16px 40px rgba(36,77,59,.32)!important}
 #cartFab span{background:#E4A33B!important;color:#1F2A24!important}
-#cartDrawer>div{background:#FFFDF8!important;border-top:1px solid #D8D3C5!important;border-radius:22px 22px 0 0!important}
+#cartDrawer>div{background:#FFFDF8!important;border-top:1px solid #D8D3C5!important;border-radius:22px 22px 0 0!important;overscroll-behavior:contain}
 footer{max-width:1240px!important;margin:0 auto!important;padding:26px 22px 34px!important;background:transparent!important;border-top:1px solid rgba(31,42,36,.16)!important;color:#596258!important;gap:22px!important;align-items:center}
 footer a{color:#244D3B!important;text-decoration:none!important;font-weight:750!important}
 footer a:hover{color:#B66A1C!important}
@@ -385,7 +399,7 @@ header.top{background:rgba(252,252,247,.9);border-bottom-color:rgba(23,38,30,.12
 .app-dots{display:flex;gap:6px}
 .app-dot{width:9px;height:9px;border-radius:50%;background:#C9653D}.app-dot:nth-child(2){background:#D6A440}.app-dot:nth-child(3){background:#3F8A60}
 .app-name{margin-right:auto;letter-spacing:.08em;text-transform:uppercase}
-.app-status{font-size:10px;color:#A8D8B2}.app-status::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;background:#69C482;border-radius:50%;vertical-align:1px}
+.app-status{font-size:10px;color:#E7C46A}.app-status::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;background:#E7C46A;border-radius:50%;vertical-align:1px}
 .app-body{padding:15px;background:linear-gradient(135deg,#FCFCF7,#F3F4EC)}
 .app-search{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#FFF;border:1px solid #D9DBD0;border-radius:12px;color:#17261E;font-weight:700}
 .app-search span{flex:1;color:#687367;font-weight:500}
@@ -422,10 +436,10 @@ button:focus-visible,a:focus-visible{outline-color:#D7B642!important}
 
 <header class="top">
   <div class="bar">
-    <a class="logo" href="#"><div class="mark" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" role="img" aria-label="KILOCAL"><rect width="34" height="34" rx="9" fill="url(#g)"/><path d="M10 11 L17 24 L24 11" stroke="#FBF6E9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="26.5" y="10" width="3" height="3" rx=".6" transform="rotate(45 28 11.5)" fill="#E9A23B"/><defs><linearGradient id="g" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#244D3B"/><stop offset="1" stop-color="#7C5A17"/></linearGradient></defs></svg></div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
+    <a class="logo" href="#grid"><div class="mark" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true"><rect width="34" height="34" rx="9" fill="url(#g)"/><path d="M10 11 L17 24 L24 11" stroke="#FBF6E9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="26.5" y="10" width="3" height="3" rx=".6" transform="rotate(45 28 11.5)" fill="#E9A23B"/><defs><linearGradient id="g" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#244D3B"/><stop offset="1" stop-color="#7C5A17"/></linearGradient></defs></svg></div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
     <div class="spacer"></div>
-    <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">🚚 Para mayoristas: publicá gratis</a>
-    <button id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">🤖 Asistente</button>
+    <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">Para mayoristas: publicá gratis</a>
+    <button id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">Asistente KILOCAL</button>
   </div>
 </header>
 
@@ -438,7 +452,7 @@ button:focus-visible,a:focus-visible{outline-color:#D7B642!important}
     <p class="hero-fineprint">Sin pagos dentro de KILOCAL. El mayorista confirma precio, stock y entrega.</p>
     <div class="hero-stats">
       <div class="hstat"><b>10+</b><span>Mayoristas priorizados</span></div>
-      <div class="hstat"><b>24</b><span>Provincias en espera</span></div>
+      <div class="hstat"><b>23</b><span>Otras provincias en espera</span></div>
       <div class="hstat"><b>$0</b><span>Comisión el 1° mes</span></div>
       <div class="hstat"><b>2 min</b><span>Para pedir</span></div>
     </div>
@@ -478,10 +492,10 @@ button:focus-visible,a:focus-visible{outline-color:#D7B642!important}
 </section>
 
 <nav class="tabs" id="tabs">
-  <button class="on" data-tab="kiosco">🛒 Catálogo y pedido</button>
-  <button data-tab="mayoristas">🏭 Mayoristas</button>
-  <button data-tab="mayorista">📤 Publicá tu lista</button>
-  <button data-tab="logistica">🚛 Logística y cobertura</button>
+  <button class="on" data-tab="kiosco">Catálogo y pedido</button>
+  <button data-tab="mayoristas">Mayoristas</button>
+  <button data-tab="mayorista">Publicá tu lista</button>
+  <button data-tab="logistica">Logística y cobertura</button>
 </nav>
 
 <main>
@@ -517,12 +531,12 @@ button:focus-visible,a:focus-visible{outline-color:#D7B642!important}
       <section>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
           <div class="search" style="margin-bottom:0;flex:1 1 320px">
-            <input id="q" name="busqueda" aria-label="Buscar productos" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off" spellcheck="false" inputmode="search">
+            <input id="q" name="busqueda" aria-label="Buscar productos" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off" autocorrect="off" spellcheck="false" inputmode="search">
             <button id="btnSearch">Buscar</button>
           </div>
-          <button class="repBtn" id="repeatOrderBtn">🔁 Repetir mi última compra</button>
+          <button class="repBtn" id="repeatOrderBtn">Repetir mi última compra</button>
         </div>
-        <div class="savingsCard" id="savingsCard" style="display:none"><span>💡 KILOCAL te ahorra <b id="savingsAmount">$0</b> vs el precio más caro</span><span style="color:var(--mut2);font-size:10px">calculado del carrito</span></div>
+        <div class="savingsCard" id="savingsCard" style="display:none"><span>KILOCAL te ahorra <b id="savingsAmount">$0</b> vs el precio más caro</span><span style="color:var(--mut2);font-size:10px">calculado del carrito</span></div>
         <div id="grid" class="grid"></div>
         <div class="empty" id="emptyNote" style="display:none">No encontré eso. Probá con "yerba", "coca" o "cerveza".</div>
         <div class="pagination" id="pagination"></div>
@@ -532,7 +546,7 @@ button:focus-visible,a:focus-visible{outline-color:#D7B642!important}
 
   <!-- ============ TAB: MAYORISTAS ============ -->
   <div id="tab-mayoristas" style="display:none">
-    <div class="search" style="max-width:560px"><input id="qMaj" aria-label="Buscar mayorista" placeholder="Buscar mayorista por nombre o zona…"><button id="btnSearchMaj">Buscar</button></div>
+    <div class="search" style="max-width:560px"><input id="qMaj" name="buscar-mayorista" autocomplete="off" autocorrect="off" aria-label="Buscar mayorista" placeholder="Buscar mayorista por nombre o zona…"><button id="btnSearchMaj">Buscar</button></div>
     <div class="mayorGrid" id="mayoristasGrid"></div>
   </div>
 
@@ -856,7 +870,7 @@ function productImage(p, size) {
   if (!svg) {
     svg = '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="56" height="56" rx="10" fill="#EDF2EA"/><path d="M22 26 L42 26 L46 50 L18 50 Z" fill="#244D3B" opacity="0.25"/></svg>';
   }
-  return '<img class="prod-img" width="' + size + '" height="' + size + '" alt="' + esc(p.nombre) + '" src="data:image/svg+xml,' + encodeURIComponent(svg) + '">';
+  return '<img class="prod-img" width="' + size + '" height="' + size + '" loading="lazy" decoding="async" alt="' + esc(p.nombre) + '" src="data:image/svg+xml,' + encodeURIComponent(svg) + '">';
 }
 
 function renderGrid() {
