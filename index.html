@@ -356,49 +356,66 @@ toast{display:none;position:fixed;bottom:22px;left:50%;transform:translateX(-50%
 @media(max-width:760px){.bar{height:auto;min-height:64px;padding:9px 14px;gap:8px;flex-wrap:wrap}.logo small{display:none}.cta{padding:0 12px!important;font-size:11px!important}#aiHeaderBtn{padding:0 11px!important;font-size:11px!important}.hero{padding:24px 16px 18px!important}.coverage-bar,.trust-strip,nav.tabs,main,footer{padding-left:14px!important;padding-right:14px!important}.hero h1{font-size:40px!important}.hero p{font-size:15px!important}.hero-stats{grid-template-columns:repeat(2,1fr);gap:14px!important}.steps{grid-template-columns:1fr}.card{grid-template-columns:82px minmax(0,1fr);padding:12px!important;row-gap:4px!important}.prod-img-wrap{border-radius:14px!important}.price{font-size:19px!important}.grid{grid-template-columns:1fr}.trust-inner .cta,.coverage-inner .cta{width:100%;justify-content:center;margin-left:0!important}.tabs{overflow-x:auto;white-space:nowrap}.tabs button{flex:0 0 auto}.kpi{grid-template-columns:repeat(2,1fr)!important}.uploadGrid{grid-template-columns:1fr!important}.carttotal{font-size:18px}.hero-card h3{font-size:10px!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
-<style id="tema-distinctive">
-:root{--bg:#F1E8D8;--panel:#FFFDF5;--panel2:#F9F4EA;--panel3:#E7DBC8;--line:#D4C7B0;--line2:#BFB094;--ink:#223126;--mut:#555D50;--mut2:#746F61;--acc:#B85C38;--acc2:#8E3F23;--gold:#B85C38;--ok:#244D3B;--bad:#A44735;--focus:#D5A45A}
-body{background-color:var(--bg);background-image:radial-gradient(rgba(104,80,45,.16) 1px,transparent 1.45px),repeating-linear-gradient(0deg,transparent 0 23px,rgba(73,54,30,.08) 24px);background-size:28px 28px,100% 24px;color:var(--ink)}
+<style id="tema-evolve">
+:root{--bg:#EDEFDF;--panel:#FCFCF7;--panel2:#F3F4EC;--panel3:#E1E3D7;--line:#C9CCBD;--line2:#AFB39F;--ink:#17261E;--mut:#4F5B51;--mut2:#707B70;--acc:#C15B33;--acc2:#8A3C23;--gold:#C15B33;--ok:#214E3A;--bad:#B14B3F;--focus:#D7B642}
+body{background-color:var(--bg);background-image:linear-gradient(rgba(33,78,58,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(33,78,58,.055) 1px,transparent 1px),radial-gradient(circle at 80% 10%,rgba(193,91,51,.13),transparent 32%);background-size:28px 28px,28px 28px,auto;color:var(--ink)}
+header.top{background:rgba(252,252,247,.9);border-bottom-color:rgba(23,38,30,.12)}
+.logo b{color:#17261E!important}
+.logo b span{color:#C15B33!important}
+.logo small{color:#586457!important}
+.cta,.search button,.add,.primary,.provSend{background:#C15B33!important;border-color:#C15B33!important;color:#FFFDF5!important;box-shadow:0 8px 19px rgba(193,91,51,.22)!important}
+.cta:hover,.search button:hover,.add:hover,.primary:hover,.provSend:hover{background:#8A3C23!important;border-color:#8A3C23!important;box-shadow:0 12px 24px rgba(193,91,51,.28)!important}
+.cta.ghost{background:#17261E!important;border-color:#17261E!important;color:#FFFDF5!important;box-shadow:none!important}
+.cta.ghost:hover{background:#214E3A!important;border-color:#214E3A!important}
+#aiHeaderBtn{background:#E8EADC!important;border-color:#C9CCBD!important;color:#17261E!important}
+#aiHeaderBtn:hover{background:#DDE1D0!important;border-color:#AFB39F!important}
+.local-tag{display:flex;align-items:center;gap:8px;margin-bottom:18px;color:#4F5B51;font-size:12px;font-weight:750;letter-spacing:.01em}
+.local-tag::before{content:"";width:30px;height:2px;background:#C15B33}
+.hero{grid-template-columns:minmax(0,.92fr) minmax(390px,1.08fr)!important;gap:40px!important;padding-top:30px!important}
+.hero h1{max-width:650px;font-family:"DM Sans",system-ui,sans-serif!important;font-size:clamp(46px,5vw,70px)!important;font-weight:800!important;line-height:.95!important;letter-spacing:-.07em!important;color:#17261E!important}
+.hero h1 .hl{color:#214E3A!important}
+.hero p{max-width:530px!important;font-size:16px!important;line-height:1.55!important}
+.hero-fineprint{font-size:12px!important;color:#526052!important}
 .kicker{display:none}
-.local-tag{display:block;width:max-content;max-width:100%;margin-bottom:16px;padding:0 0 8px;color:#704232;border-bottom:3px solid #B85C38;font-size:13px;line-height:1.2;font-weight:800;letter-spacing:.01em}
-.hero h1{color:#203426;letter-spacing:-.065em}
-.hero h1 .hl{color:#B85C38}
-.cta,.search button,.add,.primary,.provSend{background:#B85C38!important;border-color:#B85C38!important;color:#FFF9ED!important;box-shadow:0 8px 21px rgba(184,92,56,.25)!important}
-.cta:hover,.search button:hover,.add:hover,.primary:hover,.provSend:hover{background:#8E3F23!important;border-color:#8E3F23!important;box-shadow:0 12px 26px rgba(184,92,56,.32)!important}
-.cta.ghost{background:transparent!important;color:#244D3B!important;border-color:#244D3B!important;box-shadow:none!important}
-.cta.ghost:hover{background:#E7DBC8!important}
-#aiHeaderBtn{border-color:#C7B496!important;color:#244D3B!important}
-header.top{background:rgba(241,232,216,.9);border-bottom-color:rgba(145,68,35,.14)}
-.mark{box-shadow:0 8px 20px rgba(44,63,46,.26)!important}
-.hero-card{max-width:470px!important;background:#FFFDF5!important;border:1px solid #D4C7B0!important;border-radius:18px!important;box-shadow:8px 10px 0 rgba(36,77,59,.12),0 24px 48px rgba(58,44,28,.18)!important;overflow:hidden!important;padding:21px!important}
-.hero-card::before{content:"";position:absolute;top:-8px;right:34px;width:11px;height:11px;border-radius:50%;background:#D9D0BC;box-shadow:0 61px 0 #D9D0BC,0 122px 0 #D9D0BC,0 183px 0 #D9D0BC,0 244px 0 #D9D0BC,0 305px 0 #D9D0BC}
-.hero-card::after{content:"";position:absolute;top:0;bottom:0;left:28px;border-left:2px dashed rgba(145,68,35,.28);border-radius:0;pointer-events:none}
-.hero-card h3,.hero-chip,.hero-note{position:relative;margin-left:28px!important}
-.hero-chip{background:#F7F1E3!important;border-color:#DED2BD!important;border-radius:10px!important;box-shadow:none!important}
-.hero-chip small{color:#B85C38!important}
-.steps{gap:14px!important}
-.step-card{background:#FFFDF5!important;border:1px solid #D4C7B0!important;border-radius:14px!important;box-shadow:0 2px 0 #DED2BD!important}
-.step-card b{color:#B85C38!important;letter-spacing:.04em!important;font-size:11px!important;text-transform:uppercase}
-.step-card p{color:#555D50!important}
-.coverage-inner{background:#FFFDF5!important;border-color:#D4C7B0!important;box-shadow:none!important}
-.pill--active{background:#F5E0C7!important;border-color:#D3A679!important;color:#704232!important}
-.trust-item{background:#E7DBC8!important;border-color:#D0BDA1!important;color:#534C3F!important;border-radius:8px!important}
-.trust-item b{color:#B85C38!important}
-.panel,.sidepanel,.card,.mcard,.ordercard,.provGroup{background:#FFFDF5!important;border-color:#D4C7B0!important;box-shadow:none!important}
-.card{border-radius:15px!important}
-.card:hover{box-shadow:8px 8px 0 rgba(36,77,59,.1)!important;transform:translate(-1px,-1px)!important}
-.prod-img-wrap{background:#E8E1D0!important;border-radius:10px!important}
-.price{color:#244D3B!important}
-.sel b{color:#B85C38!important}
-.search input{background:#FFFDF5!important;border-color:#D4C7B0!important}
-.search input:focus{border-color:#B85C38!important;box-shadow:0 0 0 4px rgba(184,92,56,.14)!important}
-.filterRow input,.filterRow:hover{accent-color:#B85C38!important;background:#F5F0E4!important}
-.pagination button.on{background:#B85C38!important;border-color:#B85C38!important;color:#FFF9ED!important}
-.savingsCard{background:#F5E0C7!important;border-color:#D3A679!important}
-.savingsCard span:first-child b{color:#8E3F23!important}
-input.fi,select.fi,textarea.fi,.uploadGrid input,.uploadGrid select{background:#FFFDF5!important;border-color:#D4C7B0!important}
-button:focus-visible,a:focus-visible{outline-color:#D5A45A!important}
-::selection{background:#B85C38!important;color:#FFF9ED!important}
+.hero-stats{gap:22px!important;border-top:1px solid #C9CCBD!important}
+.hstat b{color:#17261E!important}
+.hstat span{color:#6B766A!important}
+.app-frame{position:relative;width:100%;align-self:center;background:#FCFCF7;border:1px solid #C9CCBD;border-radius:20px;box-shadow:0 28px 70px rgba(23,38,30,.23);overflow:hidden;transform:none!important}
+.app-head{height:47px;display:flex;align-items:center;gap:10px;padding:0 14px;background:#17261E;color:#F4F7ED;border-bottom:1px solid #314438;font-size:11px;font-weight:750}
+.app-dots{display:flex;gap:6px}
+.app-dot{width:9px;height:9px;border-radius:50%;background:#C9653D}.app-dot:nth-child(2){background:#D6A440}.app-dot:nth-child(3){background:#3F8A60}
+.app-name{margin-right:auto;letter-spacing:.08em;text-transform:uppercase}
+.app-status{font-size:10px;color:#A8D8B2}.app-status::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;background:#69C482;border-radius:50%;vertical-align:1px}
+.app-body{padding:15px;background:linear-gradient(135deg,#FCFCF7,#F3F4EC)}
+.app-search{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#FFF;border:1px solid #D9DBD0;border-radius:12px;color:#17261E;font-weight:700}
+.app-search span{flex:1;color:#687367;font-weight:500}
+.app-k{font-size:10px;color:#C15B33;letter-spacing:.08em;text-transform:uppercase;font-weight:850}
+.app-options{display:grid;gap:8px;margin-top:11px}
+.app-option{display:grid;grid-template-columns:50px 1fr auto;align-items:center;gap:10px;width:100%;padding:10px;background:#F8F8F2;color:#17261E;border:1px solid #DEDACE;border-radius:12px;text-align:left;cursor:default}
+.app-option.best{background:#EAF3EB;border-color:#89B592;box-shadow:inset 4px 0 0 #214E3A}
+.app-option b{font-size:12px}.app-option small{display:block;margin-top:2px;color:#657067;font-size:10px}.app-option strong{font-size:13px;font-variant-numeric:tabular-nums}.app-option strong em{display:block;color:#214E3A;font-size:9px;font-style:normal;text-transform:uppercase;letter-spacing:.08em;text-align:right}
+.app-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:11px;padding:10px 11px;border-top:1px solid #D9DBD0;color:#4F5B51;font-size:10px}.app-footer b{color:#17261E;font-size:14px;font-variant-numeric:tabular-nums}
+.coverage-inner{background:#FCFCF7!important;border-color:#C9CCBD!important;box-shadow:0 2px 0 rgba(23,38,30,.07)!important}
+.pill{background:#EDEFE3!important;border-color:#C9CCBD!important}
+.pill--active{background:#E5F0E7!important;border-color:#9CB9A0!important;color:#214E3A!important}
+.trust-item{background:#E8EADC!important;border-color:#C9CCBD!important;color:#35483D!important;border-radius:7px!important}
+.trust-item b{color:#C15B33!important}
+.step-card{background:#FCFCF7!important;border-color:#C9CCBD!important;border-radius:12px!important;box-shadow:0 2px 0 #C9CCBD!important}
+.step-card b{color:#214E3A!important;letter-spacing:.04em!important;text-transform:uppercase;font-size:11px!important}
+.panel,.sidepanel,.card,.mcard,.ordercard,.provGroup{background:#FCFCF7!important;border-color:#C9CCBD!important;box-shadow:none!important}
+.sidepanel{border-top:4px solid #214E3A!important}
+.card{border-radius:12px!important}
+.card:hover{box-shadow:0 12px 23px rgba(23,38,30,.13)!important;border-color:#214E3A!important;transform:translateY(-2px)!important}
+.prod-img-wrap{background:#EDEFE3!important;border-radius:9px!important}
+.price{color:#214E3A!important}
+.sel b{color:#C15B33!important}
+.search input,input.fi,select.fi,textarea.fi,.uploadGrid input,.uploadGrid select{background:#FFF!important;border-color:#C9CCBD!important}
+.search input:focus,input.fi:focus,select.fi:focus,textarea.fi:focus,.uploadGrid input:focus,.uploadGrid select:focus{border-color:#214E3A!important;box-shadow:0 0 0 4px rgba(33,78,58,.13)!important}
+.filterRow:hover{background:#EDEFE3!important}
+.filterRow input{accent-color:#C15B33!important}
+.pagination button.on{background:#214E3A!important;border-color:#214E3A!important}
+button:focus-visible,a:focus-visible{outline-color:#D7B642!important}
+::selection{background:#214E3A!important;color:#FFF!important}
 </style>
 </head>
 <body>
@@ -414,9 +431,9 @@ button:focus-visible,a:focus-visible{outline-color:#D5A45A!important}
 
 <section class="hero">
   <div>
-    <span class="local-tag">Precios por caja para kioscos de San Juan</span>
-    <h1>Abastecé tu <span class="hl">kiosco</span>.<br>Compará antes de comprar.</h1>
-    <p>Encontrá productos y precios de distintos mayoristas. Armá tu pedido y contactá directamente al proveedor por WhatsApp.</p>
+    <span class="local-tag">Mercado mayorista digital para San Juan</span>
+    <h1>Abastecé tu kiosco<br><span class="hl">sin llamar a cinco mayoristas.</span></h1>
+    <p>KILOCAL junta precios por caja de mayoristas de San Juan. Vos comparás, armás el pedido y el WhatsApp llega directo al proveedor.</p>
     <div class="hero-actions"><a class="cta" href="#grid">Ver catálogo →</a><a class="cta ghost" href="#como-funciona">Cómo funciona</a></div>
     <p class="hero-fineprint">Sin pagos dentro de KILOCAL. El mayorista confirma precio, stock y entrega.</p>
     <div class="hero-stats">
@@ -426,13 +443,17 @@ button:focus-visible,a:focus-visible{outline-color:#D5A45A!important}
       <div class="hstat"><b>2 min</b><span>Para pedir</span></div>
     </div>
   </div>
-  <aside class="hero-card" aria-label="Ejemplo de pedido en KILOCAL">
-    <h3>Pedido de ejemplo · Kiosco La Perla</h3>
-    <div class="hero-chip"><span>Yerba KIND 1kg <small>caja x12</small></span><small>$39.000</small></div>
-    <div class="hero-chip"><span>Coca-Cola 2.25L <small>caja x6</small></span><small>$22.400</small></div>
-    <div class="hero-chip"><span>Cerveza Quilmes 1L <small>caja x6</small></span><small>$29.600</small></div>
-    <div class="hero-chip"><span>Papel higiénico Presto x4 <small>caja x20</small></span><small>$38.900</small></div>
-    <div class="hero-note">✓ Entrega confirmada directamente con el mayorista</div>
+  <aside class="app-frame" aria-label="Ejemplo de comparación en KILOCAL">
+    <div class="app-head"><span class="app-dots"><span class="app-dot"></span><span class="app-dot"></span><span class="app-dot"></span></span><span class="app-name">KILOCAL · Caja a caja</span><span class="app-status">demo</span></div>
+    <div class="app-body">
+      <div class="app-search"><span class="app-k">Pedido</span><span>Yerba KIND 1kg</span><b>caja x12</b></div>
+      <div class="app-options">
+        <div class="app-option best"><svg width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="14" width="52" height="38" rx="6" fill="#214E3A"/><rect x="6" y="14" width="52" height="12" rx="6" fill="#398058"/><path d="M15 34h34M18 42h28" stroke="#A8D8B2" stroke-width="2" stroke-linecap="round"/></svg><span><b>Mayorista El Sol</b><small>San Juan Capital · entrega al negocio</small></span><strong>$39.000<em>Mejor precio</em></strong></div>
+        <div class="app-option"><svg width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="17" width="48" height="32" rx="5" fill="#D6A440"/><path d="M14 29h36M16 38h32" stroke="#FFFDF5" stroke-width="3" stroke-linecap="round"/></svg><span><b>Mayorista del Centro</b><small>Rivadavia · retiro o entrega</small></span><strong>$41.200<em>+$2.200</em></strong></div>
+        <div class="app-option"><svg width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="15" width="44" height="36" rx="6" fill="#C15B33"/><path d="M17 28h30M18 38h28" stroke="#FFFDF5" stroke-width="3" stroke-linecap="round"/><circle cx="48" cy="17" r="4" fill="#D7B642"/></svg><span><b>Mayorista Cuyo</b><small>Rawson · entrega semanal</small></span><strong>$43.900<em>+$4.900</em></strong></div>
+      </div>
+      <div class="app-footer"><span>Ejemplo de pedido<br>Entrega y cobro del mayorista</span><b>$39.000 / caja</b></div>
+    </div>
   </aside>
 </section>
 
