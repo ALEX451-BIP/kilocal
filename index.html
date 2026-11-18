@@ -515,6 +515,7 @@ body.marketplace{background:var(--premium-bg)!important;color:var(--premium-ink)
 </style>
 <style id="perfection-polish">
 .marketplace .hero h1{overflow-wrap:break-word}.marketplace .hero-panel{min-width:0}.marketplace .hero-panel-row{min-width:0}.marketplace .hero-panel-row span{min-width:0;overflow-wrap:anywhere}.marketplace .catalog-layout,.marketplace .grid,.marketplace .card{min-width:0}.marketplace .card b{overflow-wrap:anywhere}
+.marketplace .sample-badge{display:inline-flex;margin-left:8px;padding:2px 6px;border:1px solid #D6BE80;border-radius:4px;background:#FFF7D9;color:#6E5520;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;vertical-align:2px}.marketplace .sample-cta{display:flex;align-items:center;justify-content:center;padding:0 10px;text-decoration:none;background:#F4C34D!important;color:#172026!important;border:1px solid #D6BE80!important;border-radius:8px!important;min-height:38px!important;font-size:11px!important;font-weight:850!important;text-align:center}.marketplace .sample-cta:hover{background:#FFE27A!important;transform:translateY(-1px)}.marketplace .sample-badge + b{display:inline}
 @media(forced-colors:active){.skip-link,.cta,.cat-chip.on,.add,.primary,.lead-submit{border:2px solid currentColor!important}.card,.panel,.hero-panel,.role-card,.lead-box{border:1px solid currentColor!important}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"KILOCAL","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://alex451-bip.github.io/kilocal/","description":"Marketplace mayorista para comparación de precios por caja y pedidos por WhatsApp en San Juan, Argentina.","inLanguage":"es-AR","addressRegion":"San Juan","addressCountry":"AR"}</script>
@@ -529,7 +530,7 @@ body.marketplace{background:var(--premium-bg)!important;color:var(--premium-ink)
     <p class="role-lead">Elegí si sos un kiosco o un mayorista. El cliente ve su zona y los mayoristas que operan ahí. El mayorista pasa sus datos y queda en contacto con nuestro equipo.</p>
     <div class="role-grid">
       <section class="role-card" aria-labelledby="roleClientTitle">
-        <div class="role-icon"><span aria-hidden="true">🏪</span>Cliente / Kiosco</div>
+        <div class="role-icon"><span aria-hidden="true">CL</span>Cliente / Kiosco</div>
         <h2 id="roleClientTitle">Comprá con precios de caja.</h2>
         <p>Elegís tu localidad, filtrás los mayoristas que trabajan en tu zona y armás el pedido para enviarlo por WhatsApp.</p>
         <label for="clientZone">¿Dónde estás?<select id="clientZone" required>
@@ -544,7 +545,7 @@ body.marketplace{background:var(--premium-bg)!important;color:var(--premium-ink)
         <button id="enterClient" class="role-action" type="button">Entrar como cliente →</button>
       </section>
       <section class="role-card" aria-labelledby="roleMayoristaTitle">
-        <div class="role-icon"><span aria-hidden="true">🏭</span>Mayorista</div>
+        <div class="role-icon"><span aria-hidden="true">MY</span>Mayorista</div>
         <h2 id="roleMayoristaTitle">Publicá tus precios y recibí pedidos.</h2>
         <p>Si querés sumar tu mayorista a KILOCAL, pasanos tus datos y te mostramos cómo cargar tu lista, tu cobertura y tus canales de venta.</p>
         <button id="enterMayorista" class="role-action secondary" type="button">Entrar como mayorista →</button>
@@ -941,15 +942,17 @@ function restoreRole() {
   else { $('roleGate').hidden = true; }
 }
 function setClientRole() {
-  const zone = ($('clientZone') && $('clientZone').value) || 'todos';
-  saveRole('cliente', zone);
+  const rawZone = ($('clientZone') && $('clientZone').value) || 'todos';
+  const zone = rawZone === 'Otra' ? 'todos' : rawZone;
+  const zoneLabel = rawZone === 'Otra' ? 'Otra localidad' : zone;
+  saveRole('cliente', zoneLabel);
   state.zona = zone;
   state.page = 1;
   $('roleGate').hidden = true;
-  if ($('roleChipValue')) { $('roleChipValue').textContent = 'cliente'; $('roleChipZone').textContent = zone; $('roleChip').classList.add('visible'); }
+  if ($('roleChipValue')) { $('roleChipValue').textContent = 'cliente'; $('roleChipZone').textContent = zoneLabel; $('roleChip').classList.add('visible'); }
   renderFilters();
   renderGrid();
-  toast('Zona guardada: ' + zone);
+  toast(rawZone === 'Otra' ? 'Te mostramos todos los catálogos; escribinos para abrir entregas en tu localidad' : 'Zona guardada: ' + zone);
 }
 function setMayoristaRole() {
   saveRole('mayorista', 'San Juan');
@@ -1003,7 +1006,7 @@ function mayoristaZona(id) { const m = MAYORISTAS.find(x => x.id === id); return
 
 function mergedCatalog() {
   const map = new Map();
-  PRODUCTOS.forEach(p => map.set(p.id, { id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.u, offers: p.offer }));
+  PRODUCTOS.forEach(p => map.set(p.id, { id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.u, offers: p.offer, sample: true }));
   (DATA.products || []).filter(p => p.activo).forEach(p => {
     const offers = p.offers || p.offer || (p.mayorista ? (function(){ const o = {}; o[p.mayorista] = p.precioCaja; return o; })() : {});
     map.set(p.id, { id: p.id, nombre: p.nombre, cat: p.cat, caja: p.caja, unidades: p.unidades || p.u || 1, offers: offers });
@@ -1078,13 +1081,13 @@ function renderGrid() {
     const sellerName = seller.nombre || mayoristaNombre(cheap);
     const initials = sellerName.split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join('').toUpperCase() || 'MY';
     return '<div class="card" style="position:relative">'
-      + '<div class="prod-img-wrap">' + productImage(p) + '</div><b>' + esc(p.nombre) + '</b>'
+      + '<div class="prod-img-wrap">' + productImage(p) + '</div><b>' + esc(p.nombre) + (p.sample ? '<span class="sample-badge">Muestra</span>' : '') + '</b>'
       + '<div class="supplier-line"><span class="supplier-dot" style="background:' + esc(seller.color || '#172026') + '">' + esc(initials) + '</span><span>' + esc(sellerName) + ' · ' + (seller.entrega === 'entrega' ? 'Entrega' : 'Retiro') + '</span></div>'
       + '<div class="sel">Mejor precio: <b>' + esc(mayoristaNombre(cheap)) + '</b> · ' + esc(mayoristaZona(cheap)) + '</div>'
       + '<div class="price">' + fmt.format(best) + ' <small>/ ' + p.caja + '</small></div>'
       + '<div class="unit">' + fmt.format(Math.round(best / p.unidades)) + ' por unidad · ' + p.cat + '</div>'
       + '<div class="row"><div class="qty"><button data-q="-1" data-id="' + p.id + '" aria-label="Quitar 1 unidad">−</button><span id="qq-' + p.id + '">1</span><button data-q="1" data-id="' + p.id + '" aria-label="Agregar 1 unidad">+</button></div>'
-      + '<button class="add" data-add="' + p.id + '">Agregar</button></div></div>';
+      + (p.sample ? '<a class="add sample-cta" href="https://wa.me/5492646204892?text=' + encodeURIComponent('Quiero unirme al piloto y cargar mi lista en KILOCAL') + '" target="_blank" rel="noopener">Quiero listas reales</a>' : '<button class="add" data-add="' + p.id + '">Agregar</button>') + '</div></div>';
   }).join('');
   bindGrid();
   renderPagination(total, pages);
