@@ -1036,7 +1036,7 @@ function restoreRole() {
   let role = '', zone = 'todos';
   try { role = localStorage.getItem(ROLE_KEY) || ''; zone = localStorage.getItem(ROLE_ZONE_KEY) || 'todos'; } catch {}
   const chip = $('roleChip');
-  if (!role) { $('roleGate').hidden = false; if (chip) chip.classList.remove('visible'); return; }
+  if (!role) { $('roleGate').hidden = true; if (chip) chip.classList.remove('visible'); return; }
   if (chip) { const value = $('roleChipValue'); const z = $('roleChipZone'); if (value) value.textContent = role; if (z) z.textContent = zone; chip.classList.add('visible'); }
   if (zone && zone !== 'todos' && role === 'cliente') { state.zona = zone; $('roleGate').hidden = true; }
   else { $('roleGate').hidden = true; }
@@ -1182,8 +1182,7 @@ function renderGrid() {
     const initials = sellerName.split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0]).join('').toUpperCase() || 'MY';
     return '<div class="card" style="position:relative">'
       + '<div class="prod-img-wrap">' + productImage(p) + '</div><b>' + esc(p.nombre) + (p.sample ? '<span class="sample-badge">Muestra</span>' : '') + '</b>'
-      + '<div class="supplier-line"><span class="supplier-dot" style="background:' + esc(seller.color || '#172026') + '">' + esc(initials) + '</span><span>' + esc(sellerName) + ' · ' + (seller.entrega === 'entrega' ? 'Entrega' : 'Retiro') + '</span></div>'
-      + '<div class="sel">Mejor precio: <b>' + esc(mayoristaNombre(cheap)) + '</b> · ' + esc(mayoristaZona(cheap)) + '</div>'
+      + '<div class="supplier-line"><span class="supplier-dot" style="background:' + esc(seller.color || '#172026') + '">' + esc(initials) + '</span><span>' + esc(sellerName) + ' · ' + esc(mayoristaZona(cheap)) + ' · ' + (seller.entrega === 'entrega' ? 'Entrega' : 'Retiro') + '</span></div>'
       + '<div class="price">' + fmt.format(best) + ' <small>/ ' + p.caja + '</small></div>'
       + '<div class="unit">' + fmt.format(Math.round(best / p.unidades)) + ' por unidad · ' + p.cat + '</div>'
       + '<div class="row"><div class="qty"><button data-q="-1" data-id="' + p.id + '" aria-label="Quitar 1 unidad">−</button><span id="qq-' + p.id + '">1</span><button data-q="1" data-id="' + p.id + '" aria-label="Agregar 1 unidad">+</button></div>'
