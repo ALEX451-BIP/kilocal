@@ -189,7 +189,7 @@ toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <style id="tema-pro">
 :root{--bg:#F7F5EE;--panel:#FFFFFF;--panel2:#FCFBF7;--panel3:#ECE9DD;--line:#DEDACE;--line2:#CBC6B8;--ink:#1F2A24;--mut:#596258;--mut2:#7D857A;--acc:#E4A33B;--acc2:#B66A1C;--gold:#E4A33B;--ok:#2D6E49;--bad:#B5453A;--focus:#F2C96D}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
@@ -531,27 +531,84 @@ body.marketplace{background:var(--ledger-bg)!important;color:var(--ledger-ink)!i
 @media(forced-colors:active){.order-sheet{border:2px solid currentColor!important;box-shadow:none!important}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"KILOCAL","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://alex451-bip.github.io/kilocal/","description":"Marketplace mayorista para comparación de precios por caja y pedidos por WhatsApp en San Juan, Argentina.","inLanguage":"es-AR","addressRegion":"San Juan","addressCountry":"AR"}</script>
-<style id="motion-finish">
-/* Movimiento con propósito: las imágenes respiran, el hover responde al instante.
-   Todo queda apagado bajo prefers-reduced-motion (guard global mas arriba). */
+<style id="kl-pizarra">
+/* KILOCAL — direccion "pizarra de deposito".
+   Blanco frio + tinta petr oleo + naranja de senal. Sin kraft, sin dark, sin talonario.
+   Un solo momento fuerte: el panel de pedido. Todo lo demas callado. */
+:root{--kz-bg:#F6F7F4;--kz-paper:#FFFFFF;--kz-ink:#12212B;--kz-mid:#5B6973;--kz-line:#D5DBD6;--kz-orange:#E4551F;--kz-green:#1F6B50;--kz-sage:#EAF0EA}
+body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important;font-family:"IBM Plex Sans",Aptos,sans-serif!important}
+.marketplace .bar{max-width:1240px!important;height:70px!important;padding:0 24px!important}
+.marketplace header.top{background:#fff!important;border-bottom:1px solid var(--kz-line)!important;box-shadow:none!important}
+.marketplace .mark{background:var(--kz-ink)!important;border-radius:6px!important;box-shadow:none!important}
+.marketplace .logo b{font-family:"Barlow Condensed",sans-serif!important;font-size:22px!important;letter-spacing:.02em!important;text-transform:uppercase!important;color:var(--kz-ink)!important}
+.marketplace .logo b span{color:var(--kz-orange)!important}
+.marketplace .logo small{color:var(--kz-mid)!important;font-size:9px!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.marketplace .cta{background:var(--kz-ink)!important;border:1px solid var(--kz-ink)!important;border-radius:5px!important;color:#fff!important;box-shadow:none!important;font-weight:700!important;letter-spacing:0!important;text-transform:none!important;transition:background-color 150ms ease-out,border-color 150ms ease-out!important}
+.marketplace .cta:hover{background:var(--kz-orange)!important;border-color:var(--kz-orange)!important;color:#fff!important;transform:none!important}
+.marketplace #aiHeaderBtn{border:1px solid var(--kz-line)!important;border-radius:5px!important;color:var(--kz-ink)!important;background:#fff!important}
+.marketplace .hero{max-width:1240px!important;margin:0 auto!important;padding:64px 24px 56px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 400px!important;gap:56px!important;align-items:center!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;min-height:0!important}
+.marketplace .hero::after{display:none!important}
+.marketplace .hero h1{font-family:"Barlow Condensed",sans-serif!important;font-size:clamp(58px,7vw,96px)!important;font-weight:700!important;line-height:.9!important;letter-spacing:-.02em!important;text-transform:uppercase!important;color:var(--kz-ink)!important;max-width:640px!important}
+.marketplace .hero h1 .hl{color:var(--kz-orange)!important}
+.marketplace .hero p{font-family:"IBM Plex Sans",sans-serif!important;max-width:520px!important;color:var(--kz-mid)!important;font-size:16px!important;line-height:1.6!important;margin:24px 0 28px!important}
+.marketplace .hero-actions{margin:0!important;gap:12px!important}
+.marketplace .hero-actions .cta{min-height:52px!important;padding:0 22px!important;font-size:14px!important}
+.marketplace .text-link{color:var(--kz-ink)!important;border-bottom:1px solid var(--kz-line)!important;font-weight:600!important}
+.marketplace .hero-fineprint{color:var(--kz-mid)!important;font-size:11px!important}
+.marketplace .hero-stats{display:flex!important;gap:26px!important;padding-top:20px!important;border-top:1px solid var(--kz-line)!important;margin-top:30px!important}
+.marketplace .hstat b{font-family:"Barlow Condensed",sans-serif!important;font-size:30px!important;color:var(--kz-ink)!important}
+.marketplace .hstat span{font-size:10px!important;letter-spacing:.08em!important;text-transform:uppercase!important;color:var(--kz-mid)!important}
+/* El unico momento fuerte: pizarra de pedido, limpia, sin sombra kraft ni talonario */
+.order-sheet{max-width:400px!important;justify-self:end!important;padding:0!important;background:var(--kz-paper)!important;border:1px solid var(--kz-ink)!important;border-radius:0!important;box-shadow:none!important;color:var(--kz-ink)!important;animation:none!important}
+.order-sheet::before{display:none!important}
+.order-sheet-head{padding:16px 18px!important;background:var(--kz-ink)!important;color:#fff!important}
+.order-sheet-head b{font-family:"Barlow Condensed",sans-serif!important;font-size:24px!important;letter-spacing:.02em!important;color:#fff!important;text-transform:uppercase!important}
+.order-sheet-head small{color:#F4C34D!important;font-size:9px!important;letter-spacing:.14em!important}
+.order-sheet-head>span{color:#B9C6C0!important}
+.order-sheet-meta{margin:0!important;padding:12px 18px!important;border-top:0!important;border-bottom:1px solid var(--kz-line)!important;color:var(--kz-mid)!important;font-size:10px!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+.order-sheet-body{border:0!important;margin:0!important}
+.order-line-head{background:var(--kz-sage)!important;color:var(--kz-ink)!important;font-weight:700!important}
+.order-line{border-bottom:1px solid var(--kz-line)!important}
+.order-sheet-total{border-top:2px solid var(--kz-ink)!important;margin:8px 0 0!important;padding:16px 18px 20px!important}
+.marketplace .hero-route{max-width:1240px!important;margin:0 auto!important;padding:18px 24px 0!important;border-top:1px solid var(--kz-line)!important;grid-template-columns:repeat(3,1fr)!important}
+.marketplace .route-item{border-right:1px solid var(--kz-line)!important}
+.marketplace .route-item span{border-color:var(--kz-orange)!important;color:var(--kz-orange)!important;background:#fff!important;border-radius:50%!important}
+.marketplace .route-item b{font-family:"Barlow Condensed",sans-serif!important;font-size:18px!important;text-transform:uppercase!important;color:var(--kz-ink)!important}
+.marketplace .route-item small{color:var(--kz-mid)!important;font-size:11px!important}
+.marketplace .coverage-bar,.marketplace .cat-rail-wrap,.marketplace main,.marketplace footer{max-width:1240px!important}
+.marketplace .coverage-inner{background:var(--kz-paper)!important;border:1px solid var(--kz-line)!important;border-radius:0!important;box-shadow:none!important}
+.marketplace .pill--active{background:var(--kz-sage)!important;border-color:var(--kz-green)!important;color:var(--kz-green)!important}
+.marketplace nav.tabs button.on{background:var(--kz-ink)!important;color:#fff!important;border-radius:0!important}
+.marketplace .cat-chip{border:1px solid var(--kz-line)!important;background:#fff!important;border-radius:0!important;color:var(--kz-ink)!important}
+.marketplace .cat-chip.on{background:var(--kz-orange)!important;border-color:var(--kz-orange)!important;color:#fff!important}
+.marketplace .sidepanel,.marketplace .panel,.marketplace .card,.marketplace .savingsCard,.marketplace .empty{background:var(--kz-paper)!important;border:1px solid var(--kz-line)!important;border-radius:0!important;box-shadow:none!important}
+.marketplace .card{min-height:150px!important;padding:14px!important}
+.marketplace .prod-img-wrap{border-radius:0!important;background:var(--kz-sage)!important;outline:1px solid rgba(17,24,19,.08)!important;outline-offset:-1px!important}
+.marketplace .prod-img-wrap>img{animation:none!important}
+.marketplace .card b{font-family:"IBM Plex Sans",sans-serif!important;color:var(--kz-ink)!important;font-weight:600!important}
+.marketplace .price{font-family:"Barlow Condensed",sans-serif!important;font-size:26px!important;color:var(--kz-orange)!important;font-weight:700!important}
+.marketplace .add,.marketplace .primary{background:var(--kz-ink)!important;border-radius:4px!important;color:#fff!important}
+.marketplace .sample-badge{background:#FFF3E8!important;color:#9A4410!important;border-color:#E9B486!important;border-radius:0!important}
+.marketplace .sample-cta{background:var(--kz-orange)!important;border-color:var(--kz-orange)!important;color:#fff!important;border-radius:4px!important}
+.marketplace .supplier-dot{background:var(--kz-green)!important;border-radius:0!important}
+.marketplace .search input{border-color:var(--kz-line)!important;border-radius:0!important;background:#fff!important;height:46px!important}
+.marketplace .search input:focus{border-color:var(--kz-ink)!important;box-shadow:none!important}
+.marketplace .search button{background:var(--kz-ink)!important;border-radius:0!important}
+.marketplace .demo-notice{background:#FFF3E8!important;border:0!important;border-left:3px solid var(--kz-orange)!important;border-radius:0!important;color:#7A3B0E!important}
+.marketplace footer{background:var(--kz-ink)!important;color:#C7D0CA!important;border-radius:0!important}
+.marketplace footer a{color:#E9BF85!important}
+@keyframes kl-once{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:no-preference){
-  @keyframes kl-breathe{0%,100%{transform:translate3d(0,2px,0) scale(1)}50%{transform:translate3d(0,-3px,0) scale(1.015)}}
-  @keyframes kl-paper{0%,100%{transform:translate3d(0,0,0) rotate(-.35deg)}50%{transform:translate3d(0,-5px,0) rotate(.35deg)}}
-  @keyframes kl-enter{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:none}}
-  .marketplace .prod-img-wrap>img{animation:kl-breathe 7s ease-in-out infinite;transform-origin:center;backface-visibility:hidden}
-  .marketplace .grid .card:nth-child(3n+2) .prod-img-wrap>img{animation-delay:-2.3s}
-  .marketplace .grid .card:nth-child(3n+3) .prod-img-wrap>img{animation-delay:-4.6s}
-  .marketplace .order-sheet{animation:kl-paper 8s ease-in-out infinite;transform-origin:50% 0}
-  .marketplace .grid .card{animation:kl-enter 320ms ease-out backwards}
-  .marketplace .grid .card:nth-child(2){animation-delay:60ms}
-  .marketplace .grid .card:nth-child(3){animation-delay:120ms}
-  .marketplace .grid .card:nth-child(n+4){animation-delay:160ms}
+  .marketplace .hero-copy{animation:kl-once 420ms ease-out backwards}
+  .marketplace .order-sheet{animation:kl-once 420ms ease-out 100ms backwards}
   @media (hover:hover){
-    .marketplace .grid .card:hover{transform:translate3d(0,-3px,0)!important}
-    .marketplace .grid .card:hover .prod-img-wrap>img{animation:none;transform:scale(1.06)}
-    .marketplace .cta:enabled:active,.marketplace .add:enabled:active,.marketplace .cat-chip:active{transform:scale(.96)}
+    .marketplace .grid .card:hover{border-color:var(--kz-ink)!important;transform:translateY(-2px)!important}
+    .marketplace .grid .card:hover .prod-img-wrap>img{transform:scale(1.05)}
+    .marketplace .cta:enabled:active,.marketplace .add:enabled:active{transform:scale(.96)}
   }
 }
+@media(max-width:900px){.marketplace .hero{grid-template-columns:1fr!important;gap:32px!important;padding:40px 16px!important}.order-sheet{max-width:none!important;justify-self:stretch!important}.marketplace .hero h1{font-size:clamp(48px,13vw,72px)!important}}
+@media(forced-colors:active){.order-sheet,.marketplace .card{border:1px solid currentColor!important}}
 </style>
 </head>
 <body class="marketplace">
