@@ -559,7 +559,7 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
 .marketplace .hstat b{font-family:"Barlow Condensed",sans-serif!important;font-size:30px!important;color:var(--kz-ink)!important}
 .marketplace .hstat span{font-size:10px!important;letter-spacing:.08em!important;text-transform:uppercase!important;color:var(--kz-mid)!important}
 /* El unico momento fuerte: pizarra de pedido, limpia, sin sombra kraft ni talonario */
-.order-sheet{max-width:400px!important;justify-self:end!important;padding:0!important;background:var(--kz-paper)!important;border:1px solid var(--kz-ink)!important;border-radius:0!important;box-shadow:none!important;color:var(--kz-ink)!important;animation:none!important}
+.order-sheet{max-width:400px!important;justify-self:end!important;padding:0!important;background:var(--kz-paper)!important;border:1px solid var(--kz-ink)!important;border-radius:0!important;box-shadow:none!important;color:var(--kz-ink)!important;animation:none}
 .order-sheet::before{display:none!important}
 .order-sheet-head{padding:16px 18px!important;background:var(--kz-ink)!important;color:#fff!important}
 .order-sheet-head b{font-family:"Barlow Condensed",sans-serif!important;font-size:24px!important;letter-spacing:.02em!important;color:#fff!important;text-transform:uppercase!important}
@@ -597,13 +597,19 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
 .marketplace .demo-notice{background:#FFF3E8!important;border:0!important;border-left:3px solid var(--kz-orange)!important;border-radius:0!important;color:#7A3B0E!important}
 .marketplace footer{background:var(--kz-ink)!important;color:#C7D0CA!important;border-radius:0!important}
 .marketplace footer a{color:#E9BF85!important}
-@keyframes kl-once{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* Movimiento segun design-motion-principles: frecuencia baja = entrada unica con stagger;
+   hover = respuesta rapida reversible; todo con estado estatico y reduced-motion. */
+@keyframes kl-once{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:no-preference){
-  .marketplace .hero-copy{animation:kl-once 420ms ease-out backwards}
-  .marketplace .order-sheet{animation:kl-once 420ms ease-out 100ms backwards}
+  .marketplace .hero-copy{animation:kl-once 300ms cubic-bezier(.2,0,0,1) both}
+  .marketplace .order-sheet{animation:kl-once 300ms cubic-bezier(.2,0,0,1) 90ms both}
+  .marketplace nav.tabs{animation:kl-once 300ms cubic-bezier(.2,0,0,1) 180ms both}
   @media (hover:hover){
-    .marketplace .grid .card:hover{border-color:var(--kz-ink)!important;transform:translateY(-2px)!important}
+    .marketplace .grid .card{transition-property:transform,border-color!important;transition-duration:150ms!important;transition-timing-function:ease-out!important}
+    .marketplace .grid .card:hover{border-color:var(--kz-ink)!important;transform:translate3d(0,-2px,0)!important}
+    .marketplace .grid .card .prod-img-wrap>img{transition-property:transform;transition-duration:200ms;transition-timing-function:cubic-bezier(.2,0,0,1)}
     .marketplace .grid .card:hover .prod-img-wrap>img{transform:scale(1.05)}
+    .marketplace .cta,.marketplace .add{transition-property:transform,background-color,border-color!important;transition-duration:150ms!important;transition-timing-function:ease-out!important}
     .marketplace .cta:enabled:active,.marketplace .add:enabled:active{transform:scale(.96)}
   }
 }
@@ -668,7 +674,7 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
     <a class="logo" href="#grid"><div class="mark" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true"><rect width="34" height="34" rx="9" fill="url(#g)"/><path d="M10 11 L17 24 L24 11" stroke="#FBF6E9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="26.5" y="10" width="3" height="3" rx=".6" transform="rotate(45 28 11.5)" fill="#E9A23B"/><defs><linearGradient id="g" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#244D3B"/><stop offset="1" stop-color="#7C5A17"/></linearGradient></defs></svg></div><div><b>KILO<span style="color:var(--acc)">CAL</span></b><small>Mayoristas · San Juan</small></div></a>
     <div class="spacer"></div>
     <a class="cta" href="https://wa.me/5492646204892?text=Hola%20quiero%20sumar%20mi%20mayorista%20a%20KILOCAL" target="_blank" rel="noopener">Para mayoristas: publicá gratis</a>
-    <button id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">Asistente KILOCAL</button>
+    <button type="button" id="aiHeaderBtn" aria-label="Pregúntale a KILOCAL">Asistente KILOCAL</button>
   </div>
 </header>
 <div id="roleChipWrap" class="role-chip-wrap"><div id="roleChip" class="role-chip"><span>Estás como <b id="roleChipValue">cliente</b> · <span id="roleChipZone">San Juan</span></span><button id="resetRole" class="role-reset" type="button">Cambiar</button></div></div>
@@ -711,10 +717,10 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
 <div class="demo-notice" role="status"><b>Catálogo de muestra.</b> Los precios y productos de esta vista aún no son ofertas confirmadas. Las listas reales se publican cuando cada mayorista las cargue.</div>
 
 <nav class="tabs" id="tabs">
-  <button class="on" data-tab="kiosco">Catálogo y pedido</button>
-  <button data-tab="mayoristas">Mayoristas</button>
-  <button data-tab="mayorista">Publicá tu lista</button>
-  <button data-tab="logistica">Logística y cobertura</button>
+  <button type="button" class="on" data-tab="kiosco">Catálogo y pedido</button>
+  <button type="button" data-tab="mayoristas">Mayoristas</button>
+  <button type="button" data-tab="mayorista">Publicá tu lista</button>
+  <button type="button" data-tab="logistica">Logística y cobertura</button>
 </nav>
 <div class="cat-rail-wrap" aria-label="Accesos rápidos por categoría"><div id="catQuick" class="cat-rail"></div></div>
 
@@ -746,9 +752,9 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
         <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
           <div class="search" style="margin-bottom:0;flex:1 1 320px">
             <input id="q" name="busqueda" aria-label="Buscar productos" placeholder="Buscar yerba, azúcar, coca, cerveza, cigarrillos…" autocomplete="off" autocorrect="off" spellcheck="false" inputmode="search">
-            <button id="btnSearch">Buscar</button>
+            <button type="button" id="btnSearch">Buscar</button>
           </div>
-          <button class="repBtn" id="repeatOrderBtn">Repetir mi última compra</button>
+          <button type="button" class="repBtn" id="repeatOrderBtn">Repetir mi última compra</button>
         </div>
         <div class="savingsCard" id="savingsCard" style="display:none"><span>KILOCAL te ahorra <b id="savingsAmount">$0</b> vs el precio más caro</span><span style="color:var(--mut2);font-size:10px">calculado del carrito</span></div>
         <section class="packs-panel" aria-labelledby="packsTitle">
@@ -765,7 +771,7 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
 
   <!-- ============ TAB: MAYORISTAS ============ -->
   <div id="tab-mayoristas" style="display:none">
-    <div class="search" style="max-width:560px"><input id="qMaj" name="buscar-mayorista" autocomplete="off" autocorrect="off" aria-label="Buscar mayorista" placeholder="Buscar mayorista por nombre o zona…"><button id="btnSearchMaj">Buscar</button></div>
+    <div class="search" style="max-width:560px"><input id="qMaj" name="buscar-mayorista" autocomplete="off" autocorrect="off" aria-label="Buscar mayorista" placeholder="Buscar mayorista por nombre o zona…"><button type="button" id="btnSearchMaj">Buscar</button></div>
     <div class="mayorGrid" id="mayoristasGrid"></div>
   </div>
 
@@ -819,7 +825,7 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
           <select id="mCat"><option>Almacén</option><option>Bebidas</option><option>Snacks</option><option>Limpieza</option><option>Perfumería</option><option>Cigarrillos</option><option>Lácteos</option><option>Congelados</option></select>
           <input id="mStock" type="number" min="0" placeholder="Stock (cajas)">
         </div>
-        <button class="primary" id="uploadBtn">Publicar producto →</button>
+        <button type="button" class="primary" id="uploadBtn">Publicar producto →</button>
         <h2 style="margin-top:16px">Mis productos</h2>
         <div id="myProducts"></div>
       </div>
@@ -839,18 +845,18 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
 
 
 <div id="aiPanel" role="dialog" aria-label="Asistente KILOCAL">
-  <header><div class="orb">🤖</div><div><b style="color:#fff">Cerebro KILOCAL</b><div style="font-size:10px;color:var(--mut)">responde sobre el catálogo y los mayoristas</div></div><button id="aiClose" style="margin-left:auto;background:none;border:0;color:var(--mut);font-size:20px;cursor:pointer">✕</button></header>
+  <header><div class="orb">🤖</div><div><b style="color:#fff">Cerebro KILOCAL</b><div style="font-size:10px;color:var(--mut)">responde sobre el catálogo y los mayoristas</div></div><button type="button" id="aiClose" style="margin-left:auto;background:none;border:0;color:var(--mut);font-size:20px;cursor:pointer">✕</button></header>
   <div id="aiMessages"></div>
   <div class="aiChips" id="aiChips"></div>
-  <div id="aiInputRow"><input id="aiInput" placeholder="Ej: ¿precio de la yerba?" autocomplete="off"><button id="aiSend">Enviar</button></div>
+  <div id="aiInputRow"><input id="aiInput" placeholder="Ej: ¿precio de la yerba?" autocomplete="off"><button type="button" id="aiSend">Enviar</button></div>
 </div>
 
 <!-- asistente movido al header -->
-<button id="cartFab" style="position:fixed;right:14px;bottom:14px;z-index:80;display:none;background:var(--acc);color:#231a02;border:0;border-radius:999px;width:60px;height:60px;font-size:23px;cursor:pointer;box-shadow:var(--shadow)">🛒<span id="cartCount" style="position:absolute;top:-4px;right:-4px;background:var(--bad);color:#fff;font-size:11px;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-weight:800">0</span></button>
+<button type="button" id="cartFab" style="position:fixed;right:14px;bottom:14px;z-index:80;display:none;background:var(--acc);color:#231a02;border:0;border-radius:999px;width:60px;height:60px;font-size:23px;cursor:pointer;box-shadow:var(--shadow)">🛒<span id="cartCount" style="position:absolute;top:-4px;right:-4px;background:var(--bad);color:#fff;font-size:11px;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-weight:800">0</span></button>
 
 <div id="cartDrawer" style="position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:90;display:none;align-items:flex-end;justify-content:center">
   <div class="panel cart" style="max-width:520px;width:100%;max-height:88vh;overflow-y:auto;transform:translateY(6%);border-radius:18px 18px 0 0;padding:18px">
-    <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Tu pedido</h2><button id="closeCart" style="background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer">✕</button></div>
+    <div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Tu pedido</h2><button type="button" id="closeCart" style="background:none;border:0;color:var(--ink);font-size:22px;cursor:pointer">✕</button></div>
     <div id="cartItems" style="margin-top:10px"></div>
     <div class="carttotal"><span>Total</span><span id="cartTotal">$0</span></div>
     <label class="l" for="dNombre">Tu kiosco / negocio</label><input id="dNombre" name="nombre-kiosco" class="fi" autocomplete="name" inputmode="text" spellcheck="false" placeholder="Ej: Kiosco La Perla…">
@@ -861,8 +867,8 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
     <label class="l">Horario para recibir el pedido</label><input id="dHorario" class="fi" placeholder="Ej: lunes a sábado, mañana">
     <label class="l" for="dWhatsapp">WhatsApp de contacto</label><input id="dWhatsapp" name="whatsapp" class="fi" type="tel" autocomplete="tel" inputmode="numeric" placeholder="264…">
     <label class="l">Entrega</label><select id="dEntrega" class="fi"><option>Entrega a mi negocio (según zona del mayorista)</option><option>Retiro en el mayorista</option></select>
-    <button class="primary" id="sendOrder">PEDIR YA POR WHATSAPP →</button>
-    <button class="chipbtn" id="clearCart" style="width:100%;margin-top:8px;padding:12px">Vaciar pedido</button>
+    <button type="button" class="primary" id="sendOrder">PEDIR YA POR WHATSAPP →</button>
+    <button type="button" class="chipbtn" id="clearCart" style="width:100%;margin-top:8px;padding:12px">Vaciar pedido</button>
     <div class="note">El mayorista te confirma precio y entrega por WhatsApp. KILOCAL no toca tu plata: el mayorista le factura al kiosco por los canales que ya usan.</div>
   </div>
 </div>
