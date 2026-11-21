@@ -626,6 +626,144 @@ body.marketplace{background:var(--kz-bg)!important;color:var(--kz-ink)!important
   .kl-reveal.kl-in{animation:kl-rise 480ms cubic-bezier(.2,0,0,1) both;animation-delay:var(--kl-delay,0ms)}
 }
 </style>
+
+<style id="kl-premium">
+/* ============================================================
+   KILOCAL — direccion "Cuaderno de comercio".
+   Papel hueso, tinta azul noche, UN acento naranja. Serif editorial
+   para titulares, sans para datos. Reglas finas, sin gradientes.
+   hoja 1/1: pisa las capas viejas por orden de cascada.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --pp-bg:#EDF0F1;        /* gris frio commercial */
+  --pp-paper:#FFFFFF;     /* hoja limpia */
+  --pp-ink:#14263A;       /* tinta azul noche */
+  --pp-ink-2:#33465C;
+  --pp-mut:#6E7B88;
+  --pp-rule:#D3DADD;      /* regla fina fria */
+  --pp-acc:#C24312;       /* naranja senal (accesible ~5:1) */
+  --pp-acc-soft:#F7E4D9;
+  --pp-green:#1F6B50;
+}
+
+html{scroll-behavior:smooth}
+body.marketplace{
+  background:var(--pp-bg)!important;
+  color:var(--pp-ink)!important;
+  font-family:"IBM Plex Sans",sans-sans-serif!important;
+}
+
+/* ---------- HEADER ---------- */
+.marketplace header.top{background:rgba(244,241,233,.94)!important;backdrop-filter:blur(10px);border-bottom:1px solid var(--pp-rule)!important;position:relative;z-index:3}
+.marketplace .bar{max-width:1200px!important}
+.marketplace .logo b{font-family:"Barlow Condensed",sans-serif!important;font-size:23px!important;font-weight:700!important;letter-spacing:-.02em!important;color:var(--pp-ink)!important;text-transform:none!important}
+.marketplace .logo b span{color:var(--pp-acc)!important}
+.marketplace .logo small{font-family:"IBM Plex Sans",sans-sans-serif!important;font-size:9px!important;letter-spacing:.16em!important;color:var(--pp-mut)!important}
+.marketplace .mark{background:var(--pp-ink)!important;border-radius:8px!important}
+.marketplace .cta{background:var(--pp-ink)!important;border:1px solid var(--pp-ink)!important;border-radius:4px!important;color:#FBF9F3!important;font-family:"IBM Plex Sans",sans-sans-serif!important;font-weight:600!important;letter-spacing:0!important;text-transform:none!important;box-shadow:none!important}
+.marketplace .cta:hover{background:var(--pp-acc)!important;border-color:var(--pp-acc)!important;transform:none!important}
+.marketplace #aiHeaderBtn{border-radius:4px!important;border-color:var(--pp-rule)!important;background:transparent!important;color:var(--pp-ink)!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+
+/* ---------- HERO ---------- */
+.marketplace .hero{max-width:1200px!important;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr)!important;gap:64px!important;padding:72px 24px 56px!important;align-items:center!important;position:relative;z-index:1}
+.marketplace .hero-copy{position:relative}
+/* numero de seccion editorial */
+.marketplace .hero-copy::before{content:"01 / ABASTECIMIENTO";display:block;font-family:"IBM Plex Sans",sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--pp-acc);margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--pp-rule)}
+.marketplace .hero h1{font-family:"Barlow Condensed",sans-serif!important;font-size:clamp(54px,6.8vw,94px)!important;font-weight:700!important;line-height:.94!important;letter-spacing:-.01em!important;text-transform:uppercase!important;color:var(--pp-ink)!important;max-width:640px!important}
+.marketplace .hero h1 .hl{color:var(--pp-acc)!important;font-style:normal!important}
+.marketplace .hero p{font-family:"IBM Plex Sans",sans-sans-serif!important;font-size:16px!important;line-height:1.65!important;color:var(--pp-ink-2)!important;max-width:500px!important;margin:26px 0 30px!important}
+.marketplace .hero-actions{gap:20px!important;align-items:center!important}
+.marketplace .hero-actions .cta{min-height:52px!important;padding:0 26px!important;font-size:14px!important;background:var(--pp-ink)!important;color:#FBF9F3!important;border-color:var(--pp-ink)!important}
+.marketplace .hero-actions .cta,.marketplace .hero-actions .cta *{color:#FBF9F3!important}
+.marketplace .text-link{color:var(--pp-ink)!important;border-bottom:1px solid var(--pp-ink)!important;font-weight:600!important;font-family:"IBM Plex Sans",sans-sans-serif!important;text-transform:none!important;letter-spacing:0!important;padding-bottom:2px}
+
+/* ---------- PANEL DE PEDIDO (protagonista) ---------- */
+.marketplace .order-sheet{max-width:400px!important;padding:0!important;background:var(--pp-paper)!important;border:1px solid var(--pp-ink)!important;border-radius:2px!important;box-shadow:8px 8px 0 var(--pp-ink)!important;overflow:visible!important}
+.marketplace .order-sheet-head{padding:18px 20px!important;background:var(--pp-ink)!important;color:#FBF9F3!important;display:flex!important;justify-content:space-between!important;align-items:flex-start!important}
+.marketplace .order-sheet-head b{font-family:"Barlow Condensed",sans-serif!important;font-size:22px!important;font-weight:700!important;letter-spacing:-.01em!important;color:#FBF9F3!important;text-transform:none!important}
+.marketplace .order-sheet-head small{font-family:"IBM Plex Sans",sans-sans-serif!important;color:#E8B98F!important;font-size:9px!important;letter-spacing:.16em!important;font-weight:700!important}
+.marketplace .order-sheet-head>span{font-family:"IBM Plex Sans",sans-sans-serif!important;color:#B9C6D0!important}
+.marketplace .order-sheet-meta{margin:0!important;padding:12px 20px!important;border-top:0!important;border-bottom:1px solid var(--pp-rule)!important;color:var(--pp-mut)!important;font-size:9px!important;letter-spacing:.1em!important;text-transform:uppercase!important;display:flex!important;justify-content:space-between!important;gap:10px!important}
+.marketplace .order-sheet-body{border:0!important;margin:0!important;padding:6px 20px!important}
+.marketplace .order-line-head{background:transparent!important;color:var(--pp-mut)!important;font-family:"IBM Plex Sans",sans-sans-serif!important;font-size:9px!important;letter-spacing:.1em!important;text-transform:uppercase!important;border-bottom:1px solid var(--pp-rule)!important}
+.marketplace .order-line{border-bottom:1px dashed var(--pp-rule)!important;color:var(--pp-ink-2)!important;font-size:12px!important;min-height:44px!important}
+.marketplace .order-sheet-total{border-top:2px solid var(--pp-ink)!important;margin:0 20px!important;padding:16px 0!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+.marketplace .order-sheet-total b{font-family:"Barlow Condensed",sans-serif!important;color:var(--pp-acc)!important;font-size:17px!important}
+.marketplace .hero-note{display:block!important;margin:0!important;padding:12px 20px 16px!important;background:var(--pp-acc-soft)!important;color:var(--pp-ink-2)!important;font-family:"IBM Plex Sans",sans-sans-serif!important;font-size:10px!important;line-height:1.5!important;border-top:1px solid var(--pp-rule)!important}
+
+/* ---------- RUTA 1-2-3 ---------- */
+.marketplace .hero-route{max-width:1200px!important;margin:0 auto!important;padding:22px 24px 0!important;border-top:1px solid var(--pp-rule)!important;grid-template-columns:repeat(3,1fr)!important}
+.marketplace .route-item{border-right:1px solid var(--pp-rule)!important;padding:0 20px 0 0!important}
+.marketplace .route-item:last-child{border-right:0!important}
+.marketplace .route-item span{border-color:var(--pp-acc)!important;color:var(--pp-acc)!important;background:transparent!important;border-radius:50%!important;font-family:"IBM Plex Sans",sans-sans-serif!important;font-weight:700!important}
+.marketplace .route-item b{font-family:"Barlow Condensed",sans-serif!important;font-size:17px!important;text-transform:none!important;color:var(--pp-ink)!important;font-weight:600!important}
+.marketplace .route-item small{font-family:"IBM Plex Sans",sans-sans-serif!important;color:var(--pp-mut)!important;font-size:11px!important}
+
+/* ---------- COBERTURA ---------- */
+.marketplace .coverage-bar,.marketplace .cat-rail-wrap,.marketplace main,.marketplace footer{max-width:1200px!important;position:relative;z-index:1}
+.marketplace .coverage-inner{background:var(--pp-paper)!important;border:1px solid var(--pp-rule)!important;border-radius:2px!important;box-shadow:none!important;padding:12px 18px!important}
+.marketplace .coverage-label{font-family:"IBM Plex Sans",sans-sans-serif!important;font-weight:700!important;color:var(--pp-ink)!important;letter-spacing:.04em!important}
+.marketplace .pill{border-radius:2px!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+.marketplace .pill--active{background:var(--pp-green)!important;border-color:var(--pp-green)!important;color:#fff!important}
+
+/* ---------- AVISO MUESTRA ---------- */
+.marketplace .demo-notice{background:var(--pp-acc-soft)!important;border-left:3px solid var(--pp-acc)!important;border-radius:0!important;color:var(--pp-ink-2)!important;font-family:"IBM Plex Sans",sans-sans-serif!important;font-size:11px!important}
+
+/* ---------- TABS ---------- */
+.marketplace nav.tabs{border-bottom:1px solid var(--pp-rule)!important;gap:6px!important}
+.marketplace nav.tabs button{font-family:"IBM Plex Sans",sans-sans-serif!important;border-radius:0!important;color:var(--pp-ink-2)!important;font-weight:600!important}
+.marketplace nav.tabs button.on{background:var(--pp-ink)!important;color:#FBF9F3!important;border-radius:2px 2px 0 0!important}
+
+/* ---------- CATALOGO ---------- */
+.marketplace .cat-chip{border:1px solid var(--pp-rule)!important;background:var(--pp-paper)!important;border-radius:2px!important;color:var(--pp-ink-2)!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+.marketplace .cat-chip.on{background:var(--pp-acc)!important;border-color:var(--pp-acc)!important;color:#fff!important}
+.marketplace .panel,.marketplace .sidepanel,.marketplace .card,.marketplace .savingsCard,.marketplace .empty{background:var(--pp-paper)!important;border:1px solid var(--pp-rule)!important;border-radius:2px!important;box-shadow:none!important}
+.marketplace .sidepanel h2{font-family:"Barlow Condensed",sans-serif!important;font-weight:600!important;color:var(--pp-ink)!important;text-transform:none!important;letter-spacing:0!important}
+.marketplace .f{font-family:"IBM Plex Sans",sans-sans-serif!important;font-size:10px!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:var(--pp-mut)!important;font-weight:700!important}
+.marketplace .search input{border-color:var(--pp-rule)!important;border-radius:2px!important;background:#fff!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+.marketplace .search input:focus{border-color:var(--pp-ink)!important;box-shadow:0 0 0 3px rgba(20,38,58,.1)!important}
+.marketplace .search button{background:var(--pp-ink)!important;border-radius:2px!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+.marketplace .card{min-height:160px!important;padding:12px!important;border-top:2px solid transparent!important}
+.marketplace .card:hover{border-top-color:var(--pp-acc)!important;box-shadow:none!important;transform:translateY(-2px)!important}
+.marketplace .prod-img-wrap{border-radius:2px!important;background:#fff!important;outline:1px solid var(--pp-rule)!important;outline-offset:-1px!important}
+.marketplace .card b{font-family:"IBM Plex Sans",sans-sans-serif!important;font-weight:600!important;color:var(--pp-ink)!important;font-size:13px!important}
+.marketplace .price{font-family:"Barlow Condensed",sans-serif!important;font-size:27px!important;color:var(--pp-acc)!important;font-weight:600!important;letter-spacing:-.02em!important}
+.marketplace .add,.marketplace .primary{background:var(--pp-ink)!important;border-radius:2px!important;color:#FBF9F3!important;font-family:"IBM Plex Sans",sans-sans-serif!important;font-weight:600!important}
+.marketplace .sample-badge{background:var(--pp-acc-soft)!important;color:var(--pp-acc)!important;border-color:var(--pp-acc)!important;border-radius:2px!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+.marketplace .sample-cta{background:var(--pp-acc)!important;border-color:var(--pp-acc)!important;border-radius:2px!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+
+/* ---------- FOOTER ---------- */
+.marketplace footer{background:var(--pp-ink)!important;color:#C7D0DA!important;border-radius:0!important;font-family:"IBM Plex Sans",sans-sans-serif!important}
+.marketplace footer a{color:#E8B98F!important}
+
+/* ---------- MOVIMIENTO (una sola entrada, arriba) ---------- */
+@keyframes pp-rise{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .marketplace .hero-copy{animation:pp-rise 420ms cubic-bezier(.2,0,0,1) both}
+  .marketplace .order-sheet{animation:pp-rise 420ms cubic-bezier(.2,0,0,1) 80ms both}
+  @media (hover:hover){
+    .marketplace .grid .card{transition-property:transform,border-top-color!important;transition-duration:180ms!important;transition-timing-function:ease-out!important}
+    .marketplace .grid .card .prod-img-wrap>img{transition:transform 240ms cubic-bezier(.2,0,0,1)}
+    .marketplace .grid .card:hover .prod-img-wrap>img{transform:scale(1.04)}
+    .marketplace .cta,.marketplace .add{transition:transform 150ms ease-out,background-color 150ms ease-out!important}
+    .marketplace .cta:enabled:active,.marketplace .add:enabled:active{transform:scale(.97)}
+  }
+}
+/* El reveal por scroll anterior se desactiva para no duplicar entradas */
+.kl-reveal{opacity:1!important;animation:none!important}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .marketplace .hero{grid-template-columns:1fr!important;gap:36px!important;padding:44px 18px!important}
+  .marketplace .order-sheet{max-width:none!important;justify-self:stretch!important}
+  .marketplace .hero h1{font-size:clamp(46px,13vw,72px)!important}
+  .marketplace .hero-route{grid-template-columns:1fr!important;gap:10px!important}
+  .marketplace .route-item{border-right:0!important;border-bottom:1px solid var(--pp-rule)!important;padding:0 0 10px!important}
+}
+@media(forced-colors:active){.marketplace .order-sheet,.marketplace .card{border:1px solid currentColor!important}}
+</style>
 </head>
 <body class="marketplace">
 <a class="skip-link" href="#main">Saltar al contenido</a>
